@@ -8,6 +8,10 @@ import javax.swing.*;
 
 
 public class MainFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ToolBar toolbar;
 
 	public MainFrame() {
@@ -23,6 +27,8 @@ public class MainFrame extends JFrame {
 		setTitle("Studentska služba");
 		setResizable(false);
 		setVisible(true);
+		setLocation(screenDimension.width/2 - getWidth()/2, screenDimension.height/2 -getHeight()/2);
+	
 
 	}
 	

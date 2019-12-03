@@ -6,6 +6,10 @@ import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class ToolBar extends JToolBar {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton dodavanje;
 	private JButton izmena;
 	private JButton brisanje;
