@@ -36,7 +36,7 @@ public class ToolBar extends JToolBar {
 		brisanje.setIcon(new ImageIcon("slike/brisanje.png"));
 		add(brisanje);
 
-		add(Box.createHorizontalStrut(350));
+		add(Box.createHorizontalStrut(850));
 		
 		unos_pretrage = new JTextField();
 		unos_pretrage.setPreferredSize(new Dimension(250, 30));
