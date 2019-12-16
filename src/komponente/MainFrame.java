@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.*;
 
+import kontroler.TabbedPaneListener;
+
 
 public class MainFrame extends JFrame {
 
@@ -29,6 +31,7 @@ public class MainFrame extends JFrame {
 		add(toolbar, BorderLayout.NORTH);
 		
 		tabbedPane=new TabbedPane();
+		tabbedPane.addChangeListener(new TabbedPaneListener());
 		add(tabbedPane,BorderLayout.CENTER);
 		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();

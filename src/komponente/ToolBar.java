@@ -7,15 +7,17 @@ import javax.swing.*;
 
 public class ToolBar extends JToolBar {
 
-	
 	private static final long serialVersionUID = -3632212177343556646L;
-	private JButton dodavanje;
+	private JButton dodavanjeStudenta;
+	private JButton dodavanjeProfesora;
 	private JButton izmena;
 	private JButton brisanje;
 	private JButton pretraga;
 	private JTextField unosPretrage;
 	private JButton dodavanjePredmeta;
-	private JButton dodavanjeNaPredemet;
+	private JButton dodavanjeStudentaNaPredemet;
+	private JButton dodavanjeProfesoraNaPredmet;
+
 	enum Tip {
 		STUDENT, PROFESOR, PREDMET;
 
@@ -31,22 +33,32 @@ public class ToolBar extends JToolBar {
 			return t;
 		}
 	}
+
 	private static ToolBar instance = null; // singlton klasa
 	// obrazac za singlton po defaultu treba da se pali student
+
 	public static ToolBar getInstance() {
 		if (instance == null) {
 			instance = new ToolBar();
 		}
 		return instance;
 	}
+
 	private ToolBar() {
 
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setFloatable(false);
-		dodavanje = new JButton();
-		dodavanje.setToolTipText("Dodavanje studenta/profesora/predmeta");
-		dodavanje.setIcon(new ImageIcon("slike/dodavanje.png"));
-
+		dodavanjeStudenta = new JButton();
+		dodavanjeStudenta.setToolTipText("Dodavanje studenta/profesora/predmeta");
+		dodavanjeStudenta.setIcon(new ImageIcon("slike/dodavanje.png"));
+		
+		
+		dodavanjeProfesora = new JButton();
+		dodavanjeProfesora.setToolTipText("Dodavanje profesora");
+		dodavanjeProfesora.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
+		
+		
+		
 		izmena = new JButton();
 		izmena.setToolTipText("Izmena studenta/profesora/predmeta");
 		izmena.setIcon(new ImageIcon("slike/izmena.png"));
@@ -61,23 +73,29 @@ public class ToolBar extends JToolBar {
 		pretraga = new JButton();
 		pretraga.setToolTipText("Pretrazite studente/profesore/predmete");
 		pretraga.setIcon(new ImageIcon("slike/pretraga.png"));
-		
-		dodavanjeNaPredemet= new JButton();
-		dodavanjeNaPredemet.setToolTipText("Dodajte novog studenta/profesora na predmet");
-		dodavanjeNaPredemet.setIcon(new ImageIcon("slike/dodavanje.png"));
-		
-		dodavanjePredmeta=new JButton();
+
+		dodavanjeStudentaNaPredemet = new JButton();
+		dodavanjeStudentaNaPredemet.setToolTipText("Dodajte novog studenta na predmet");
+		dodavanjeStudentaNaPredemet.setIcon(new ImageIcon("slike/dodavanje.png"));
+
+		dodavanjePredmeta = new JButton();
 		dodavanjePredmeta.setToolTipText("Dodavanje predmeta");
 		dodavanjePredmeta.setIcon(new ImageIcon("slike/dodajpredmet.png"));
+
+		dodavanjeProfesoraNaPredmet = new JButton();
+		dodavanjeProfesoraNaPredmet.setToolTipText("Dodajte novog profesora na predmet");
+		dodavanjeProfesoraNaPredmet.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
 		iscrtajNaEkran(Tip.STUDENT);
 	}
-	// iscrtavam komponente na osnovu kartice na kojoj se nalazim - menja se toolbar uvek ovu metodu pozivam u listeneru
+
+	// iscrtavam komponente na osnovu kartice na kojoj se nalazim - menja se toolbar
+	// uvek ovu metodu pozivam u listeneru
 	public void iscrtajNaEkran(Tip t) {
 		removeAll();
 
 		if (t == Tip.STUDENT) {
-			dodavanje.setToolTipText("Dodavanje studenta");
-			add(dodavanje);
+			dodavanjeStudenta.setToolTipText("Dodavanje studenta");
+			add(dodavanjeStudenta);
 
 			addSeparator();
 			izmena.setToolTipText("Izmena studenta");
@@ -96,10 +114,9 @@ public class ToolBar extends JToolBar {
 			add(pretraga);
 
 		} else if (t == Tip.PROFESOR) {
-
-			dodavanje.setToolTipText("Dodavanje profesora");
-			add(dodavanje);
-
+			
+			add(dodavanjeProfesora);
+			
 			addSeparator();
 			izmena.setToolTipText("Izmena profesora");
 			add(izmena);
@@ -116,16 +133,19 @@ public class ToolBar extends JToolBar {
 
 			pretraga.setToolTipText("Pretrazite profesora");
 			add(pretraga);
-		
+
 		} else if (t == Tip.PREDMET) {
-			
+
 			add(dodavanjePredmeta);
-			
+
 			addSeparator();
-			
-			add(dodavanjeNaPredemet);
+
+			add(dodavanjeStudentaNaPredemet);
 			addSeparator();
-			
+
+			add(dodavanjeProfesoraNaPredmet);
+			addSeparator();
+
 			izmena.setToolTipText("Izmena predmeta");
 			add(izmena);
 
@@ -141,12 +161,11 @@ public class ToolBar extends JToolBar {
 
 			pretraga.setToolTipText("Pretrazite predmete");
 			add(pretraga);
-			
-			
-			
+
 		}
 
 	}
+
 	public Tip getTip(int i) {
 		return Tip.getTip(i);
 	}
