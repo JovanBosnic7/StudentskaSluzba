@@ -13,7 +13,13 @@ public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 8475781865375555499L;
 	private ToolBar toolbar;
 	private static MainFrame instance=null;
-	
+	//ovo je za singlton klasu 
+	public static MainFrame getInstance() {
+		if(instance==null) {
+			instance=new MainFrame();
+		}
+		return instance;
+	}
 	
 	public MainFrame() {
 
