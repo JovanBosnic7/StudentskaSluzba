@@ -8,17 +8,17 @@ import javax.swing.*;
 
 
 public class MainFrame extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private ToolBar toolbar;
 
+	
+	private static final long serialVersionUID = 8475781865375555499L;
+	private ToolBar toolbar;
+	private static MainFrame instance=null;
+	
+	
 	public MainFrame() {
 
 		setLayout(new BorderLayout());
-
-		toolbar = new ToolBar();
+		toolbar= ToolBar.getInstance();
 		add(toolbar, BorderLayout.NORTH);
 
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -26,9 +26,9 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Studentska služba");
 		setResizable(false);
-		setVisible(true);
 		setLocation(screenDimension.width/2 - getWidth()/2, screenDimension.height/2 -getHeight()/2);
-	
+		setVisible(true);
+
 
 	}
 	

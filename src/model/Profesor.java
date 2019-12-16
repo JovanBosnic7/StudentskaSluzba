@@ -13,7 +13,7 @@ public class Profesor {
 	private int brojLicneKarte;
 	private String titula;
 	private String zvanje;
-	// private ArrayList<Predmet> predmeti;
+	 private ArrayList<Predmet> predmeti;
 	
 	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String adresaKancelarije, int brojLicneKarte, String titula, String zvanje) {
@@ -28,6 +28,15 @@ public class Profesor {
 		this.brojLicneKarte = brojLicneKarte;
 		this.titula = titula;
 		this.zvanje = zvanje;
+		this.predmeti=new ArrayList<Predmet>();
+	}
+
+	public ArrayList<Predmet> getPredmeti() {
+		return predmeti;
+	}
+
+	public void setPredmeti(ArrayList<Predmet> predmeti) {
+		this.predmeti = predmeti;
 	}
 
 	public String getIme() {
