@@ -28,6 +28,7 @@ public class MainFrame extends JFrame {
 
 		setLayout(new BorderLayout());
 		toolbar= ToolBar.getInstance();
+		this.setJMenuBar(MenuBar.getInstance());
 		add(toolbar, BorderLayout.NORTH);
 		
 		tabbedPane=new TabbedPane();
