@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.*;
 
-import kontroler.TabbedPaneListener;
+import kontroler.*;
 
 
 public class MainFrame extends JFrame {
@@ -40,6 +40,10 @@ public class MainFrame extends JFrame {
 		setTitle("Studentska služba");
 		setResizable(false);
 		setLocation(screenDimension.width/2 - getWidth()/2, screenDimension.height/2 -getHeight()/2);
+		
+		
+		addWindowListener(new MainFrameListener());
+		
 		setVisible(true);
 
 
