@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 8475781865375555499L;
 	private ToolBar toolbar;
 	private static MainFrame instance=null;
+	private TabbedPane tabbedPane;
 	//ovo je za singlton klasu 
 	public static MainFrame getInstance() {
 		if(instance==null) {
@@ -26,7 +27,10 @@ public class MainFrame extends JFrame {
 		setLayout(new BorderLayout());
 		toolbar= ToolBar.getInstance();
 		add(toolbar, BorderLayout.NORTH);
-
+		
+		tabbedPane=new TabbedPane();
+		add(tabbedPane,BorderLayout.CENTER);
+		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize( 3* screenDimension.width / 4, 3* screenDimension.height / 4);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
