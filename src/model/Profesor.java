@@ -10,13 +10,13 @@ public class Profesor {
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String adresaKancelarije;
-	private int brojLicneKarte;
+	private String brojLicneKarte;
 	private String titula;
 	private String zvanje;
 	 private ArrayList<Predmet> predmeti;
 	
 	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String emailAdresa, String adresaKancelarije, int brojLicneKarte, String titula, String zvanje) {
+			String emailAdresa, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -95,11 +95,11 @@ public class Profesor {
 		this.adresaKancelarije = adresaKancelarije;
 	}
 
-	public int getBrojLicneKarte() {
+	public String getBrojLicneKarte() {
 		return brojLicneKarte;
 	}
 
-	public void setBrojLicneKarte(int brojLicneKarte) {
+	public void setBrojLicneKarte(String brojLicneKarte) {
 		this.brojLicneKarte = brojLicneKarte;
 	}
 
