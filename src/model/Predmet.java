@@ -1,28 +1,40 @@
 package model;
 
 public class Predmet {
-	private int sifraPredmeta;
+	private String sifraPredmeta;
 	private String nazivPredmeta;
-	private int semestar;
-	private int godinaUKojojSePredmetIzvodi;
-	private Profesor predmetniProfesor;
+	private String semestar;
+	private String godinaUKojojSePredmetIzvodi;
+	private String profesor;
+	//private Profesor predmetniProfesor;
 
 	// private ArrayList<Student> spisakStudenataKojiSlusajuPredmet
-	public Predmet(int sifraPredmeta, String nazivPredmeta, int semestar, int godinaUKojojSePredmetIzvodi,
+	public Predmet(String sifraPredmeta, String nazivPredmeta, String semestar, String godinaUKojojSePredmetIzvodi,
 			Profesor predmetniProfesor) {
 		super();
 		this.sifraPredmeta = sifraPredmeta;
 		this.nazivPredmeta = nazivPredmeta;
 		this.semestar = semestar;
 		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi;
-		this.predmetniProfesor = predmetniProfesor;
+		//this.predmetniProfesor = predmetniProfesor;
 	}
 
-	public int getSifraPredmeta() {
+	public Predmet(String sifraPredmeta2, String nazivPredmeta2, String semestar2, String godinaUKojojSePredmetIzvodi2,
+			String string) {
+		super();
+		this.sifraPredmeta = sifraPredmeta2;
+		this.nazivPredmeta = nazivPredmeta2;
+		this.semestar = semestar2;
+		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi2;
+		this.profesor=string;
+		
+	}
+
+	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}
 
-	public void setSifraPredmeta(int sifraPredmeta) {
+	public void setSifraPredmeta(String sifraPredmeta) {
 		this.sifraPredmeta = sifraPredmeta;
 	}
 
@@ -34,35 +46,35 @@ public class Predmet {
 		this.nazivPredmeta = nazivPredmeta;
 	}
 
-	public int getSemestar() {
+	public String getSemestar() {
 		return semestar;
 	}
 
-	public void setSemestar(int semestar) {
+	public void setSemestar(String semestar) {
 		this.semestar = semestar;
 	}
 
-	public int getGodinaUKojojSePredmetIzvodi() {
+	public String getGodinaUKojojSePredmetIzvodi() {
 		return godinaUKojojSePredmetIzvodi;
 	}
 
-	public void setGodinaUKojojSePredmetIzvodi(int godinaUKojojSePredmetIzvodi) {
+	public void setGodinaUKojojSePredmetIzvodi(String godinaUKojojSePredmetIzvodi) {
 		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi;
 	}
 
-	public Profesor getPredmetniProfesor() {
-		return predmetniProfesor;
-	}
+//	public Profesor getPredmetniProfesor() {
+	//	return predmetniProfesor;
+	//}
 
-	public void setPredmetniProfesor(Profesor predmetniProfesor) {
-		this.predmetniProfesor = predmetniProfesor;
-	}
+	//public void setPredmetniProfesor(Profesor predmetniProfesor) {
+	//	this.predmetniProfesor = predmetniProfesor;
+//	}
 
 	@Override
 	public String toString() {
 		return "Predmet [sifraPredmeta=" + sifraPredmeta + ", nazivPredmeta=" + nazivPredmeta + ", semestar=" + semestar
 				+ ", godinaUKojojSePredmetIzvodi=" + godinaUKojojSePredmetIzvodi + ", predmetniProfesor="
-				+ predmetniProfesor + "]";
+				 + "]";
 	}
 
 }
