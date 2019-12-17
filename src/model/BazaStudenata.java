@@ -1,6 +1,5 @@
 package model;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BazaStudenata {
 
@@ -13,8 +12,8 @@ public class BazaStudenata {
 			return instance;
 		}
 
-		private List<Student> studenti;
-		private List<String> kolone;
+		private ArrayList<Student> studenti;
+		private ArrayList<String> kolone;
 
 		private BazaStudenata() {
 		
@@ -29,11 +28,11 @@ public class BazaStudenata {
 
 		}
 
-		public List<Student> getStudenti() {
+		public ArrayList<Student> getStudenti() {
 			return studenti;
 		}
 
-		public void setStudenti(List<Student> studenti) {
+		public void setStudenti(ArrayList<Student> studenti) {
 			this.studenti = studenti;
 		}
 
