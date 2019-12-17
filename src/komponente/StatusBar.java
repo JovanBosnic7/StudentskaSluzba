@@ -54,7 +54,7 @@ public class StatusBar extends JPanel {
 	}
 
 	public void azurirajVreme() {
-		SimpleDateFormat formatDatuma = new SimpleDateFormat("hh:mm dd.MM.YYYY.");
+		SimpleDateFormat formatDatuma = new SimpleDateFormat("HH:mm dd.MM.YYYY.");
         datumLab.setText(formatDatuma.format(new Date()));
     }
 	
