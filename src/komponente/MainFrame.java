@@ -42,6 +42,7 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		setLocation(screenDimension.width/2 - getWidth()/2, screenDimension.height/2 -getHeight()/2);
 		
+		add(new StatusBar(), BorderLayout.SOUTH);
 		
 		addWindowListener(new MainFrameListener());
 		
