@@ -20,6 +20,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 	private JButton dodavanjeStudentaNaPredemet;
 	private JButton dodavanjeProfesoraNaPredmet;
 	private DijalogZaDodavanjeProfesora dijalogProfesor;
+	//private DijalogZaDodavanjePredmeta dijalogPredmet;
 
 
 
@@ -126,7 +127,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 			add(pretraga);
 
 		} else if (t == Tip.PREDMET) {
-
+			//dodavanjePredmeta.addActionListener(this);
 			add(dodavanjePredmeta);
 
 			addSeparator();
@@ -166,5 +167,6 @@ public class ToolBar extends JToolBar implements ActionListener {
 			dijalogProfesor.setLocationRelativeTo(MainFrame.getInstance());
 			dijalogProfesor.setVisible(true);
 		}
+		
 	}
 }
