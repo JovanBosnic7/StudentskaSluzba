@@ -2,10 +2,12 @@ package komponente;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class ToolBar extends JToolBar {
+public class ToolBar extends JToolBar implements ActionListener {
 
 	private static final long serialVersionUID = -3632212177343556646L;
 	private JButton dodavanjeStudenta;
@@ -17,22 +19,10 @@ public class ToolBar extends JToolBar {
 	private JButton dodavanjePredmeta;
 	private JButton dodavanjeStudentaNaPredemet;
 	private JButton dodavanjeProfesoraNaPredmet;
+	private DijalogZaDodavanjeProfesora dijalogProfesor;
 
-	enum Tip {
-		STUDENT, PROFESOR, PREDMET;
 
-		static Tip getTip(int i) {
 
-			Tip t = null;
-			if (i == 0)
-				t = Tip.STUDENT;
-			else if (i == 1)
-				t = Tip.PROFESOR;
-			else if (i == 2)
-				t = Tip.PREDMET;
-			return t;
-		}
-	}
 
 	private static ToolBar instance = null; // singlton klasa
 	// obrazac za singlton po defaultu treba da se pali student
@@ -45,7 +35,7 @@ public class ToolBar extends JToolBar {
 	}
 
 	private ToolBar() {
-
+		
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setFloatable(false);
 		dodavanjeStudenta = new JButton();
@@ -55,6 +45,7 @@ public class ToolBar extends JToolBar {
 		
 		dodavanjeProfesora = new JButton();
 		dodavanjeProfesora.setToolTipText("Dodavanje profesora");
+		dodavanjeProfesora.addActionListener(this);
 		dodavanjeProfesora.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
 		
 		
@@ -166,7 +157,14 @@ public class ToolBar extends JToolBar {
 
 	}
 
-	public Tip getTip(int i) {
-		return Tip.getTip(i);
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton clicked = (JButton) e.getSource();
+		if(clicked== dodavanjeProfesora) {
+			dijalogProfesor=new DijalogZaDodavanjeProfesora();
+			dijalogProfesor.setLocationRelativeTo(MainFrame.getInstance());
+			dijalogProfesor.setVisible(true);
+		}
 	}
 }

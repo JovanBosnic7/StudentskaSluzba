@@ -11,7 +11,7 @@ public class TabbedPaneListener  implements ChangeListener{
 		// TODO Auto-generated method stub
 		TabbedPane tabbedPane=(TabbedPane) e.getSource(); // kastovanje
 		ToolBar toolBar=ToolBar.getInstance();
-		toolBar.iscrtajNaEkran(toolBar.getTip(tabbedPane.getSelectedIndex()));
+		toolBar.iscrtajNaEkran(Tip.getTip(tabbedPane.getSelectedIndex()));
 		
 	}
 }

@@ -16,6 +16,10 @@ import model.BazaProfesora;
 
 public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5230900675304536431L;
 	private JLabel labelIme;
 	private JLabel labelPrezime;
 	private JLabel labelDatumRodjenja;
@@ -53,11 +57,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setSize(2 * screenDimension.width / 7, screenDimension.height / 2);
-		setLocation(screenDimension.width / 2 - getWidth() / 2, screenDimension.height / 2 - getHeight() / 2);
 		setTitle("Dodavanje profesora");
 		setModal(true);
-		setLocationRelativeTo(MainFrame.getInstance());
-//		setLayout(new GridBagLayout());
 		panelCenter = new JPanel();
 		panelCenter.setLayout(new GridBagLayout());
 

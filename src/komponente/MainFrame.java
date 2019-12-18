@@ -13,7 +13,7 @@ public class MainFrame extends JFrame {
 
 	
 	private static final long serialVersionUID = 8475781865375555499L;
-	private ToolBar toolbar;
+	private ToolBar toolbar= ToolBar.getInstance();
 	private static MainFrame instance=null;
 	private TabbedPane tabbedPane;
 	//ovo je za singlton klasu 
@@ -27,7 +27,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 
 		setLayout(new BorderLayout());
-		toolbar= ToolBar.getInstance();
+	//	toolbar= ToolBar.getInstance();
 		this.setJMenuBar(MenuBar.getInstance());
 		add(toolbar, BorderLayout.NORTH);
 		
