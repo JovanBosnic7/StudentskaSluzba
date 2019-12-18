@@ -153,7 +153,7 @@ public class ToolBar extends JToolBar {
 			brisanje.setToolTipText("Brisanje predmeta");
 			add(brisanje);
 
-			add(Box.createHorizontalStrut(750));
+			add(Box.createHorizontalStrut(690));
 
 			add(unosPretrage);
 
