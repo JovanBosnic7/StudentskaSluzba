@@ -8,9 +8,15 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 import javax.swing.*;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import kontroler.StudentiKontroler;
 import model.GodinaStudija;
 import model.Status;
@@ -42,7 +48,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private String brojIndeksa;
 	private GodinaStudija godinaStudija;
 	private String status;
-	
+		
 	private JButton dugmePotvrda;
 	private JButton dugmeOdustanak;
 	private JPanel panelBottom;
@@ -52,12 +58,13 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private JRadioButton buttonSamofinansiranje;
 	private ButtonGroup buttonGroupStatus;
 	private JComboBox<GodinaStudija> godStudijaComboBox;
-
+	private Boolean[] uslovi;
 	
 	public DodavanjeStudentaDijalog() {
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
+		uslovi = new Boolean[6];
 		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
@@ -135,6 +142,28 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosIme = new JTextField();
 		unosIme.setPreferredSize(new Dimension(200, 30));
+		unosIme.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[0])
+					unosIme.setBackground(new Color(240, 240, 240));
+				else
+					unosIme.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 0;
@@ -142,30 +171,141 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosPrezime = new JTextField();
 		unosPrezime.setPreferredSize(new Dimension(200, 30));
+		unosPrezime.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[1])
+					unosPrezime.setBackground(new Color(240, 240, 240));
+				else
+					unosPrezime.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 1;
 		panelUnosPodataka.add(unosPrezime, cTextBox);
 		
 		unosDatumRodjenja = new JTextField();
 		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
+		unosDatumRodjenja.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[2])
+					unosDatumRodjenja.setBackground(new Color(240, 240, 240));
+				else
+					unosDatumRodjenja.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 2;
 		panelUnosPodataka.add(unosDatumRodjenja, cTextBox);
 		
 		unosAdresaStanovanja = new JTextField();
 		unosAdresaStanovanja.setPreferredSize(new Dimension(200, 30));
+		unosAdresaStanovanja.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[3])
+					unosAdresaStanovanja.setBackground(new Color(240, 240, 240));
+				else
+					unosAdresaStanovanja.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 3;
 		panelUnosPodataka.add(unosAdresaStanovanja, cTextBox);
 		
 		unosBrojTelefona = new JTextField();
 		unosBrojTelefona.setPreferredSize(new Dimension(200, 30));
+		unosBrojTelefona.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[4])
+					unosBrojTelefona.setBackground(new Color(240, 240, 240));
+				else
+					unosBrojTelefona.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 4;
 		panelUnosPodataka.add(unosBrojTelefona, cTextBox);
 		
 		unosBrojIndeksa = new JTextField();
 		unosBrojIndeksa.setPreferredSize(new Dimension(200, 30));
+		unosBrojIndeksa.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[5])
+					unosBrojIndeksa.setBackground(new Color(240, 240, 240));
+				else
+					unosBrojIndeksa.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 5;
 		panelUnosPodataka.add(unosBrojIndeksa, cTextBox);
@@ -187,6 +327,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		dugmePotvrda = new JButton("Potvrda");
 		dugmePotvrda.setBackground(Color.WHITE);
+		dugmePotvrda.setEnabled(false);
 		dugmePotvrda.addActionListener(this);
 		dugmePotvrda.setPreferredSize(new Dimension(100, 30));
 		
@@ -214,6 +355,43 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		this.add(panelBottom, BorderLayout.SOUTH);
 		}
 
+	private Boolean proveriUnos() {
+		ime = unosIme.getText();
+	 	prezime = unosPrezime.getText();
+	 	datumRodjenja = unosDatumRodjenja.getText();
+		adresaStanovanja = unosAdresaStanovanja.getText();
+		brojTelefona = unosBrojTelefona.getText();
+		brojIndeksa = unosBrojIndeksa.getText();
+		
+		if(ime.matches("[A-Z][a-z]+")) 
+			uslovi[0] = true;
+		else
+			uslovi[0] = false;
+		if(prezime.matches("[A-Z][a-z]+"))
+			uslovi[1] = true;
+		else
+			uslovi[1] = false;
+		if(datumRodjenja.matches("0?([1-9]|[12][0-9]|3[01]).0?([1-9]|1[012]).(19|20)[0-9][0-9]."))
+			uslovi[2] = true;
+		else
+			uslovi[2] = false;
+		if(adresaStanovanja.matches("[A-Z][a-z]+[ ]?[A-Z]?[a-z]*[ ]?([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])"))
+			uslovi[3] = true;
+		else
+			uslovi[3] = false;
+		if(brojTelefona.matches("\\+381[1-9][1-9][ ]?[0-9]{6,7}"))
+			uslovi[4] = true;
+		else
+			uslovi[4] = false;
+		if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]"))
+			uslovi[5] = true;
+		else
+			uslovi[5] = false;
+		
+		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3] && uslovi[4] && uslovi[5]);
+		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton clicked = (JButton) e.getSource();
@@ -221,20 +399,13 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			setVisible(false);
 		}
 		 	if (clicked == dugmePotvrda) {
-			 	ime = unosIme.getText();
-			 	prezime = unosPrezime.getText();
-			 	datumRodjenja = unosDatumRodjenja.getText();
-				adresaStanovanja = unosAdresaStanovanja.getText();
-				brojTelefona = unosBrojTelefona.getText();
-				brojIndeksa = unosBrojIndeksa.getText();
-				godinaStudija = (GodinaStudija)godStudijaComboBox.getSelectedItem();
+		 		godinaStudija = (GodinaStudija)godStudijaComboBox.getSelectedItem();
 				if(buttonGroupStatus.isSelected(buttonBudzet.getModel()))
 					status = "B";
 				else
 					status = "S";
 				
 				StudentiKontroler.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status));
-				
 			setVisible(false);
 		}
 

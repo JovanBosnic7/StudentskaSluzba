@@ -20,7 +20,7 @@ private static StudentiKontroler instance = null;
 	
 	public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String brojIndeksa /*String datumUpisa*/, GodinaStudija trenutnaGodinaStudija, Status statusStudenta) {
 		BazaStudenata.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, brojIndeksa, trenutnaGodinaStudija, statusStudenta);
-		
+		TabbedPane.getInstance().azurirajPrikaz();
 	}
 	
 }

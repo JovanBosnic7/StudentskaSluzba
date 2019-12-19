@@ -13,8 +13,15 @@ public class TabbedPane extends JTabbedPane {
 	private TabelaStudenata tabelaStudenata;
 	private TabelaProfesora tabelaProfesora;
 	private TabelaPredmeta tabelaPredmeta;
+	private static TabbedPane instance;
 	
-	public TabbedPane() {
+	public static TabbedPane getInstance() {
+		if(instance == null)
+			instance = new TabbedPane();
+		return instance;
+	}
+	
+	private TabbedPane() {
 		tabelaStudenata = new TabelaStudenata();
 		JScrollPane studenti = new JScrollPane(tabelaStudenata);
 		
@@ -34,5 +41,11 @@ public class TabbedPane extends JTabbedPane {
 		addTab("Predmeti", new ImageIcon("slike/predmeti_pane.png"), panelSaTabelomPredmet, "");
 		
 
+	}
+	
+	public void azurirajPrikaz() {
+		ModelTabelaStudenti model = (ModelTabelaStudenti) tabelaStudenata.getModel();
+		model.fireTableDataChanged();
+		validate();
 	}
 }
