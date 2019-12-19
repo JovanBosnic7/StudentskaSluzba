@@ -17,7 +17,7 @@ public class Student {
 	ArrayList<Predmet> spisakPredmeta;
 	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String emailAdresa, String brojIndeksa, String datumUpisa, String trenutnaGodinaStudija, Status statusStudenta,
+			String emailAdresa, String brojIndeksa, String datumUpisa, GodinaStudija trenutnaGodinaStudija, Status statusStudenta,
 			double prosecnaOcena) {
 		super();
 		this.ime = ime;
@@ -28,7 +28,7 @@ public class Student {
 		this.emailAdresa = emailAdresa;
 		this.brojIndeksa = brojIndeksa;
 		this.datumUpisa = datumUpisa;
-		this.trenutnaGodinaStudija = GodinaStudija.valueOf(trenutnaGodinaStudija);
+		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 		this.statusStudenta = statusStudenta;
 		this.prosecnaOcena = prosecnaOcena;
 		this.spisakPredmeta = new ArrayList<Predmet>();

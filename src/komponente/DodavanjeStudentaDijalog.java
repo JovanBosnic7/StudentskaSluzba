@@ -8,9 +8,12 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
+import kontroler.StudentiKontroler;
 import model.GodinaStudija;
+import model.Status;
 
 public class DodavanjeStudentaDijalog extends JDialog implements ActionListener {
 
@@ -31,6 +34,15 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private JTextField unosBrojTelefona;
 	private JTextField unosBrojIndeksa;
 
+	private String ime;
+	private String prezime;
+	private String datumRodjenja;
+	private String adresaStanovanja;
+	private String brojTelefona;
+	private String brojIndeksa;
+	private GodinaStudija godinaStudija;
+	private String status;
+	
 	private JButton dugmePotvrda;
 	private JButton dugmeOdustanak;
 	private JPanel panelBottom;
@@ -53,7 +65,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		setResizable(false);
 		setSize(1 * screenDimension.width / 4, screenDimension.height / 2);
 		setLocationRelativeTo(MainFrame.getInstance());
-		setTitle("Dodavanje Studenata");
+		setTitle("Dodavanje studenta");
 		setModal(true);
 		
 		panelUnosPodataka = new JPanel();
@@ -77,12 +89,12 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		cLabele.gridy = 1;
 		panelUnosPodataka.add(labelaPrezime, cLabele);
 
-		labelaDatumRodjenja = new JLabel("Datum rodjenja:");
+		labelaDatumRodjenja = new JLabel("Datum rodjenja*");
 		cLabele.gridx = 0;
 		cLabele.gridy = 2;
 		panelUnosPodataka.add(labelaDatumRodjenja, cLabele);
 
-		labelaAdresaStanovanja = new JLabel("Adresa stanovanja:");
+		labelaAdresaStanovanja = new JLabel("Adresa stanovanja*");
 		cLabele.gridx = 0;
 		cLabele.gridy = 3;
 		panelUnosPodataka.add(labelaAdresaStanovanja, cLabele);
@@ -111,6 +123,9 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		buttonGroupStatus = new ButtonGroup();
 		buttonGroupStatus.add(buttonBudzet);
 		buttonGroupStatus.add(buttonSamofinansiranje);
+		
+		buttonGroupStatus.setSelected(buttonBudzet.getModel(), true);
+		
 		cLabele.gridx = 0;
 		cLabele.gridy = 7;
 		panelUnosPodataka.add(buttonBudzet, cLabele);
@@ -120,6 +135,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosIme = new JTextField();
 		unosIme.setPreferredSize(new Dimension(200, 30));
+		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 0;
 		panelUnosPodataka.add(unosIme, cTextBox);
@@ -172,7 +188,6 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		dugmePotvrda = new JButton("Potvrda");
 		dugmePotvrda.setBackground(Color.WHITE);
 		dugmePotvrda.addActionListener(this);
-		
 		dugmePotvrda.setPreferredSize(new Dimension(100, 30));
 		
 		dugmeOdustanak = new JButton("Odustanak");
@@ -193,7 +208,6 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelCenter.add(dugmePotvrda, cDugmad);
 		panelCenter.setBackground(new Color(240, 240, 240));
 		this.add(panelCenter, BorderLayout.CENTER);
-		
 		panelBottom = new JPanel();
 		panelBottom.setPreferredSize(new Dimension(screenDimension.width, 30));
 		panelBottom.setBackground(new Color(240, 240, 240));
@@ -207,7 +221,20 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			setVisible(false);
 		}
 		 	if (clicked == dugmePotvrda) {
-			
+			 	ime = unosIme.getText();
+			 	prezime = unosPrezime.getText();
+			 	datumRodjenja = unosDatumRodjenja.getText();
+				adresaStanovanja = unosAdresaStanovanja.getText();
+				brojTelefona = unosBrojTelefona.getText();
+				brojIndeksa = unosBrojIndeksa.getText();
+				godinaStudija = (GodinaStudija)godStudijaComboBox.getSelectedItem();
+				if(buttonGroupStatus.isSelected(buttonBudzet.getModel()))
+					status = "B";
+				else
+					status = "S";
+				
+				StudentiKontroler.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status));
+				
 			setVisible(false);
 		}
 

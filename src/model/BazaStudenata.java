@@ -32,6 +32,10 @@ public class BazaStudenata {
 			return studenti;
 		}
 
+		public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String brojIndeksa, GodinaStudija trenutnaGodinaStudija, Status statusStudenta) {
+			studenti.add(new Student(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, " ", brojIndeksa, "", trenutnaGodinaStudija, statusStudenta, 0.0));
+		}
+
 		public void setStudenti(ArrayList<Student> studenti) {
 			this.studenti = studenti;
 		}
