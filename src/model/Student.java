@@ -11,14 +11,14 @@ public class Student {
 	String emailAdresa;
 	String brojIndeksa;
 	String datumUpisa;
-	int trenutnaGodinaStudija;
+	GodinaStudija trenutnaGodinaStudija;
 	Status statusStudenta;
 	double prosecnaOcena;
 	ArrayList<Predmet> spisakPredmeta;
 	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String emailAdresa, String brojIndeksa, String datumUpisa, int trenutnaGodinaStudija, Status statusStudenta,
-			double prosecnaOcena, ArrayList<Predmet> spisakPredmeta) {
+			String emailAdresa, String brojIndeksa, String datumUpisa, String trenutnaGodinaStudija, Status statusStudenta,
+			double prosecnaOcena) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -28,10 +28,10 @@ public class Student {
 		this.emailAdresa = emailAdresa;
 		this.brojIndeksa = brojIndeksa;
 		this.datumUpisa = datumUpisa;
-		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
+		this.trenutnaGodinaStudija = GodinaStudija.valueOf(trenutnaGodinaStudija);
 		this.statusStudenta = statusStudenta;
 		this.prosecnaOcena = prosecnaOcena;
-		this.spisakPredmeta = spisakPredmeta;
+		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
 
 	public String getIme() {
@@ -98,12 +98,12 @@ public class Student {
 		this.datumUpisa = datumUpisa;
 	}
 
-	public int getTrenutnaGodinaStudija() {
+	public GodinaStudija getTrenutnaGodinaStudija() {
 		return trenutnaGodinaStudija;
 	}
 
-	public void setTrenutnaGodinaStudija(int trenutnaGodinaStudija) {
-		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
+	public void setTrenutnaGodinaStudija(String trenutnaGodinaStudija) {
+		this.trenutnaGodinaStudija = GodinaStudija.valueOf(trenutnaGodinaStudija);
 	}
 
 	public Status getStatusStudenta() {

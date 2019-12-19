@@ -58,7 +58,7 @@ public class BazaStudenata {
 			case 2:
 				return student.getPrezime();
 			case 3:
-				return Integer.toString(student.getTrenutnaGodinaStudija());
+				return student.getTrenutnaGodinaStudija().toString();
 			case 4:
 				return student.getStatusStudenta() == Status.B ? "Budzet" : "Samofinansiranje";
 			case 5:
