@@ -1,5 +1,6 @@
 package komponente;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 	private JButton dodavanjeProfesoraNaPredmet;
 	private DijalogZaDodavanjeProfesora dijalogProfesor;
 	private DijalogZaDodavanjePredmeta dijalogPredmet;
+	private DijalogZaBrisanjePredmeta dijalogBrisanjePredmet;
 
 
 
@@ -80,7 +82,10 @@ public class ToolBar extends JToolBar implements ActionListener {
 		dodavanjeProfesoraNaPredmet.setToolTipText("Dodajte novog profesora na predmet");
 		dodavanjeProfesoraNaPredmet.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
 		
-		
+		brisanjePredmeta= new JButton();
+		brisanjePredmeta.setToolTipText("Brisanje predmeta");
+		brisanjePredmeta.setIcon(new ImageIcon("slike/brisanje.png"));
+		brisanjePredmeta.addActionListener(this);
 		
 		iscrtajNaEkran(Tip.STUDENT);
 	}
@@ -147,8 +152,8 @@ public class ToolBar extends JToolBar implements ActionListener {
 			add(izmena);
 
 			addSeparator();
-			brisanje.setToolTipText("Brisanje predmeta");
-			add(brisanje);
+			
+			add(brisanjePredmeta);
 
 			add(Box.createHorizontalStrut(690));
 
@@ -176,6 +181,11 @@ public class ToolBar extends JToolBar implements ActionListener {
 			dijalogPredmet=new DijalogZaDodavanjePredmeta();
 			dijalogPredmet.setLocationRelativeTo(MainFrame.getInstance());
 			dijalogPredmet.setVisible(true);
+		}
+		if(clicked == brisanjePredmeta) {
+			dijalogBrisanjePredmet=new DijalogZaBrisanjePredmeta();
+			dijalogBrisanjePredmet.setLocationRelativeTo(MainFrame.getInstance());
+			dijalogBrisanjePredmet.setVisible(true);
 		}
 		
 	}
