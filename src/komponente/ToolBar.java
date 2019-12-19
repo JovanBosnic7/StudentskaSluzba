@@ -44,6 +44,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 		setFloatable(false);
 		dodavanjeStudenta = new JButton();
 		dodavanjeStudenta.setToolTipText("Dodavanje studenta/profesora/predmeta");
+		dodavanjeStudenta.addActionListener(this);
 		dodavanjeStudenta.setIcon(new ImageIcon("slike/dodavanje.png"));
 		
 		
@@ -186,6 +187,12 @@ public class ToolBar extends JToolBar implements ActionListener {
 			dijalogBrisanjePredmet=new DijalogZaBrisanjePredmeta();
 			dijalogBrisanjePredmet.setLocationRelativeTo(MainFrame.getInstance());
 			dijalogBrisanjePredmet.setVisible(true);
+		}
+		
+		if(clicked == dodavanjeStudenta) {
+			DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog();
+			dijalogStudent.setLocationRelativeTo(MainFrame.getInstance());
+			dijalogStudent.setVisible(true);
 		}
 		
 	}
