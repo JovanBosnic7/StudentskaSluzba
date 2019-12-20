@@ -48,4 +48,9 @@ public class TabbedPane extends JTabbedPane {
 		model.fireTableDataChanged();
 		validate();
 	}
+	public void azurirajPrikzazPredmeta() {
+		ModelTabelaPredmeti model = (ModelTabelaPredmeti) tabelaPredmeta.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
 }

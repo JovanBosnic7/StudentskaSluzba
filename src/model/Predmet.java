@@ -20,8 +20,9 @@ public class Predmet {
 	}
 
 	public Predmet(String sifraPredmeta2, String nazivPredmeta2, String semestar2, String godinaUKojojSePredmetIzvodi2,
-			String string) {
-		super();
+		String string) {
+			
+			super();
 		this.sifraPredmeta = sifraPredmeta2;
 		this.nazivPredmeta = nazivPredmeta2;
 		this.semestar = semestar2;
@@ -29,6 +30,7 @@ public class Predmet {
 		this.profesor=string;
 		
 	}
+	
 
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
@@ -75,6 +77,11 @@ public class Predmet {
 		return "Predmet [sifraPredmeta=" + sifraPredmeta + ", nazivPredmeta=" + nazivPredmeta + ", semestar=" + semestar
 				+ ", godinaUKojojSePredmetIzvodi=" + godinaUKojojSePredmetIzvodi + ", predmetniProfesor="
 				 + "]";
+	}
+
+	public String getProfesor() {
+		// TODO Auto-generated method stub
+		return profesor;
 	}
 
 }

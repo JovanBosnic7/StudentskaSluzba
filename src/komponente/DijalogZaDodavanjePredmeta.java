@@ -11,7 +11,10 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListener {
+import kontroler.PredmetiKontroler;
+import model.GodinaStudija;
+
+public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListener, KeyListener {
 	/**
 	 * 
 	 */
@@ -21,23 +24,32 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private JLabel labelSemestar;
 	private JLabel labelGodinaUKojojeSePredmetIzvodi;
 	private JLabel labelProfesor;
-	
-	private JTextField unosPretrage;
-	private JTextField unosPretrage1;
-	private JTextField unosPretrage2;
-	private JTextField unosPretrage3;
-	private JTextField unosPretrage4;
-	
+
+	private JTextField unosSifre;
+	private JTextField unosNaziva;
+	private JTextField unosSemestra;
+	private JTextField unosGodine;
+	private JTextField unosProfesora;
+
+	private String sifra;
+	private String naziv;
+	private String semestar;
+	private String godina;
+	private String profesor;
+	private GodinaStudija godinaStudija;
+
+
 	private JButton odustanak;
 	private JButton potvrda;
 	private JPanel panelBottom;
 	private JPanel panelCenter;
+	private JComboBox<GodinaStudija> godStudijaComboBox;
+
 
 	private GridBagConstraints c;
 	private GridBagConstraints b;
-	
-	
-	public  DijalogZaDodavanjePredmeta() {
+
+	public DijalogZaDodavanjePredmeta() {
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -50,112 +62,184 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 //		setLayout(new GridBagLayout());
 		panelCenter = new JPanel();
 		panelCenter.setLayout(new GridBagLayout());
-		
+
 		c = new GridBagConstraints();
-		b=new GridBagConstraints();
-		b.fill=GridBagConstraints.VERTICAL;
-		b.insets=new Insets(10,10 ,10, 100);
-		
+		b = new GridBagConstraints();
+		b.fill = GridBagConstraints.VERTICAL;
+		b.insets = new Insets(10, 10, 10, 100);
+
 		labelNazivPredmeta = new JLabel("Naziv predmeta:");
 		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx=100;
-		c.fill=GridBagConstraints.HORIZONTAL;
-		c.insets=new Insets(20,20,20,20);
+		c.gridy = 1;
+		c.weightx = 100;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.insets = new Insets(20, 20, 20, 20);
 		panelCenter.add(labelNazivPredmeta, c);
-		
-		labelSifraPredmeta =new JLabel("Sifra predmeta:");
-		c.gridx=0;
-		c.gridy=1;
-		panelCenter.add(labelSifraPredmeta,c);
-		
-		labelSemestar =new JLabel("Semestar:");
-		c.gridx=0;
-		c.gridy=2;
-		panelCenter.add(labelSemestar,c);
-		
-		labelGodinaUKojojeSePredmetIzvodi =new JLabel("Godina u kojoj se izvodi:");
-		c.gridx=0;
-		c.gridy=3;
-		panelCenter.add(labelGodinaUKojojeSePredmetIzvodi,c);
-		
-		
-		labelProfesor =new JLabel("Profesor:");
-		c.gridx=0;
-		c.gridy=4;
-		panelCenter.add(labelProfesor,c);
-		
+
+		labelSifraPredmeta = new JLabel("Sifra predmeta:");
+		c.gridx = 0;
+		c.gridy = 0;
+		panelCenter.add(labelSifraPredmeta, c);
+
+		labelSemestar = new JLabel("Semestar:");
+		c.gridx = 0;
+		c.gridy = 2;
+		panelCenter.add(labelSemestar, c);
+
+		labelGodinaUKojojeSePredmetIzvodi = new JLabel("Godina u kojoj se izvodi:");
+		c.gridx = 0;
+		c.gridy = 3;
+		panelCenter.add(labelGodinaUKojojeSePredmetIzvodi, c);
+
+		labelProfesor = new JLabel("Profesor:");
+		c.gridx = 0;
+		c.gridy = 4;
+		panelCenter.add(labelProfesor, c);
+
 		this.add(panelCenter, BorderLayout.CENTER);
-		
-		
-		
-		unosPretrage = new JTextField();
-		unosPretrage.setPreferredSize(new Dimension(200, 20));
+
+	
+
+		unosSifre = new JTextField();
+		unosSifre.setPreferredSize(new Dimension(200, 20));
+		unosSifre.addKeyListener(this);
+
 		b.gridx = 1;
 		b.gridy = 0;
-		panelCenter.add(unosPretrage, b);
+		panelCenter.add(unosSifre, b);
 
-		unosPretrage1 = new JTextField();
-		unosPretrage1.setPreferredSize(new Dimension(200, 20));
+		unosNaziva = new JTextField();
+		unosNaziva.setPreferredSize(new Dimension(200, 20));
+		unosNaziva.addKeyListener(this);
 		b.gridx = 1;
 		b.gridy = 1;
-		panelCenter.add(unosPretrage1, b);
+		panelCenter.add(unosNaziva, b);
+		
+		unosSemestra = new JTextField();
+		unosSemestra.setPreferredSize(new Dimension(200, 20));
+		unosSemestra.addKeyListener(this);
 
-		unosPretrage2 = new JTextField();
-		unosPretrage2.setPreferredSize(new Dimension(200, 20));
 		b.gridx = 1;
 		b.gridy = 2;
-		panelCenter.add(unosPretrage2, b);
+		panelCenter.add(unosSemestra, b);
 
-		unosPretrage3 = new JTextField();
-		unosPretrage3.setPreferredSize(new Dimension(200, 20));
+		godStudijaComboBox = new JComboBox<GodinaStudija>();
+		godStudijaComboBox.setBackground(Color.WHITE);
+		
+		godStudijaComboBox.addItem(GodinaStudija.I);
+		godStudijaComboBox.addItem(GodinaStudija.II);
+		godStudijaComboBox.addItem(GodinaStudija.III);
+		godStudijaComboBox.addItem(GodinaStudija.IV);
+		godStudijaComboBox.addItem(GodinaStudija.V);
+		godStudijaComboBox.setPreferredSize(new Dimension(200, 30));
+		
 		b.gridx = 1;
 		b.gridy = 3;
-		panelCenter.add(unosPretrage3, b);
+		panelCenter.add(godStudijaComboBox, b);
 
-		unosPretrage4 = new JTextField();
-		unosPretrage4.setPreferredSize(new Dimension(200, 20));
+		unosProfesora = new JTextField();
+		unosProfesora.setPreferredSize(new Dimension(200, 20));
+		unosProfesora.addKeyListener(this);
+
 		b.gridx = 1;
 		b.gridy = 4;
-		panelCenter.add(unosPretrage4, b);
-		
+		panelCenter.add(unosProfesora, b);
+
 		odustanak = new JButton("Odustanak");
 		odustanak.addActionListener(this);
-		
+
 		potvrda = new JButton("Potrvda");
-		potvrda.setBackground(new Color(131,237,253));
+		potvrda.setBackground(new Color(131, 237, 253));
+		// potvrda.setEnabled(false);
 		potvrda.addActionListener(this);
-		
-		GridBagConstraints a=new GridBagConstraints();
+
+		GridBagConstraints a = new GridBagConstraints();
 		panelBottom = new JPanel();
 		panelBottom.setLayout(new GridBagLayout());
-		a.gridx=0;
-		a.gridy=0;
-		a.insets=new Insets(40,40,40,40);
-		panelBottom.add(odustanak,a);
-		a.gridx=1;
-		a.gridy=0;
-		panelBottom.add(potvrda,a);
+		a.gridx = 0;
+		a.gridy = 0;
+		a.insets = new Insets(40, 40, 40, 40);
+		panelBottom.add(odustanak, a);
+		a.gridx = 1;
+		a.gridy = 0;
+		panelBottom.add(potvrda, a);
 		this.add(panelBottom, BorderLayout.SOUTH);
-		
-		
-		
-		
-		
-		
+
 	}
-	
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		JButton clicked = (JButton) e.getSource();
-		if(clicked == odustanak) {
+		if (clicked == odustanak) {
 			setVisible(false);
-		
-		}  if(clicked == potvrda) {
+
+		}
+		if (clicked == potvrda) {
+			sifra = unosSifre.getText();
+			naziv = unosNaziva.getText();
+			semestar = unosSemestra.getText();
+			godinaStudija =(GodinaStudija) godStudijaComboBox.getSelectedItem();
+			profesor = unosProfesora.getText();
+			PredmetiKontroler.getInstance().dodajPredmet(sifra, naziv, semestar, godinaStudija.toString(), profesor);
+			TabbedPane.getInstance().azurirajPrikzazPredmeta();
 			setVisible(false);
 		}
+	}
+
+	private Boolean proveriUnos() {
+		sifra = unosSifre.getText();
+		naziv = unosNaziva.getText();
+		semestar = unosSemestra.getText();
+		profesor = unosProfesora.getText();
+
+		Boolean[] uslovi = { false, false, false, false };
+		if (sifra.matches("[0-9]+") && sifra.length() > 0) {
+			uslovi[0] = true;
+
+		}
+		if (naziv.matches("[A-Z][a-z]+") && naziv.length() > 0) {
+			uslovi[1] = true;
+
+		}
+	
+		if (semestar.matches("(I|II|III|IV|V|VI|VII|VIII|IX|X)") && semestar.length() > 0) {
+			uslovi[2] = true;
+
+		}
+		
+		if (profesor.matches("[A-Z][a-z]+") && profesor.length() > 0) {
+			uslovi[3] = true;
+
+		}
+		
+		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3]);
+
+	
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(proveriUnos()) {
+			potvrda.setEnabled(true);
+		}else {
+			potvrda.setEnabled(false);
+		}
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

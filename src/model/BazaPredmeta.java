@@ -18,16 +18,18 @@ public class BazaPredmeta {
 	private BazaPredmeta() {
 		this.predmeti=new ArrayList<Predmet>();
 		this.kolone= new ArrayList<String> ();
-		Predmet p= new Predmet("102103", "Matematika", "III", "3", "Pera Peric");
-		predmeti.add(p);
 		kolone.add("Sifra predmeta");
 		kolone.add("Naziv predmeta");
 		kolone.add("Semestar");
 		kolone.add("Godina u kojoj se izvodi");
+		kolone.add("Profesor");
 	}
 
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
+	}
+	public void dodajPredmet(String sifra, String naziv, String semestar,String godinaUKojojSeIzvodi,String profesor ) {
+		predmeti.add(new Predmet(sifra,naziv,semestar,godinaUKojojSeIzvodi,profesor));
 	}
 
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
@@ -35,7 +37,7 @@ public class BazaPredmeta {
 	}
 
 	public int  getKolone() {
-		return 4;
+		return 5;
 	}
 
 	public void setKolone(ArrayList<String> kolone) {
@@ -60,6 +62,8 @@ public class BazaPredmeta {
 			return predmet.getSemestar();
 		case 3:
 			return predmet.getGodinaUKojojSePredmetIzvodi();
+		case 4:
+			return predmet.getProfesor();
 			default:
 				return null;
 		
