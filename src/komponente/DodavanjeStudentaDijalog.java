@@ -59,12 +59,14 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private ButtonGroup buttonGroupStatus;
 	private JComboBox<GodinaStudija> godStudijaComboBox;
 	private Boolean[] uslovi;
+	private Boolean proveraIndeksa;
 	
 	public DodavanjeStudentaDijalog() {
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
 		uslovi = new Boolean[6];
+		proveraIndeksa = false;
 		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
@@ -294,10 +296,13 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
-				if(uslovi[5])
+				if(uslovi[5] && proveraIndeksa)
 					unosBrojIndeksa.setBackground(new Color(240, 240, 240));
-				else
+				else {
 					unosBrojIndeksa.setBackground(new Color(255, 166, 166));
+					if(uslovi[5] && !proveraIndeksa)
+						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 			
 			@Override
@@ -371,7 +376,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[1] = true;
 		else
 			uslovi[1] = false;
-		if(datumRodjenja.matches("0?([1-9]|[12][0-9]|3[01]).0?([1-9]|1[012]).(19|20)[0-9][0-9]."))
+		if(datumRodjenja.matches("0?([1-9]|[12][0-9]|3[01])\\.0?([1-9]|1[012])\\.(19|20)[0-9][0-9]\\."))
 			uslovi[2] = true;
 		else
 			uslovi[2] = false;
@@ -383,12 +388,14 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
-		if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]"))
+		if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]")) {
 			uslovi[5] = true;
+			proveraIndeksa = !StudentiKontroler.getInstance().indeksPostoji(brojIndeksa);	
+		}		
 		else
 			uslovi[5] = false;
 		
-		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3] && uslovi[4] && uslovi[5]);
+		return (uslovi[0] && uslovi[1] && uslovi[2] && proveraIndeksa && uslovi[3] && uslovi[4] && uslovi[5]);
 		
 	}
 	

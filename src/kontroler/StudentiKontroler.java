@@ -23,4 +23,8 @@ private static StudentiKontroler instance = null;
 		TabbedPane.getInstance().azurirajPrikaz();
 	}
 	
+	public Boolean indeksPostoji(String brojIndeksa) {
+		return BazaStudenata.getInstance().proveriIndeks(brojIndeksa);
+	}
+	
 }

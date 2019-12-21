@@ -3,18 +3,18 @@ package model;
 import java.util.ArrayList;
 
 public class Student {
-	String ime;
-	String prezime;
-	String datumRodjenja;
-	String adresaStanovanja;
-	String kontaktTelefon;
-	String emailAdresa;
-	String brojIndeksa;
-	String datumUpisa;
-	GodinaStudija trenutnaGodinaStudija;
-	Status statusStudenta;
-	double prosecnaOcena;
-	ArrayList<Predmet> spisakPredmeta;
+	private String ime;
+	private String prezime;
+	private String datumRodjenja;
+	private String adresaStanovanja;
+	private String kontaktTelefon;
+	private String emailAdresa;
+	private String brojIndeksa;
+	private String datumUpisa;
+	private GodinaStudija trenutnaGodinaStudija;
+	private Status statusStudenta;
+	private double prosecnaOcena;
+	private ArrayList<Predmet> spisakPredmeta;
 	
 	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String brojIndeksa, String datumUpisa, GodinaStudija trenutnaGodinaStudija, Status statusStudenta,

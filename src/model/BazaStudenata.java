@@ -51,6 +51,14 @@ public class BazaStudenata {
 		public Student getVrsta(int rowIndex) {
 			return this.studenti.get(rowIndex);
 		}
+		
+		public Boolean proveriIndeks(String brojIndeksa) {
+			for(Student s : this.studenti)
+				if(brojIndeksa.equals(s.getBrojIndeksa()))
+					return true;
+			
+			return false;
+		}
 
 		public String getVrednostPolja(int row, int column) {
 			Student student = this.studenti.get(row);
