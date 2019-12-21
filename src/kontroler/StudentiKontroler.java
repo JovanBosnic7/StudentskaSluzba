@@ -30,4 +30,9 @@ private static StudentiKontroler instance = null;
 		TabbedPane.getInstance().azurirajPrikaz();
 		return povratnaVrednost;
 	}
+	
+	public void izbrisiStudenta(int row) {
+		BazaStudenata.getInstance().izbrisiStudenta(row);
+		TabbedPane.getInstance().azurirajPrikaz();
+	}
 }

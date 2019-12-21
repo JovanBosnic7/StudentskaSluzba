@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.*;
 
 import kontroler.BrisanjePredmetaListener;
+import kontroler.BrisanjeStudentaListener;
 import kontroler.DodavanjePredmetaListener;
 import kontroler.DodavanjeProfesoraListener;
 import kontroler.DodavanjeStudentaListener;
@@ -71,7 +72,8 @@ public class ToolBar extends JToolBar {
 		brisanjeStudenta = new JButton();
 		brisanjeStudenta.setToolTipText("Brisanje studenta");
 		brisanjeStudenta.setIcon(new ImageIcon("slike/brisanje.png"));
-
+		brisanjeStudenta.addActionListener(new BrisanjeStudentaListener());
+		
 		brisanjeProfesora = new JButton();
 		brisanjeProfesora.setToolTipText("Brisanje profesora");
 		brisanjeProfesora.setIcon(new ImageIcon("slike/brisanje.png"));

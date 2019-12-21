@@ -62,6 +62,13 @@ public class BazaStudenata {
 			
 		}
 		
+		public void izbrisiStudenta(int row) {
+			if(row < 0 || row > studenti.size())
+				return;
+			
+			this.studenti.remove(row);
+		}
+		
 		public void setStudenti(ArrayList<Student> studenti) {
 			this.studenti = studenti;
 		}
