@@ -2,12 +2,16 @@ package komponente;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class ToolBar extends JToolBar implements ActionListener {
+import kontroler.BrisanjePredmetaListener;
+import kontroler.DodavanjePredmetaListener;
+import kontroler.DodavanjeProfesoraListener;
+import kontroler.DodavanjeStudentaListener;
+import kontroler.IzmenaStudentaListener;
+
+public class ToolBar extends JToolBar {
 
 	private static final long serialVersionUID = -3632212177343556646L;
 	private JButton dodavanjeStudenta;
@@ -23,12 +27,6 @@ public class ToolBar extends JToolBar implements ActionListener {
 	private JButton dodavanjePredmeta;
 	private JButton dodavanjeStudentaNaPredemet;
 	private JButton dodavanjeProfesoraNaPredmet;
-	private DijalogZaDodavanjeProfesora dijalogProfesor;
-	private DijalogZaDodavanjePredmeta dijalogPredmet;
-	private DijalogZaBrisanjePredmeta dijalogBrisanjePredmet;
-
-
-
 
 	private static ToolBar instance = null; // singlton klasa
 	// obrazac za singlton po defaultu treba da se pali student
@@ -46,13 +44,13 @@ public class ToolBar extends JToolBar implements ActionListener {
 		setFloatable(false);
 		dodavanjeStudenta = new JButton();
 		dodavanjeStudenta.setToolTipText("Dodavanje studenta/profesora/predmeta");
-		dodavanjeStudenta.addActionListener(this);
+		dodavanjeStudenta.addActionListener(new DodavanjeStudentaListener());
 		dodavanjeStudenta.setIcon(new ImageIcon("slike/dodavanje.png"));
 		
 		
 		dodavanjeProfesora = new JButton();
 		dodavanjeProfesora.setToolTipText("Dodavanje profesora");
-		dodavanjeProfesora.addActionListener(this);
+		dodavanjeProfesora.addActionListener(new DodavanjeProfesoraListener());
 		dodavanjeProfesora.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
 		
 		
@@ -60,7 +58,8 @@ public class ToolBar extends JToolBar implements ActionListener {
 		izmenaStudenta = new JButton();
 		izmenaStudenta.setToolTipText("Izmena studenta");
 		izmenaStudenta.setIcon(new ImageIcon("slike/izmena.png"));
-
+		izmenaStudenta.addActionListener(new IzmenaStudentaListener());
+		
 		izmenaPredmeta = new JButton();
 		izmenaPredmeta.setToolTipText("Izmena predmeta");
 		izmenaPredmeta.setIcon(new ImageIcon("slike/izmena.png"));
@@ -91,7 +90,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 		dodavanjePredmeta = new JButton();
 		dodavanjePredmeta.setToolTipText("Dodavanje predmeta");
 		dodavanjePredmeta.setIcon(new ImageIcon("slike/dodajpredmet.png"));
-		dodavanjePredmeta.addActionListener(this);
+		dodavanjePredmeta.addActionListener(new DodavanjePredmetaListener());
 
 		dodavanjeProfesoraNaPredmet = new JButton();
 		dodavanjeProfesoraNaPredmet.setToolTipText("Dodajte novog profesora na predmet");
@@ -100,7 +99,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 		brisanjePredmeta= new JButton();
 		brisanjePredmeta.setToolTipText("Brisanje predmeta");
 		brisanjePredmeta.setIcon(new ImageIcon("slike/brisanje.png"));
-		brisanjePredmeta.addActionListener(this);
+		brisanjePredmeta.addActionListener(new BrisanjePredmetaListener());
 		
 		iscrtajNaEkran(Tip.STUDENT);
 	}
@@ -176,33 +175,5 @@ public class ToolBar extends JToolBar implements ActionListener {
 
 		}
 
-	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		JButton clicked = (JButton) e.getSource();
-		if(clicked== dodavanjeProfesora) {
-			dijalogProfesor=new DijalogZaDodavanjeProfesora();
-			dijalogProfesor.setLocationRelativeTo(MainFrame.getInstance());
-			dijalogProfesor.setVisible(true);
-		}
-		if (clicked == dodavanjePredmeta) {
-			dijalogPredmet=new DijalogZaDodavanjePredmeta();
-			dijalogPredmet.setLocationRelativeTo(MainFrame.getInstance());
-			dijalogPredmet.setVisible(true);
-		}
-		if(clicked == brisanjePredmeta) {
-			dijalogBrisanjePredmet=new DijalogZaBrisanjePredmeta();
-			dijalogBrisanjePredmet.setLocationRelativeTo(MainFrame.getInstance());
-			dijalogBrisanjePredmet.setVisible(true);
-		}
-		
-		if(clicked == dodavanjeStudenta) {
-			DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog(0);
-			dijalogStudent.setLocationRelativeTo(MainFrame.getInstance());
-			dijalogStudent.setVisible(true);
-		}
-		
 	}
 }

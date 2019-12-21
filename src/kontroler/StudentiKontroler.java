@@ -24,4 +24,10 @@ private static StudentiKontroler instance = null;
 		TabbedPane.getInstance().azurirajPrikaz();
 		return povratnaVrednost;
 	}
+	
+	public Boolean izmeniStudenta(int row, String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String brojIndeksa /*String datumUpisa*/, GodinaStudija trenutnaGodinaStudija, Status statusStudenta) {
+		Boolean povratnaVrednost = BazaStudenata.getInstance().izmeniStudenta(row, ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, brojIndeksa, trenutnaGodinaStudija, statusStudenta);
+		TabbedPane.getInstance().azurirajPrikaz();
+		return povratnaVrednost;
+	}
 }

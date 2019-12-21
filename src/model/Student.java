@@ -102,8 +102,8 @@ public class Student {
 		return trenutnaGodinaStudija;
 	}
 
-	public void setTrenutnaGodinaStudija(String trenutnaGodinaStudija) {
-		this.trenutnaGodinaStudija = GodinaStudija.valueOf(trenutnaGodinaStudija);
+	public void setTrenutnaGodinaStudija(GodinaStudija trenutnaGodinaStudija) {
+		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 	}
 
 	public Status getStatusStudenta() {

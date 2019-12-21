@@ -8,14 +8,20 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import kontroler.StudentiKontroler;
+import model.BazaStudenata;
 import model.GodinaStudija;
 import model.Status;
+import model.Student;
 
 public class DodavanjeStudentaDijalog extends JDialog implements ActionListener {
 
@@ -55,16 +61,10 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private ButtonGroup buttonGroupStatus;
 	private JComboBox<GodinaStudija> godStudijaComboBox;
 	private Boolean[] uslovi;
-	
 	private int mod;
+	private int vrsta;
 	
-	public DodavanjeStudentaDijalog(int formaDijaloga) {
-		this();
-		this.mod = formaDijaloga;
-		
-	}
-	
-	private DodavanjeStudentaDijalog() {
+	public DodavanjeStudentaDijalog(int formaDijaloga, int row) {		
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
@@ -358,6 +358,58 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelBottom.setPreferredSize(new Dimension(screenDimension.width, 30));
 		panelBottom.setBackground(new Color(240, 240, 240));
 		this.add(panelBottom, BorderLayout.SOUTH);
+		
+		buttonBudzet.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+			}
+		});
+		
+		buttonSamofinansiranje.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+			}
+		});
+		
+		godStudijaComboBox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				
+			}
+		});
+		
+		this.mod = formaDijaloga;
+		this.vrsta = row;
+		
+		if (row < 0 && formaDijaloga == 1) {
+			JOptionPane.showMessageDialog(null, "Niste oznacili studenta kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		if(formaDijaloga == 1) {
+			Student s = BazaStudenata.getInstance().getStudenti().get(row);
+			unosIme.setText(s.getIme());
+			unosPrezime.setText(s.getPrezime());
+			unosDatumRodjenja.setText(s.getDatumRodjenja());
+			unosAdresaStanovanja.setText(s.getAdresaStanovanja());
+			unosBrojTelefona.setText(s.getKontaktTelefon());
+			unosBrojIndeksa.setText(s.getBrojIndeksa());
+			
+			if(s.getStatusStudenta() == Status.B)
+				buttonGroupStatus.setSelected(buttonBudzet.getModel(), true);
+			else
+				buttonGroupStatus.setSelected(buttonSamofinansiranje.getModel(), true);
+			
+			godStudijaComboBox.setSelectedItem(s.getTrenutnaGodinaStudija());
+			
+		}
+		
 		}
 
 	private Boolean proveriUnos() {
@@ -399,7 +451,9 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		JButton clicked = (JButton) e.getSource();
+		
 		if (clicked == dugmeOdustanak) {
 			setVisible(false);
 		}
@@ -410,8 +464,13 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 				else
 					status = "S";
 				
-				if(!StudentiKontroler.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status)))
-					JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
+				if(mod == 0) {
+					if(!StudentiKontroler.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status)))
+						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);}
+				else {
+					if(!StudentiKontroler.getInstance().izmeniStudenta(vrsta, ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status)))
+						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
+				}
 				setVisible(false);
 		}
 
