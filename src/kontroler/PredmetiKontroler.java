@@ -1,6 +1,7 @@
 package kontroler;
 
 import model.BazaPredmeta;
+import model.Predmet;
 
 public class PredmetiKontroler {
 
@@ -19,5 +20,12 @@ public class PredmetiKontroler {
 		
 		BazaPredmeta.getInstance().dodajPredmet(sifra, naziv, semestar, godina);
 	}
-
+	public void izbrisiPredmet(int red) {
+		if(red < 0) {
+			return;
+		}
+		
+		Predmet p = BazaPredmeta.getInstance().getRow(red);
+		BazaPredmeta.getInstance().izbrisiPredmet(p.getSifraPredmeta());
+	}
 }

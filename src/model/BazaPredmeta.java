@@ -50,6 +50,19 @@ public class BazaPredmeta {
 	public String getImeKolone(int index) {
 		return this.kolone.get(index);
 	}
+	public Predmet getRow(int rowIndex) {
+		return this.predmeti.get(rowIndex);
+	}
+
+
+	public void izbrisiPredmet(String sifra) {
+		for(Predmet p : predmeti) {
+			if(p.getSifraPredmeta().matches(sifra)) {
+				predmeti.remove(p);
+				break;
+			}
+		}
+	}
 
 	public String getValueAt(int row, int column) {
 		Predmet predmet= this.predmeti.get(row);

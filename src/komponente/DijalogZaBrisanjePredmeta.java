@@ -16,6 +16,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import kontroler.PredmetiKontroler;
+
 public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = -7978555434040613637L;
@@ -85,6 +87,9 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 			setVisible(false);
 		}
 		if (clicked == potvrda) {
+			int red = TabelaPredmeta.getInstance().getSelectedRow();
+			PredmetiKontroler.getInstance().izbrisiPredmet(red);
+			TabbedPane.getInstance().azurirajPrikzazPredmeta();
 			setVisible(false);
 		}
 
