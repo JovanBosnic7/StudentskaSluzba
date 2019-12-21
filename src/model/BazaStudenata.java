@@ -32,10 +32,16 @@ public class BazaStudenata {
 			return studenti;
 		}
 
-		public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String brojIndeksa, GodinaStudija trenutnaGodinaStudija, Status statusStudenta) {
-			studenti.add(new Student(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, " ", brojIndeksa, "", trenutnaGodinaStudija, statusStudenta, 0.0));
+		public Boolean dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String brojIndeksa, GodinaStudija trenutnaGodinaStudija, Status statusStudenta) {
+			
+				for(Student s : this.studenti)
+					if(brojIndeksa.equals(s.getBrojIndeksa()))
+						return false;
+				
+				studenti.add(new Student(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, " ", brojIndeksa, "", trenutnaGodinaStudija, statusStudenta, 0.0));
+				return true;
 		}
-
+		
 		public void setStudenti(ArrayList<Student> studenti) {
 			this.studenti = studenti;
 		}
@@ -48,16 +54,8 @@ public class BazaStudenata {
 			return this.kolone.get(index);
 		}
 
-		public Student getVrsta(int rowIndex) {
+		public Student getRow(int rowIndex) {
 			return this.studenti.get(rowIndex);
-		}
-		
-		public Boolean proveriIndeks(String brojIndeksa) {
-			for(Student s : this.studenti)
-				if(brojIndeksa.equals(s.getBrojIndeksa()))
-					return true;
-			
-			return false;
 		}
 
 		public String getVrednostPolja(int row, int column) {

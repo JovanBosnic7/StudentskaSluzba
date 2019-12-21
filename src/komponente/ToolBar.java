@@ -12,9 +12,12 @@ public class ToolBar extends JToolBar implements ActionListener {
 	private static final long serialVersionUID = -3632212177343556646L;
 	private JButton dodavanjeStudenta;
 	private JButton dodavanjeProfesora;
-	private JButton izmena;
-	private JButton brisanje;
+	private JButton izmenaStudenta;
+	private JButton izmenaPredmeta;
+	private JButton izmenaProfesora;
+	private JButton brisanjeStudenta;
 	private JButton brisanjePredmeta;
+	private JButton brisanjeProfesora;
 	private JButton pretraga;
 	private JTextField unosPretrage;
 	private JButton dodavanjePredmeta;
@@ -54,14 +57,26 @@ public class ToolBar extends JToolBar implements ActionListener {
 		
 		
 		
-		izmena = new JButton();
-		izmena.setToolTipText("Izmena studenta/profesora/predmeta");
-		izmena.setIcon(new ImageIcon("slike/izmena.png"));
+		izmenaStudenta = new JButton();
+		izmenaStudenta.setToolTipText("Izmena studenta");
+		izmenaStudenta.setIcon(new ImageIcon("slike/izmena.png"));
 
-		brisanje = new JButton();
-		brisanje.setToolTipText("Brisanje selektovanog entiteta");
-		brisanje.setIcon(new ImageIcon("slike/brisanje.png"));
+		izmenaPredmeta = new JButton();
+		izmenaPredmeta.setToolTipText("Izmena predmeta");
+		izmenaPredmeta.setIcon(new ImageIcon("slike/izmena.png"));
+		
+		izmenaProfesora = new JButton();
+		izmenaProfesora.setToolTipText("Izmena profesora");
+		izmenaProfesora.setIcon(new ImageIcon("slike/izmena.png"));
+		
+		brisanjeStudenta = new JButton();
+		brisanjeStudenta.setToolTipText("Brisanje studenta");
+		brisanjeStudenta.setIcon(new ImageIcon("slike/brisanje.png"));
 
+		brisanjeProfesora = new JButton();
+		brisanjeProfesora.setToolTipText("Brisanje profesora");
+		brisanjeProfesora.setIcon(new ImageIcon("slike/brisanje.png"));
+		
 		unosPretrage = new JTextField();
 		unosPretrage.setPreferredSize(new Dimension(250, 30));
 
@@ -100,12 +115,10 @@ public class ToolBar extends JToolBar implements ActionListener {
 			add(dodavanjeStudenta);
 
 			addSeparator();
-			izmena.setToolTipText("Izmena studenta");
-			add(izmena);
+			add(izmenaStudenta);
 
 			addSeparator();
-			brisanje.setToolTipText("Brisanje studenta");
-			add(brisanje);
+			add(brisanjeStudenta);
 
 			add(Box.createHorizontalStrut(850));
 
@@ -120,12 +133,10 @@ public class ToolBar extends JToolBar implements ActionListener {
 			add(dodavanjeProfesora);
 			
 			addSeparator();
-			izmena.setToolTipText("Izmena profesora");
-			add(izmena);
+			add(izmenaProfesora);
 
 			addSeparator();
-			brisanje.setToolTipText("Brisanje profesora");
-			add(brisanje);
+			add(brisanjeProfesora);
 
 			add(Box.createHorizontalStrut(850));
 
@@ -148,8 +159,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 			add(dodavanjeProfesoraNaPredmet);
 			addSeparator();
 
-			izmena.setToolTipText("Izmena predmeta");
-			add(izmena);
+			add(izmenaPredmeta);
 
 			addSeparator();
 			
@@ -189,7 +199,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 		}
 		
 		if(clicked == dodavanjeStudenta) {
-			DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog();
+			DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog(0);
 			dijalogStudent.setLocationRelativeTo(MainFrame.getInstance());
 			dijalogStudent.setVisible(true);
 		}

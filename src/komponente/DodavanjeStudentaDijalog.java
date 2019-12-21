@@ -10,13 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.regex.Pattern;
 
 import javax.swing.*;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import kontroler.StudentiKontroler;
 import model.GodinaStudija;
 import model.Status;
@@ -59,14 +55,20 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private ButtonGroup buttonGroupStatus;
 	private JComboBox<GodinaStudija> godStudijaComboBox;
 	private Boolean[] uslovi;
-	private Boolean proveraIndeksa;
 	
-	public DodavanjeStudentaDijalog() {
+	private int mod;
+	
+	public DodavanjeStudentaDijalog(int formaDijaloga) {
+		this();
+		this.mod = formaDijaloga;
+		
+	}
+	
+	private DodavanjeStudentaDijalog() {
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
 		uslovi = new Boolean[6];
-		proveraIndeksa = false;
 		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
@@ -296,13 +298,11 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
-				if(uslovi[5] && proveraIndeksa)
+				if(uslovi[5])
 					unosBrojIndeksa.setBackground(new Color(240, 240, 240));
-				else {
+				else 
 					unosBrojIndeksa.setBackground(new Color(255, 166, 166));
-					if(uslovi[5] && !proveraIndeksa)
-						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
-				}
+				
 			}
 			
 			@Override
@@ -388,14 +388,12 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
-		if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]")) {
-			uslovi[5] = true;
-			proveraIndeksa = !StudentiKontroler.getInstance().indeksPostoji(brojIndeksa);	
-		}		
+		if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]"))
+			uslovi[5] = true;		
 		else
 			uslovi[5] = false;
 		
-		return (uslovi[0] && uslovi[1] && uslovi[2] && proveraIndeksa && uslovi[3] && uslovi[4] && uslovi[5]);
+		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3] && uslovi[4] && uslovi[5]);
 		
 	}
 	
@@ -412,8 +410,9 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 				else
 					status = "S";
 				
-				StudentiKontroler.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status));
-			setVisible(false);
+				if(!StudentiKontroler.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status)))
+					JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
+				setVisible(false);
 		}
 
 	}

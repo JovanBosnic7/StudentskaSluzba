@@ -22,10 +22,10 @@ public class TabbedPane extends JTabbedPane {
 	}
 	
 	private TabbedPane() {
-		tabelaStudenata = new TabelaStudenata();
+		tabelaStudenata = TabelaStudenata.getInstance();
 		JScrollPane studenti = new JScrollPane(tabelaStudenata);
 		
-		tabelaProfesora = new TabelaProfesora();
+		tabelaProfesora = TabelaProfesora.getInstance();
 		JScrollPane profesori = new JScrollPane(tabelaProfesora);
 		
 		tabelaPredmeta=TabelaPredmeta.getInstance();
