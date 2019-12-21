@@ -5,8 +5,7 @@ public class Predmet {
 	private String nazivPredmeta;
 	private String semestar;
 	private String godinaUKojojSePredmetIzvodi;
-	private String profesor;
-	//private Profesor predmetniProfesor;
+	private Profesor predmetniProfesor;
 
 	// private ArrayList<Student> spisakStudenataKojiSlusajuPredmet
 	public Predmet(String sifraPredmeta, String nazivPredmeta, String semestar, String godinaUKojojSePredmetIzvodi,
@@ -16,18 +15,16 @@ public class Predmet {
 		this.nazivPredmeta = nazivPredmeta;
 		this.semestar = semestar;
 		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi;
-		//this.predmetniProfesor = predmetniProfesor;
+		this.predmetniProfesor = predmetniProfesor;
 	}
 
-	public Predmet(String sifraPredmeta2, String nazivPredmeta2, String semestar2, String godinaUKojojSePredmetIzvodi2,
-		String string) {
+	public Predmet(String sifraPredmeta2, String nazivPredmeta2, String semestar2, String godinaUKojojSePredmetIzvodi2) {
 			
 			super();
 		this.sifraPredmeta = sifraPredmeta2;
 		this.nazivPredmeta = nazivPredmeta2;
 		this.semestar = semestar2;
 		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi2;
-		this.profesor=string;
 		
 	}
 	
@@ -64,13 +61,16 @@ public class Predmet {
 		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi;
 	}
 
-//	public Profesor getPredmetniProfesor() {
-	//	return predmetniProfesor;
-	//}
+	public Profesor getPredmetniProfesor() {
+		return predmetniProfesor;
+	}
 
-	//public void setPredmetniProfesor(Profesor predmetniProfesor) {
-	//	this.predmetniProfesor = predmetniProfesor;
-//	}
+	public void setPredmetniProfesor(Profesor predmetniProfesor) {
+		this.predmetniProfesor = predmetniProfesor;
+	}
+	public String getProfesor() {
+		return this.predmetniProfesor.toString();
+	}
 
 	@Override
 	public String toString() {
@@ -79,9 +79,5 @@ public class Predmet {
 				 + "]";
 	}
 
-	public String getProfesor() {
-		// TODO Auto-generated method stub
-		return profesor;
-	}
-
 }
+

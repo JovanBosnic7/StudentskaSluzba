@@ -15,9 +15,9 @@ public class PredmetiKontroler {
 	
 	private PredmetiKontroler() {}
 	
-	public void dodajPredmet(String sifra, String naziv,  String semestar,String godina,String profesor) {
+	public void dodajPredmet(String sifra, String naziv,  String semestar,String godina) {
 		
-		BazaPredmeta.getInstance().dodajPredmet(sifra, naziv, semestar, godina, profesor);
+		BazaPredmeta.getInstance().dodajPredmet(sifra, naziv, semestar, godina);
 	}
 
 }

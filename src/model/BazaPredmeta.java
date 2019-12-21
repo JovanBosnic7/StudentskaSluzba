@@ -28,8 +28,8 @@ public class BazaPredmeta {
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
 	}
-	public void dodajPredmet(String sifra, String naziv, String semestar,String godinaUKojojSeIzvodi,String profesor ) {
-		predmeti.add(new Predmet(sifra,naziv,semestar,godinaUKojojSeIzvodi,profesor));
+	public void dodajPredmet(String sifra, String naziv, String semestar,String godinaUKojojSeIzvodi ) {
+		predmeti.add(new Predmet(sifra,naziv,semestar,godinaUKojojSeIzvodi));
 	}
 
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
@@ -62,8 +62,7 @@ public class BazaPredmeta {
 			return predmet.getSemestar();
 		case 3:
 			return predmet.getGodinaUKojojSePredmetIzvodi();
-		case 4:
-			return predmet.getProfesor();
+		
 			default:
 				return null;
 		

@@ -44,6 +44,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private JPanel panelBottom;
 	private JPanel panelCenter;
 	private JComboBox<GodinaStudija> godStudijaComboBox;
+	private JComboBox<String> semestarComboBox;
+
 
 
 	private GridBagConstraints c;
@@ -91,10 +93,6 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		c.gridy = 3;
 		panelCenter.add(labelGodinaUKojojeSePredmetIzvodi, c);
 
-		labelProfesor = new JLabel("Profesor:");
-		c.gridx = 0;
-		c.gridy = 4;
-		panelCenter.add(labelProfesor, c);
 
 		this.add(panelCenter, BorderLayout.CENTER);
 
@@ -115,13 +113,14 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		b.gridy = 1;
 		panelCenter.add(unosNaziva, b);
 		
-		unosSemestra = new JTextField();
-		unosSemestra.setPreferredSize(new Dimension(200, 20));
-		unosSemestra.addKeyListener(this);
-
+		semestarComboBox = new JComboBox<String>();
+		semestarComboBox.setBackground(Color.WHITE);
+		semestarComboBox.setPreferredSize(new Dimension(200, 30));
+		semestarComboBox.addItem("Letnji");
+		semestarComboBox.addItem("Zimski");
 		b.gridx = 1;
 		b.gridy = 2;
-		panelCenter.add(unosSemestra, b);
+		panelCenter.add(semestarComboBox, b);
 
 		godStudijaComboBox = new JComboBox<GodinaStudija>();
 		godStudijaComboBox.setBackground(Color.WHITE);
@@ -137,13 +136,7 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		b.gridy = 3;
 		panelCenter.add(godStudijaComboBox, b);
 
-		unosProfesora = new JTextField();
-		unosProfesora.setPreferredSize(new Dimension(200, 20));
-		unosProfesora.addKeyListener(this);
-
-		b.gridx = 1;
-		b.gridy = 4;
-		panelCenter.add(unosProfesora, b);
+		
 
 		odustanak = new JButton("Odustanak");
 		odustanak.addActionListener(this);
@@ -178,10 +171,9 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		if (clicked == potvrda) {
 			sifra = unosSifre.getText();
 			naziv = unosNaziva.getText();
-			semestar = unosSemestra.getText();
+			semestar = (String) semestarComboBox.getSelectedItem();
 			godinaStudija =(GodinaStudija) godStudijaComboBox.getSelectedItem();
-			profesor = unosProfesora.getText();
-			PredmetiKontroler.getInstance().dodajPredmet(sifra, naziv, semestar, godinaStudija.toString(), profesor);
+			PredmetiKontroler.getInstance().dodajPredmet(sifra, naziv, semestar, godinaStudija.toString());
 			TabbedPane.getInstance().azurirajPrikzazPredmeta();
 			setVisible(false);
 		}
@@ -190,30 +182,30 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private Boolean proveriUnos() {
 		sifra = unosSifre.getText();
 		naziv = unosNaziva.getText();
-		semestar = unosSemestra.getText();
-		profesor = unosProfesora.getText();
-
-		Boolean[] uslovi = { false, false, false, false };
-		if (sifra.matches("[0-9]+") && sifra.length() > 0) {
+		
+	
+		Boolean[] uslovi = { false, false };
+		if (sifra.matches("[a-zA-Z0-9]*") && sifra.length() > 0) {
 			uslovi[0] = true;
+			unosSifre.setBackground(new Color(240,240,240));
 
+		}
+		else {
+			uslovi[0]=false;
+			unosSifre.setBackground(new Color(255,166,166));
 		}
 		if (naziv.matches("[A-Z][a-z]+") && naziv.length() > 0) {
 			uslovi[1] = true;
+			unosNaziva.setBackground(new Color(240,240,240));
 
 		}
-	
-		if (semestar.matches("(I|II|III|IV|V|VI|VII|VIII|IX|X)") && semestar.length() > 0) {
-			uslovi[2] = true;
-
+		else {
+			uslovi[1]=false;
+			unosNaziva.setBackground(new Color(255,166,166));
 		}
+			
 		
-		if (profesor.matches("[A-Z][a-z]+") && profesor.length() > 0) {
-			uslovi[3] = true;
-
-		}
-		
-		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3]);
+		return (uslovi[0] && uslovi[1]);
 
 	
 
