@@ -1,23 +1,25 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Student {
+	
 	private String ime;
 	private String prezime;
-	private String datumRodjenja;
+	private Date datumRodjenja;
 	private String adresaStanovanja;
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String brojIndeksa;
-	private String datumUpisa;
+	private Date datumUpisa;
 	private GodinaStudija trenutnaGodinaStudija;
 	private Status statusStudenta;
 	private double prosecnaOcena;
 	private ArrayList<Predmet> spisakPredmeta;
 	
-	public Student(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String emailAdresa, String brojIndeksa, String datumUpisa, GodinaStudija trenutnaGodinaStudija, Status statusStudenta,
+	public Student(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String emailAdresa, String brojIndeksa, Date datumUpisa, GodinaStudija trenutnaGodinaStudija, Status statusStudenta,
 			double prosecnaOcena) {
 		super();
 		this.ime = ime;
@@ -33,7 +35,10 @@ public class Student {
 		this.prosecnaOcena = prosecnaOcena;
 		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
-
+	
+	public Student() {
+		super();
+	}
 	public String getIme() {
 		return ime;
 	}
@@ -50,11 +55,11 @@ public class Student {
 		this.prezime = prezime;
 	}
 
-	public String getDatumRodjenja() {
+	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(Date datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 
@@ -90,11 +95,11 @@ public class Student {
 		this.brojIndeksa = brojIndeksa;
 	}
 
-	public String getDatumUpisa() {
+	public Date getDatumUpisa() {
 		return datumUpisa;
 	}
 
-	public void setDatumUpisa(String datumUpisa) {
+	public void setDatumUpisa(Date datumUpisa) {
 		this.datumUpisa = datumUpisa;
 	}
 

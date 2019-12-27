@@ -19,14 +19,14 @@ private static StudentiKontroler instance = null;
 	
 	private StudentiKontroler() {}
 	
-	public Boolean dodajStudenta(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String brojIndeksa /*String datumUpisa*/, GodinaStudija trenutnaGodinaStudija, Status statusStudenta) {
-		Boolean povratnaVrednost = BazaStudenata.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, brojIndeksa, trenutnaGodinaStudija, statusStudenta);
+	public Boolean dodajStudenta(Student student) {
+		Boolean povratnaVrednost = BazaStudenata.getInstance().dodajStudenta(student);
 		TabbedPane.getInstance().azurirajPrikaz();
 		return povratnaVrednost;
 	}
 	
-	public Boolean izmeniStudenta(int row, String ime, String prezime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon, String brojIndeksa /*String datumUpisa*/, GodinaStudija trenutnaGodinaStudija, Status statusStudenta) {
-		Boolean povratnaVrednost = BazaStudenata.getInstance().izmeniStudenta(row, ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, brojIndeksa, trenutnaGodinaStudija, statusStudenta);
+	public Boolean izmeniStudenta(int row, Student student) {
+		Boolean povratnaVrednost = BazaStudenata.getInstance().izmeniStudenta(row, student);
 		TabbedPane.getInstance().azurirajPrikaz();
 		return povratnaVrednost;
 	}

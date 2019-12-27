@@ -12,6 +12,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -49,7 +53,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private String brojTelefona;
 	private String brojIndeksa;
 	private GodinaStudija godinaStudija;
-	private String status;
+	private Status status;
 		
 	private JButton dugmePotvrda;
 	private JButton dugmeOdustanak;
@@ -64,7 +68,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private int mod;
 	private int vrsta;
 	
-	public DodavanjeStudentaDijalog(int formaDijaloga, int row) {		
+	public DodavanjeStudentaDijalog(int formaDijaloga, int row) {
+		
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
@@ -84,7 +89,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 
 		cLabele = new GridBagConstraints();
 		cTextBox = new GridBagConstraints();
-		cTextBox.fill = GridBagConstraints.VERTICAL;
+		cTextBox.fill = GridBagConstraints.HORIZONTAL;
 		cTextBox.insets=new Insets(10, 10, 0, 50);
 		
 		labelaIme = new JLabel("Ime *");
@@ -145,6 +150,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(buttonSamofinansiranje, cLabele);
 		
 		unosIme = new JTextField();
+		unosIme.setToolTipText("<html>" + "Unesite ime studenta." + "<br>" + "Ime mora poceti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
 		unosIme.setPreferredSize(new Dimension(200, 30));
 		unosIme.addKeyListener(new KeyListener() {
 			
@@ -174,6 +180,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosIme, cTextBox);
 		
 		unosPrezime = new JTextField();
+		unosPrezime.setToolTipText("<html>" + "Unesite prezime studenta." + "<br>" + "Prezime mora poceti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
 		unosPrezime.setPreferredSize(new Dimension(200, 30));
 		unosPrezime.addKeyListener(new KeyListener() {
 			
@@ -203,6 +210,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosPrezime, cTextBox);
 		
 		unosDatumRodjenja = new JTextField();
+		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum rodjenja studenta." + "<br>" + "Datum se unosi u formatu dd.MM.GGGG." + "<br>" + "npr. 01.01.1998."+ "</html>");
 		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
 		unosDatumRodjenja.addKeyListener(new KeyListener() {
 			
@@ -231,6 +239,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosDatumRodjenja, cTextBox);
 		
 		unosAdresaStanovanja = new JTextField();
+		unosAdresaStanovanja.setToolTipText("Unesite adresu stanovanja studenta.");
 		unosAdresaStanovanja.setPreferredSize(new Dimension(200, 30));
 		unosAdresaStanovanja.addKeyListener(new KeyListener() {
 			
@@ -259,6 +268,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosAdresaStanovanja, cTextBox);
 		
 		unosBrojTelefona = new JTextField();
+		unosBrojTelefona.setToolTipText("<html>" + "Unesite broj telefona studenta." + "<br>" + "Obavezno sa prefiksom drzave." + "<br>" + "npr. +381651234567"+ "</html>");
 		unosBrojTelefona.setPreferredSize(new Dimension(200, 30));
 		unosBrojTelefona.addKeyListener(new KeyListener() {
 			
@@ -287,6 +297,9 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosBrojTelefona, cTextBox);
 		
 		unosBrojIndeksa = new JTextField();
+		unosBrojIndeksa.setToolTipText("<html>" + "Unesite broj indeksa studenta." + "<br>" + "xx-yyy-zzzz" + 
+		"<br>" + "xx - oznaka studijskog programa" + "<br>" + "yyy - broj indeksa"+
+		"<br>" + "zzzz - godina upisa "+ "<br>" + "npr. ra-1-2020"+ "</html>");
 		unosBrojIndeksa.setPreferredSize(new Dimension(200, 30));
 		unosBrojIndeksa.addKeyListener(new KeyListener() {
 			
@@ -317,7 +330,6 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		godStudijaComboBox = new JComboBox<GodinaStudija>();
 		godStudijaComboBox.setBackground(Color.WHITE);
-		
 		godStudijaComboBox.addItem(GodinaStudija.I);
 		godStudijaComboBox.addItem(GodinaStudija.II);
 		godStudijaComboBox.addItem(GodinaStudija.III);
@@ -392,11 +404,13 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			return;
 		}
 		
+		
 		if(formaDijaloga == 1) {
 			Student s = BazaStudenata.getInstance().getStudenti().get(row);
 			unosIme.setText(s.getIme());
 			unosPrezime.setText(s.getPrezime());
-			unosDatumRodjenja.setText(s.getDatumRodjenja());
+			DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+			unosDatumRodjenja.setText(df.format(s.getDatumRodjenja()));
 			unosAdresaStanovanja.setText(s.getAdresaStanovanja());
 			unosBrojTelefona.setText(s.getKontaktTelefon());
 			unosBrojIndeksa.setText(s.getBrojIndeksa());
@@ -432,11 +446,11 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[2] = true;
 		else
 			uslovi[2] = false;
-		if(adresaStanovanja.matches("[A-Z][a-z]+[ ]?[A-Z]?[a-z]*[ ]?([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])"))
+		if(adresaStanovanja.matches("[A-Z][a-zA-Z 0-9]+"))
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
-		if(brojTelefona.matches("\\+381[1-9][1-9][ ]?[0-9]{6,7}"))
+		if(brojTelefona.matches("\\+381[1-9][1-9][0-9]{6,7}"))
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
@@ -460,16 +474,37 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		 	if (clicked == dugmePotvrda) {
 		 		godinaStudija = (GodinaStudija)godStudijaComboBox.getSelectedItem();
 				if(buttonGroupStatus.isSelected(buttonBudzet.getModel()))
-					status = "B";
+					status = Status.B;
 				else
-					status = "S";
+					status = Status.S;
 				
+				Student s = new Student();
+				s.setBrojIndeksa(brojIndeksa);
+				s.setIme(ime);
+				s.setPrezime(prezime);
+				s.setBrojIndeksa(brojIndeksa);
+				s.setAdresaStanovanja(adresaStanovanja);
+				s.setKontaktTelefon(brojTelefona);
+				s.setStatusStudenta(status);
+				s.setTrenutnaGodinaStudija(godinaStudija);
+				
+				DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+				df.setLenient(false);
+				Date datum = null;
+				
+				try {
+					datum = df.parse(datumRodjenja);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
+				s.setDatumRodjenja(datum);
 				if(mod == 0) {
-					if(!StudentiKontroler.getInstance().dodajStudenta(ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status)))
+					if(!StudentiKontroler.getInstance().dodajStudenta(s))
 						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);}
 				else {
-					if(!StudentiKontroler.getInstance().izmeniStudenta(vrsta, ime, prezime, datumRodjenja, adresaStanovanja, brojTelefona, brojIndeksa , godinaStudija, Status.valueOf(status)))
-						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
+					if(!StudentiKontroler.getInstance().izmeniStudenta(vrsta, s))
+						JOptionPane.showMessageDialog(null, "Doslo je do greske pri izmeni studenta!", "Greska", JOptionPane.ERROR_MESSAGE);
 				}
 				setVisible(false);
 		}
