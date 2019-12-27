@@ -38,6 +38,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private JLabel labelaBrojTelefona;
 	private JLabel labelaBrojIndeksa;
 	private JLabel labelaGodinaStudija;
+	private JLabel labelaEmailAdresa;
+	private JLabel labelaDatumUpisa;
 	
 	private JTextField unosIme;
 	private JTextField unosPrezime;
@@ -45,7 +47,9 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private JTextField unosAdresaStanovanja;
 	private JTextField unosBrojTelefona;
 	private JTextField unosBrojIndeksa;
-
+	private JTextField unosEmailAdresa;
+	private JTextField unosDatumUpisa;
+	
 	private String ime;
 	private String prezime;
 	private String datumRodjenja;
@@ -54,7 +58,9 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private String brojIndeksa;
 	private GodinaStudija godinaStudija;
 	private Status status;
-		
+	private String emailAdresa;
+	private String datumUpisa;
+	
 	private JButton dugmePotvrda;
 	private JButton dugmeOdustanak;
 	private JPanel panelBottom;
@@ -73,7 +79,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
-		uslovi = new Boolean[6];
+		uslovi = new Boolean[8];
 		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
@@ -120,14 +126,24 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		cLabele.gridy = 4;
 		panelUnosPodataka.add(labelaBrojTelefona, cLabele);
 		
-		labelaBrojIndeksa = new JLabel("Broj indeksa*");
+		labelaEmailAdresa = new JLabel("Email*");
 		cLabele.gridx = 0;
 		cLabele.gridy = 5;
+		panelUnosPodataka.add(labelaEmailAdresa, cLabele);
+		
+		labelaBrojIndeksa = new JLabel("Broj indeksa*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 6;
 		panelUnosPodataka.add(labelaBrojIndeksa, cLabele);
+		
+		labelaDatumUpisa = new JLabel("Datum upisa*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 7;
+		panelUnosPodataka.add(labelaDatumUpisa, cLabele);
 		
 		labelaGodinaStudija = new JLabel("Trenutna godina studija*");
 		cLabele.gridx = 0;
-		cLabele.gridy = 6;
+		cLabele.gridy = 8;
 		panelUnosPodataka.add(labelaGodinaStudija, cLabele);
 		
 		buttonBudzet = new JRadioButton("Budzet");
@@ -143,10 +159,10 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		buttonGroupStatus.setSelected(buttonBudzet.getModel(), true);
 		
 		cLabele.gridx = 0;
-		cLabele.gridy = 7;
+		cLabele.gridy = 9;
 		panelUnosPodataka.add(buttonBudzet, cLabele);
 		cLabele.gridx = 0;
-		cLabele.gridy = 8;
+		cLabele.gridy = 10;
 		panelUnosPodataka.add(buttonSamofinansiranje, cLabele);
 		
 		unosIme = new JTextField();
@@ -296,6 +312,36 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		cTextBox.gridy = 4;
 		panelUnosPodataka.add(unosBrojTelefona, cTextBox);
 		
+		unosEmailAdresa = new JTextField();
+		unosEmailAdresa.setToolTipText("Unesite email adresu studenta.");
+		unosEmailAdresa.setPreferredSize(new Dimension(200, 30));
+		unosEmailAdresa.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[6])
+					unosEmailAdresa.setBackground(new Color(240, 240, 240));
+				else 
+					unosEmailAdresa.setBackground(new Color(255, 166, 166));
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 5;
+		panelUnosPodataka.add(unosEmailAdresa, cTextBox);
+		
 		unosBrojIndeksa = new JTextField();
 		unosBrojIndeksa.setToolTipText("<html>" + "Unesite broj indeksa studenta." + "<br>" + "xx-yyy-zzzz" + 
 		"<br>" + "xx - oznaka studijskog programa" + "<br>" + "yyy - broj indeksa"+
@@ -324,10 +370,41 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 				
 			}
 		});
+		
 		cTextBox.gridx = 1;
-		cTextBox.gridy = 5;
+		cTextBox.gridy = 6;
 		panelUnosPodataka.add(unosBrojIndeksa, cTextBox);
 		
+		unosDatumUpisa = new JTextField();
+		unosDatumUpisa.setToolTipText("<html>" + "Unesite datum upisa studenta." + "<br>" + "Datum se unosi u formatu dd.MM.GGGG." + "<br>" + "npr. 01.01.1998."+ "</html>");
+		unosDatumUpisa.setPreferredSize(new Dimension(200, 30));
+		unosDatumUpisa.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[7])
+					unosDatumUpisa.setBackground(new Color(240, 240, 240));
+				else
+					unosDatumUpisa.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 7;
+		panelUnosPodataka.add(unosDatumUpisa, cTextBox);
+				
+	
 		godStudijaComboBox = new JComboBox<GodinaStudija>();
 		godStudijaComboBox.setBackground(Color.WHITE);
 		godStudijaComboBox.addItem(GodinaStudija.I);
@@ -337,7 +414,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		godStudijaComboBox.addItem(GodinaStudija.V);
 		godStudijaComboBox.setPreferredSize(new Dimension(200, 30));
 		cTextBox.gridx = 1;
-		cTextBox.gridy = 6;
+		cTextBox.gridy = 8;
 		panelUnosPodataka.add(godStudijaComboBox, cTextBox);
 		panelUnosPodataka.setBackground(new Color(240, 240, 240));
 		this.add(panelUnosPodataka, BorderLayout.NORTH);
@@ -414,6 +491,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			unosAdresaStanovanja.setText(s.getAdresaStanovanja());
 			unosBrojTelefona.setText(s.getKontaktTelefon());
 			unosBrojIndeksa.setText(s.getBrojIndeksa());
+			unosEmailAdresa.setText(s.getEmailAdresa());
+			unosDatumUpisa.setText(df.format(s.getDatumUpisa()));
 			
 			if(s.getStatusStudenta() == Status.B)
 				buttonGroupStatus.setSelected(buttonBudzet.getModel(), true);
@@ -433,6 +512,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		adresaStanovanja = unosAdresaStanovanja.getText();
 		brojTelefona = unosBrojTelefona.getText();
 		brojIndeksa = unosBrojIndeksa.getText();
+		emailAdresa = unosEmailAdresa.getText();
+		datumUpisa = unosDatumUpisa.getText();
 		
 		if(ime.matches("[A-Z][a-z]+")) 
 			uslovi[0] = true;
@@ -458,8 +539,15 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[5] = true;		
 		else
 			uslovi[5] = false;
-		
-		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3] && uslovi[4] && uslovi[5]);
+		if(emailAdresa.matches("[A-Za-z0-9][a-zA-Z_.0-9]+@[a-zA-Z_.0-9]+"))
+			uslovi[6] = true;		
+		else
+			uslovi[6] = false;
+		if(datumUpisa.matches("0?([1-9]|[12][0-9]|3[01])\\.0?([1-9]|1[012])\\.(19|20)[0-9][0-9]\\."))
+			uslovi[7] = true;
+		else
+			uslovi[7] = false;
+		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3] && uslovi[4] && uslovi[5] && uslovi[6] && uslovi[7]);
 		
 	}
 	
@@ -487,18 +575,20 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 				s.setKontaktTelefon(brojTelefona);
 				s.setStatusStudenta(status);
 				s.setTrenutnaGodinaStudija(godinaStudija);
-				
+				s.setEmailAdresa(emailAdresa);
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
 				df.setLenient(false);
 				Date datum = null;
-				
+				Date datumUpis = null;
 				try {
 					datum = df.parse(datumRodjenja);
+					datumUpis = df.parse(datumUpisa);
 				} catch (ParseException e1) {
 					e1.printStackTrace();
 				}
 				
 				s.setDatumRodjenja(datum);
+				s.setDatumUpisa(datumUpis);
 				if(mod == 0) {
 					if(!StudentiKontroler.getInstance().dodajStudenta(s))
 						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);}
