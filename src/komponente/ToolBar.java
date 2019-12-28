@@ -10,6 +10,7 @@ import kontroler.BrisanjeStudentaListener;
 import kontroler.DodavanjePredmetaListener;
 import kontroler.DodavanjeProfesoraListener;
 import kontroler.DodavanjeStudentaListener;
+import kontroler.IzmenaPredmetaListener;
 import kontroler.IzmenaStudentaListener;
 
 public class ToolBar extends JToolBar {
@@ -64,6 +65,7 @@ public class ToolBar extends JToolBar {
 		izmenaPredmeta = new JButton();
 		izmenaPredmeta.setToolTipText("Izmena predmeta");
 		izmenaPredmeta.setIcon(new ImageIcon("slike/izmena.png"));
+		izmenaPredmeta.addActionListener(new IzmenaPredmetaListener());
 		
 		izmenaProfesora = new JButton();
 		izmenaProfesora.setToolTipText("Izmena profesora");

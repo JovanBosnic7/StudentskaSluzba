@@ -29,6 +29,10 @@ public class Predmet {
 	}
 	
 
+	public Predmet() {
+	super();	// TODO Auto-generated constructor stub
+	}
+
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}

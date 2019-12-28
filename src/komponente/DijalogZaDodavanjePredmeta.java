@@ -12,7 +12,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import kontroler.PredmetiKontroler;
+import model.BazaPredmeta;
 import model.GodinaStudija;
+import model.Predmet;
 
 public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListener, KeyListener {
 	/**
@@ -38,7 +40,6 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private String profesor;
 	private GodinaStudija godinaStudija;
 
-
 	private JButton odustanak;
 	private JButton potvrda;
 	private JPanel panelBottom;
@@ -46,12 +47,14 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private JComboBox<GodinaStudija> godStudijaComboBox;
 	private JComboBox<String> semestarComboBox;
 
-
+	Boolean[] uslovi = { false, false };
+	private int row;
+	private int formaDijaloga;
 
 	private GridBagConstraints c;
 	private GridBagConstraints b;
 
-	public DijalogZaDodavanjePredmeta() {
+	public DijalogZaDodavanjePredmeta(int forma, int red) {
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -93,13 +96,11 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		c.gridy = 3;
 		panelCenter.add(labelGodinaUKojojeSePredmetIzvodi, c);
 
-
 		this.add(panelCenter, BorderLayout.CENTER);
-
-	
 
 		unosSifre = new JTextField();
 		unosSifre.setPreferredSize(new Dimension(200, 20));
+		unosSifre.setToolTipText("<html>" + "Unesite sifru predmeta." + "<br>" + "Sifra mora poceti velikim slovom." + "<br>" + "npr. EE123"+ "</html>");
 		unosSifre.addKeyListener(this);
 
 		b.gridx = 1;
@@ -108,11 +109,12 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 
 		unosNaziva = new JTextField();
 		unosNaziva.setPreferredSize(new Dimension(200, 20));
+		unosNaziva.setToolTipText("<html>" + "Unesite naziv predmeta." + "<br>" + "Predmet mora poceti velikim slovom." + "<br>" + "npr. Matematika"+ "</html>");
 		unosNaziva.addKeyListener(this);
 		b.gridx = 1;
 		b.gridy = 1;
 		panelCenter.add(unosNaziva, b);
-		
+
 		semestarComboBox = new JComboBox<String>();
 		semestarComboBox.setBackground(Color.WHITE);
 		semestarComboBox.setPreferredSize(new Dimension(200, 30));
@@ -124,19 +126,17 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 
 		godStudijaComboBox = new JComboBox<GodinaStudija>();
 		godStudijaComboBox.setBackground(Color.WHITE);
-		
+
 		godStudijaComboBox.addItem(GodinaStudija.I);
 		godStudijaComboBox.addItem(GodinaStudija.II);
 		godStudijaComboBox.addItem(GodinaStudija.III);
 		godStudijaComboBox.addItem(GodinaStudija.IV);
 		godStudijaComboBox.addItem(GodinaStudija.V);
 		godStudijaComboBox.setPreferredSize(new Dimension(200, 30));
-		
+
 		b.gridx = 1;
 		b.gridy = 3;
 		panelCenter.add(godStudijaComboBox, b);
-
-		
 
 		odustanak = new JButton("Odustanak");
 		odustanak.addActionListener(this);
@@ -157,6 +157,21 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		a.gridy = 0;
 		panelBottom.add(potvrda, a);
 		this.add(panelBottom, BorderLayout.SOUTH);
+		this.row = red;
+		this.formaDijaloga = forma;
+		if (red < 0 && forma == 1) {
+			JOptionPane.showMessageDialog(null, "Niste oznacili predmet koji zelite da izmenite");
+			return;
+		}
+
+		if (forma == 1) {
+			Predmet p = BazaPredmeta.getInstance().getPredmeti().get(red);
+			unosSifre.setText(p.getSifraPredmeta());
+			unosNaziva.setText(p.getNazivPredmeta());
+			semestarComboBox.setSelectedItem(p.getSemestar());
+			godStudijaComboBox.setSelectedItem(p.getGodinaUKojojSePredmetIzvodi());
+
+		}
 
 	}
 
@@ -172,42 +187,51 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 			sifra = unosSifre.getText();
 			naziv = unosNaziva.getText();
 			semestar = (String) semestarComboBox.getSelectedItem();
-			godinaStudija =(GodinaStudija) godStudijaComboBox.getSelectedItem();
-			PredmetiKontroler.getInstance().dodajPredmet(sifra, naziv, semestar, godinaStudija.toString());
-			TabbedPane.getInstance().azurirajPrikzazPredmeta();
+			godinaStudija = (GodinaStudija) godStudijaComboBox.getSelectedItem();
+			Predmet p = new Predmet();
+			p.setSifraPredmeta(sifra);
+			p.setNazivPredmeta(naziv);
+			p.setSemestar(semestar);
+			p.setGodinaUKojojSePredmetIzvodi(godinaStudija.toString());
+
+			if (formaDijaloga == 0) {
+				if (!PredmetiKontroler.getInstance().dodajPredmet(p)) {
+					JOptionPane.showMessageDialog(null, "Uneli ste sifru predmeta koja vec postoji!");
+				}
+			}
+			if (formaDijaloga == 1) {
+				if (!PredmetiKontroler.getInstance().izmeniPredmet(row, p)) {
+					JOptionPane.showConfirmDialog(null, "Doslo je do greske pri izmeni predmeta");
+				}
+
+			}
 			setVisible(false);
+
 		}
 	}
 
 	private Boolean proveriUnos() {
 		sifra = unosSifre.getText();
 		naziv = unosNaziva.getText();
-		
-	
-		Boolean[] uslovi = { false, false };
+
 		if (sifra.matches("[a-zA-Z0-9]*") && sifra.length() > 0) {
 			uslovi[0] = true;
-			unosSifre.setBackground(new Color(240,240,240));
+			unosSifre.setBackground(new Color(240, 240, 240));
 
-		}
-		else {
-			uslovi[0]=false;
-			unosSifre.setBackground(new Color(255,166,166));
+		} else {
+			uslovi[0] = false;
+			unosSifre.setBackground(new Color(255, 166, 166));
 		}
 		if (naziv.matches("[A-Z][a-z]+") && naziv.length() > 0) {
 			uslovi[1] = true;
-			unosNaziva.setBackground(new Color(240,240,240));
+			unosNaziva.setBackground(new Color(240, 240, 240));
 
+		} else {
+			uslovi[1] = false;
+			unosNaziva.setBackground(new Color(255, 166, 166));
 		}
-		else {
-			uslovi[1]=false;
-			unosNaziva.setBackground(new Color(255,166,166));
-		}
-			
-		
+
 		return (uslovi[0] && uslovi[1]);
-
-	
 
 	}
 
@@ -220,9 +244,9 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(proveriUnos()) {
+		if (proveriUnos()) {
 			potvrda.setEnabled(true);
-		}else {
+		} else {
 			potvrda.setEnabled(false);
 		}
 

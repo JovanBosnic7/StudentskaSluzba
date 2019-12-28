@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kontroler.PredmetiKontroler;
@@ -28,7 +29,12 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 	private JPanel bottomPanel;
 	private JPanel centerPanel;
 
-	public DijalogZaBrisanjePredmeta() {
+	public DijalogZaBrisanjePredmeta(int row) {
+		
+		if(row < 0) {
+			JOptionPane.showMessageDialog(null, "Prvo odaberite predmet  koji zelite da obrisete!", "Greska", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		// TODO Auto-generated constructor stub
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
