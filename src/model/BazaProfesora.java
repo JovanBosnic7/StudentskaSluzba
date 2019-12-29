@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class BazaProfesora {
@@ -80,7 +82,8 @@ public class BazaProfesora {
 		case 2:
 			return prof.getPrezime();
 		case 3:
-			return prof.getDatumRodjenja();
+			DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+			return df.format(prof.getDatumRodjenja());
 		case 4:
 			return prof.getAdresaStanovanja();
 		case 5:

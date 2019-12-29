@@ -551,7 +551,6 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 	}
 	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

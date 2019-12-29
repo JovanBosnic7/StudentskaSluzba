@@ -12,215 +12,238 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import model.BazaProfesora;
-
 public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5230900675304536431L;
-	private JLabel labelIme;
-	private JLabel labelPrezime;
-	private JLabel labelDatumRodjenja;
-	private JLabel labelAdresaStanovanja;
-	private JLabel labelKontaktTelefon;
-	private JLabel labelEmailAdresa;
-	private JLabel labelAdresaKancelarije;
-	private JLabel labelBrojLicneKarte;
-	private JLabel labelTitula;
-	private JLabel labelZvanje;
-	private JLabel labelPredmeti;
+	private JLabel labelaIme;
+	private JLabel labelaPrezime;
+	private JLabel labelaDatumRodjenja;
+	private JLabel labelaAdresaStanovanja;
+	private JLabel labelaKontaktTelefon;
+	private JLabel labelaEmailAdresa;
+	private JLabel labelaAdresaKancelarije;
+	private JLabel labelaBrojLicneKarte;
+	private JLabel labelaTitula;
+	private JLabel labelaZvanje;
 	
-	private JTextField unos;
-	private JTextField unos1;
-	private JTextField unos2;
-	private JTextField unos3;
-	private JTextField unos4;
-	private JTextField unos5;
-	private JTextField unos6;
-	private JTextField unos7;
-	private JTextField unos8;
-	private JTextField unos9;
-	private JTextField unos10;
+	private JTextField unosIme;
+	private JTextField unosPrezime;
+	private JTextField unosDatumRodjenja;
+	private JTextField unosAdresaStanovanja;
+	private JTextField unosKontaktTelefon;
+	private JTextField unosEmailAdresa;
+	private JTextField unosAdresaKancelarije;
+	private JTextField unosBrojLicneKarte;
+	private JTextField unosTitula;
+	private JTextField unosZvanje;
 
-	private JButton odustanak;
-	private JButton potvrda;
+	private JButton dugmeOdustanak;
+	private JButton dugmePotvrda;
 	private JPanel panelBottom;
+	private JPanel panelUnosPodataka;
 	private JPanel panelCenter;
-	private GridBagConstraints c;
-	private GridBagConstraints b;
 
+	
+	
 	public DijalogZaDodavanjeProfesora() {
+		GridBagConstraints cLabele;
+		GridBagConstraints cTextBox;
+		GridBagConstraints cDugmad;
+		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setSize(2 * screenDimension.width / 7, screenDimension.height / 2);
+		setSize(1 * screenDimension.width / 4, screenDimension.height / 2);
+		setLocationRelativeTo(MainFrame.getInstance());
 		setTitle("Dodavanje profesora");
 		setModal(true);
+		
+		panelUnosPodataka = new JPanel();
+		panelUnosPodataka.setLayout(new GridBagLayout());
+
+		cLabele = new GridBagConstraints();
+		cTextBox = new GridBagConstraints();
+		cTextBox.fill = GridBagConstraints.HORIZONTAL;
+		cTextBox.insets=new Insets(10, 10, 0, 50);
+		
+		labelaIme = new JLabel("Ime *");
+		cLabele.gridx = 0;
+		cLabele.gridy = 0;
+		cLabele.weightx=100;
+		cLabele.fill=GridBagConstraints.HORIZONTAL;
+		cLabele.insets=new Insets(10,50,0,0);
+		panelUnosPodataka.add(labelaIme, cLabele);
+
+		labelaPrezime = new JLabel("Prezime*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 1;
+		panelUnosPodataka.add(labelaPrezime, cLabele);
+
+		labelaDatumRodjenja = new JLabel("Datum rodjenja*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 2;
+		panelUnosPodataka.add(labelaDatumRodjenja, cLabele);
+
+		labelaAdresaStanovanja = new JLabel("Adresa stanovanja*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 3;
+		panelUnosPodataka.add(labelaAdresaStanovanja, cLabele);
+		
+		labelaKontaktTelefon = new JLabel("Kontakt telefon*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 4;
+		panelUnosPodataka.add(labelaKontaktTelefon, cLabele);
+		
+		labelaEmailAdresa = new JLabel("Email*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 5;
+		panelUnosPodataka.add(labelaEmailAdresa, cLabele);
+		
+		labelaAdresaKancelarije = new JLabel("Adresa kancelarije*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 6;
+		panelUnosPodataka.add(labelaAdresaKancelarije, cLabele);
+		
+		labelaBrojLicneKarte = new JLabel("Broj licne karte*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 7;
+		panelUnosPodataka.add(labelaBrojLicneKarte, cLabele);
+		
+		labelaTitula = new JLabel("Titula*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 8;
+		panelUnosPodataka.add(labelaTitula, cLabele);
+
+		labelaZvanje = new JLabel("Zvanje*");
+		cLabele.gridx = 0;
+		cLabele.gridy = 9;
+		panelUnosPodataka.add(labelaZvanje, cLabele);
+		
+		unosIme = new JTextField();
+		unosIme.setToolTipText("<html>" + "Unesite ime profesora." + "<br>" + "Ime mora poceti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
+		unosIme.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 0;
+		panelUnosPodataka.add(unosIme, cTextBox);
+		
+		unosPrezime = new JTextField();
+		unosPrezime.setToolTipText("<html>" + "Unesite prezime profesora." + "<br>" + "Prezime mora poceti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
+		unosPrezime.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 1;
+		panelUnosPodataka.add(unosPrezime, cTextBox);
+		
+		unosDatumRodjenja = new JTextField();
+		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum rodjenja profesora." + "<br>" + "Datum se unosi u formatu dd.mm.gggg." + "<br>" + "npr. 01.01.1998."+ "</html>");
+		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 2;
+		panelUnosPodataka.add(unosDatumRodjenja, cTextBox);
+		
+		unosAdresaStanovanja = new JTextField();
+		unosAdresaStanovanja.setToolTipText("Unesite adresu stanovanja profesora.");
+		unosAdresaStanovanja.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 3;
+		panelUnosPodataka.add(unosAdresaStanovanja, cTextBox);
+		
+		unosKontaktTelefon = new JTextField();
+		unosKontaktTelefon.setToolTipText("<html>" + "Unesite broj telefona profesora." + "<br>" + "Obavezno sa prefiksom drzave." + "<br>" + "npr. +381651234567"+ "</html>");
+		unosKontaktTelefon.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 4;
+		panelUnosPodataka.add(unosKontaktTelefon, cTextBox);
+		
+		unosEmailAdresa = new JTextField();
+		unosEmailAdresa.setToolTipText("Unesite email adresu profesora.");
+		unosEmailAdresa.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 5;
+		panelUnosPodataka.add(unosEmailAdresa, cTextBox);
+		
+		unosAdresaKancelarije = new JTextField();
+		unosAdresaKancelarije.setToolTipText("Unesite adresu kancelarije profesora.");
+		unosAdresaKancelarije.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 6;
+		panelUnosPodataka.add(unosAdresaKancelarije, cTextBox);
+		
+		unosBrojLicneKarte = new JTextField();
+		unosBrojLicneKarte.setToolTipText("Unesite broj licne karte profesora.");
+		unosBrojLicneKarte.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 7;
+		panelUnosPodataka.add(unosBrojLicneKarte, cTextBox);
+		
+		unosTitula = new JTextField();
+		unosTitula.setToolTipText("<html>Unesite titulu profesora. <br> npr. dr </html>");
+		unosTitula.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 8;
+		panelUnosPodataka.add(unosTitula, cTextBox);
+		
+		unosZvanje = new JTextField();
+		unosZvanje.setToolTipText("<html>Unesite zvanje profesora. <br> npr. redovni profesor </html>");
+		unosZvanje.setPreferredSize(new Dimension(200, 30));
+		
+		cTextBox.gridx = 1;
+		cTextBox.gridy = 9;
+		panelUnosPodataka.add(unosZvanje, cTextBox);
+		
+		panelUnosPodataka.setBackground(new Color(240, 240, 240));
+		this.add(panelUnosPodataka, BorderLayout.NORTH);
+		
+		dugmePotvrda = new JButton("Potvrda");
+		dugmePotvrda.setBackground(Color.WHITE);
+		dugmePotvrda.setEnabled(false);
+		dugmePotvrda.addActionListener(this);
+		dugmePotvrda.setPreferredSize(new Dimension(100, 30));
+		
+		dugmeOdustanak = new JButton("Odustanak");
+		dugmeOdustanak.setBackground(Color.WHITE);
+		dugmeOdustanak.addActionListener(this);
+		dugmeOdustanak.setPreferredSize(new Dimension(100, 30));
+		
 		panelCenter = new JPanel();
 		panelCenter.setLayout(new GridBagLayout());
-
-		c = new GridBagConstraints();
-		b=new GridBagConstraints();
-		b.fill=GridBagConstraints.VERTICAL;
-		b.insets=new Insets(10,10 ,0, 170);
-		labelIme = new JLabel("Ime:");
-
-		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx=100;
-		c.fill=GridBagConstraints.HORIZONTAL;
-		c.insets=new Insets(10,20,0,0);
-		panelCenter.add(labelIme, c);
-
-		labelPrezime = new JLabel("Prezime:");
-		c.gridx = 0;
-		c.gridy = 1;
-		panelCenter.add(labelPrezime, c);
-
-		labelDatumRodjenja = new JLabel("Datum rodjenja:");
-		c.gridx = 0;
-		c.gridy = 2;
-		panelCenter.add(labelDatumRodjenja, c);
-
-		labelAdresaStanovanja = new JLabel("Adresa stanovanja:");
-		c.gridx = 0;
-		c.gridy = 3;
-		panelCenter.add(labelAdresaStanovanja, c);
-
-		labelKontaktTelefon = new JLabel("Kontakt telefon:");
-		c.gridx = 0;
-		c.gridy = 4;
-		panelCenter.add(labelKontaktTelefon, c);
-
-		labelEmailAdresa = new JLabel("Email adresa:");
-		c.gridx = 0;
-		c.gridy = 5;
-		panelCenter.add(labelEmailAdresa, c);
-
-		labelAdresaKancelarije = new JLabel("Adresa kancelarije:");
-		c.gridx = 0;
-		c.gridy = 6;
-		panelCenter.add(labelAdresaKancelarije, c);
-
-		labelBrojLicneKarte = new JLabel("Broj licne karte:");
-		c.gridx = 0;
-		c.gridy = 7;
-		panelCenter.add(labelBrojLicneKarte, c);
-
-		labelTitula = new JLabel("Titula:");
-		c.gridx = 0;
-		c.gridy = 8;
-		panelCenter.add(labelTitula, c);
-
-		labelZvanje = new JLabel("Zvanje:");
-		c.gridx = 0;
-		c.gridy = 9;
-		panelCenter.add(labelZvanje, c);
 		
-		labelPredmeti=new JLabel("Predmeti:");
-		c.gridx=0;
-		c.gridy=10;
-		panelCenter.add(labelPredmeti,c);
-
-		unos = new JTextField();
-		unos.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 0;
-		panelCenter.add(unos, b);
-
-		unos1 = new JTextField();
-		unos1.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 1;
-		panelCenter.add(unos1, b);
-
-		unos2 = new JTextField();
-		unos2.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 2;
-		panelCenter.add(unos2, b);
-
-		unos3 = new JTextField();
-		unos3.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 3;
-		panelCenter.add(unos3, b);
-
-		unos4 = new JTextField();
-		unos4.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 4;
-		panelCenter.add(unos4, b);
-
-		unos5 = new JTextField();
-		unos5.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 5;
-		panelCenter.add(unos5, b);
-
-		unos6 = new JTextField();
-		unos6.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 6;
-		panelCenter.add(unos6, b);
-
-		unos7 = new JTextField();
-		unos7.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 7;
-		panelCenter.add(unos7, b);
-
-		unos8 = new JTextField();
-		unos8.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 8;
-		panelCenter.add(unos8, b);
-
-		unos9 = new JTextField();
-		unos9.setPreferredSize(new Dimension(200, 20));
-		b.gridx = 1;
-		b.gridy = 9;
-		panelCenter.add(unos9, b);
-		
-		unos10= new JTextField();
-		unos10.setPreferredSize(new Dimension(200,20));
-		b.gridx=1;
-		b.gridy=10;
-		panelCenter.add(unos10,b);
-
+		cDugmad = new GridBagConstraints();
+		cDugmad.gridx = 0;
+		cDugmad.gridy = 0;
+		cDugmad.insets=new Insets(40,40,40,40);
+		panelCenter.add(dugmeOdustanak, cDugmad);
+		cDugmad.gridx = 1;
+		cDugmad.gridy = 0;
+		panelCenter.add(dugmePotvrda, cDugmad);
+		panelCenter.setBackground(new Color(240, 240, 240));
 		this.add(panelCenter, BorderLayout.CENTER);
-
-		odustanak = new JButton("Odustanak");
-		odustanak.addActionListener(this);
-	
-
-		potvrda = new JButton("Potrvda");
-		potvrda.setBackground(new Color(131,237,253));
-		potvrda.addActionListener(this);
-		
-		GridBagConstraints a=new GridBagConstraints();
 		panelBottom = new JPanel();
-		panelBottom.setLayout(new GridBagLayout());
-		a.gridx=0;
-		a.gridy=0;
-		a.insets=new Insets(40,40,40,40);
-		panelBottom.add(odustanak,a);
-		a.gridx=1;
-		a.gridy=0;
-		panelBottom.add(potvrda,a);
+		panelBottom.setPreferredSize(new Dimension(screenDimension.width, 30));
+		panelBottom.setBackground(new Color(240, 240, 240));
 		this.add(panelBottom, BorderLayout.SOUTH);
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton clicked = (JButton) e.getSource();
-		if (clicked == odustanak) {
+		if (clicked == dugmeOdustanak) {
 			setVisible(false);
 		}
-		 	if (clicked == potvrda) {
+		 	if (clicked == dugmePotvrda) {
 			
 			setVisible(false);
 		}
