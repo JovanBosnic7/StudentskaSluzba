@@ -27,7 +27,7 @@ public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListene
 	private JLabel slika;
 	private JPanel bottomPanel;
 	private JPanel centerPanel;
-
+	private int red;
 	public DijalogZaBrisanjeProfesora(int row) {
 
 		if (row < 0) {
@@ -83,6 +83,7 @@ public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListene
 		bottomPanel.add(potvrda, a);
 
 		this.add(bottomPanel, BorderLayout.SOUTH);
+		red=row;
 	}
 	
 
@@ -93,9 +94,7 @@ public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListene
 			setVisible(false);
 		}
 		if (clicked == potvrda) {
-			int red = TabelaProfesora.getInstance().getSelectedRow();
 			ProfesoriKontroler.getInstance().izbrisiProfesora(red);
-			TabbedPane.getInstance().azurirajPrikazProfesora();
 			setVisible(false);
 		}
 

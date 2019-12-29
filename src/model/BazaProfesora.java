@@ -84,8 +84,9 @@ public class BazaProfesora {
 	}
 	public void izbrisiProfesora(String brlk) {
 		for(Profesor p : profesori) {
-			if(p.getBrojLicneKarte().equals(brlk)) {
+			if(p.getBrojLicneKarte().matches(brlk)) {
 				profesori.remove(p);
+				break;
 			}
 		}
 	}
