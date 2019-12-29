@@ -20,15 +20,7 @@ public class BazaProfesora {
 	private BazaProfesora() {
 		this.profesori = new ArrayList<Profesor>();
 		this.kolone = new ArrayList<String>();
-		Profesor p= new Profesor("Pera", "Peric", "12.12.2012.", "Mise Dimitrijevica 500", "01234412", "perapera@perica.com","Bulevar Oslobodjenja 100", "123332112", "Profesor", "Diplomirani inzinjer");
-		Profesor p1=new Profesor("", "", "", "", "", "", "", "", "", "");
 		
-		profesori.add(p);
-		profesori.add(p1);
-		profesori.add(p1);
-		profesori.add(p1);
-		profesori.add(p1);
-		profesori.add(p1);
 		
 		kolone.add("Broj licne karte");
 		kolone.add("Ime");
@@ -62,11 +54,19 @@ public class BazaProfesora {
 		return this.kolone.get(index);
 	}
 
-
+	public Profesor getRow(int rowIndex) {
+		return this.profesori.get(rowIndex);
+	}
 	public void setKolone(ArrayList<String> kolone) {
 		this.kolone = kolone;
 	}
-	
+	public void izbrisiProfesora(String brlk) {
+		for(Profesor p : profesori) {
+			if(p.getBrojLicneKarte().equals(brlk)) {
+				profesori.remove(p);
+			}
+		}
+	}
 	public static void setInstance(BazaProfesora instance) {
 		BazaProfesora.instance = instance;
 	}

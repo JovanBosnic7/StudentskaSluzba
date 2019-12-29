@@ -53,4 +53,10 @@ public class TabbedPane extends JTabbedPane {
 		model.fireTableDataChanged();
 		validate();
 	}
+	
+	public void azurirajPrikazProfesora() {
+		ModelTabelaProfesori model = (ModelTabelaProfesori) tabelaProfesora.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
 }
