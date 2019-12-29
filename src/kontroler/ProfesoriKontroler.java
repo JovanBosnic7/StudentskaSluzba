@@ -27,6 +27,12 @@ public class ProfesoriKontroler {
 			return povratnaVrednost;
 		}
 		
+		public Boolean izmeniProfesora(int row, Profesor profesor) {
+			Boolean povratnaVrednost = BazaProfesora.getInstance().izmeniProfesora(row, profesor);
+			TabbedPane.getInstance().azurirajPrikazProfesora();
+			return povratnaVrednost;
+		}
+		
 		public void izbrisiProfesora(int red) {
 			if(red<0) {
 				return;

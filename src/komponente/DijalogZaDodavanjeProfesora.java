@@ -19,7 +19,7 @@ import java.util.Date;
 import javax.swing.*;
 
 import kontroler.ProfesoriKontroler;
-import kontroler.StudentiKontroler;
+import model.BazaProfesora;
 import model.Profesor;
 
 public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListener {
@@ -66,10 +66,36 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 	private JPanel panelBottom;
 	private JPanel panelUnosPodataka;
 	private JPanel panelCenter;
-
+	
+	private Boolean izmena;
+	private int vrsta;
 	private Boolean[] uslovi;
 	
+	public DijalogZaDodavanjeProfesora(int row) {
+		this();
+		if(row < 0) {
+			JOptionPane.showMessageDialog(null, "Niste oznacili profesora kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		izmena = true;
+		vrsta = row;
+		setTitle("Izmena profesora");
+		Profesor p = BazaProfesora.getInstance().getProfesori().get(row);
+		unosIme.setText(p.getIme());
+		unosPrezime.setText(p.getPrezime());
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+		unosDatumRodjenja.setText(df.format(p.getDatumRodjenja()));
+		unosAdresaStanovanja.setText(p.getAdresaStanovanja());
+		unosKontaktTelefon.setText(p.getKontaktTelefon());
+		unosEmailAdresa.setText(p.getEmailAdresa());
+		unosAdresaKancelarije.setText(p.getAdresaKancelarije());
+		unosBrojLicneKarte.setText(p.getBrojLicneKarte());
+		unosTitula.setText(p.getTitula());
+		unosZvanje.setText(p.getZvanje());
+	}
+	
 	public DijalogZaDodavanjeProfesora() {
+		izmena = false;
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
@@ -560,10 +586,14 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 				p.setBrojLicneKarte(brojLicneKarte);
 				p.setTitula(titula);
 				p.setZvanje(zvanje);
-		 		
-				if(!ProfesoriKontroler.getInstance().dodajProfesora(p))
-					JOptionPane.showMessageDialog(null, "Uneti broj licne karte vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
-				
+		 		if(izmena) {
+		 			if(!ProfesoriKontroler.getInstance().izmeniProfesora(vrsta,p))
+		 				JOptionPane.showMessageDialog(null, "Doslo je do greske pri izmeni profesora!", "Greska", JOptionPane.ERROR_MESSAGE);
+		 		}
+		 		else {
+		 			if(!ProfesoriKontroler.getInstance().dodajProfesora(p))
+		 				JOptionPane.showMessageDialog(null, "Uneti broj licne karte vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
+		 		}
 			setVisible(false);
 		}
 

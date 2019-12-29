@@ -48,7 +48,20 @@ public class BazaProfesora {
 		
 		profesori.add(profesor);
 		return true;
-}
+	}
+	
+	public Boolean izmeniProfesora(int row, Profesor profesor) {
+		if(row < 0 || row > profesori.size())
+			return false;
+
+		for(int i = 0; i < profesori.size(); i++)
+			if(profesor.getBrojLicneKarte().equals(profesori.get(i).getBrojLicneKarte()) && i != row)
+				return false;
+		
+		profesori.set(row, profesor);
+		return true;
+		
+	}
 
 	public void setProfesori(ArrayList<Profesor> profesori) {
 		this.profesori = profesori;
