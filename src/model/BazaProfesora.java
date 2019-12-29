@@ -41,7 +41,14 @@ public class BazaProfesora {
 		return profesori;
 	}
 
-
+	public Boolean dodajProfesora(Profesor profesor) {
+		for(Profesor p : this.profesori)
+			if(profesor.getBrojLicneKarte().equals(p.getBrojLicneKarte()))
+				return false;
+		
+		profesori.add(profesor);
+		return true;
+}
 
 	public void setProfesori(ArrayList<Profesor> profesori) {
 		this.profesori = profesori;

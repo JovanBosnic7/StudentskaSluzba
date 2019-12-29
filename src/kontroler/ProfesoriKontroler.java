@@ -1,7 +1,10 @@
 package kontroler;
 
+import komponente.TabbedPane;
 import model.BazaProfesora;
+import model.BazaStudenata;
 import model.Profesor;
+import model.Student;
 
 public class ProfesoriKontroler {
 	
@@ -18,12 +21,19 @@ public class ProfesoriKontroler {
 			
 		}
 		
+		public Boolean dodajProfesora(Profesor profesor) {
+			Boolean povratnaVrednost = BazaProfesora.getInstance().dodajProfesora(profesor);
+			TabbedPane.getInstance().azurirajPrikazProfesora();
+			return povratnaVrednost;
+		}
+		
 		public void izbrisiProfesora(int red) {
 			if(red<0) {
 				return;
 			}
 			Profesor p = BazaProfesora.getInstance().getRow(red);
 			BazaProfesora.getInstance().izbrisiProfesora(p.getBrojLicneKarte());
+			TabbedPane.getInstance().azurirajPrikazProfesora();
 		}
 	}
 

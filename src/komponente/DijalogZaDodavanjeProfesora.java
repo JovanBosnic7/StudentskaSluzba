@@ -11,8 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.*;
+
+import kontroler.ProfesoriKontroler;
+import kontroler.StudentiKontroler;
+import model.Profesor;
 
 public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListener {
 
@@ -531,6 +539,31 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		}
 		 	if (clicked == dugmePotvrda) {
 			
+		 		Profesor p = new Profesor();
+		 		p.setIme(ime);
+		 		p.setPrezime(prezime);
+		 		
+		 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+				df.setLenient(false);
+				Date datum = null;
+				try {
+					datum = df.parse(datumRodjenja);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+		 		
+		 		p.setDatumRodjenja(datum);
+				p.setAdresaStanovanja(adresaStanovanja);
+				p.setKontaktTelefon(kontaktTelefon);
+				p.setEmailAdresa(emailAdresa);
+				p.setAdresaKancelarije(adresaKancelarije);
+				p.setBrojLicneKarte(brojLicneKarte);
+				p.setTitula(titula);
+				p.setZvanje(zvanje);
+		 		
+				if(!ProfesoriKontroler.getInstance().dodajProfesora(p))
+					JOptionPane.showMessageDialog(null, "Uneti broj licne karte vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);
+				
 			setVisible(false);
 		}
 
