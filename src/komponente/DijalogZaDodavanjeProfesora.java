@@ -9,6 +9,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
@@ -40,18 +42,30 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 	private JTextField unosTitula;
 	private JTextField unosZvanje;
 
+	private String ime;
+	private String prezime;
+	private String datumRodjenja;
+	private String adresaStanovanja;
+	private String kontaktTelefon;
+	private String emailAdresa;
+	private String adresaKancelarije;
+	private String brojLicneKarte;
+	private String titula;
+	private String zvanje;
+	
 	private JButton dugmeOdustanak;
 	private JButton dugmePotvrda;
 	private JPanel panelBottom;
 	private JPanel panelUnosPodataka;
 	private JPanel panelCenter;
 
-	
+	private Boolean[] uslovi;
 	
 	public DijalogZaDodavanjeProfesora() {
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
+		uslovi = new Boolean[10];
 		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
@@ -126,6 +140,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosIme = new JTextField();
 		unosIme.setToolTipText("<html>" + "Unesite ime profesora." + "<br>" + "Ime mora poceti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
 		unosIme.setPreferredSize(new Dimension(200, 30));
+		unosIme.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[0])
+					unosIme.setBackground(Color.WHITE);
+				else
+					unosIme.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 0;
@@ -134,7 +170,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosPrezime = new JTextField();
 		unosPrezime.setToolTipText("<html>" + "Unesite prezime profesora." + "<br>" + "Prezime mora poceti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
 		unosPrezime.setPreferredSize(new Dimension(200, 30));
-		
+		unosPrezime.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[1])
+					unosPrezime.setBackground(Color.WHITE);
+				else
+					unosPrezime.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 1;
 		panelUnosPodataka.add(unosPrezime, cTextBox);
@@ -142,6 +199,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosDatumRodjenja = new JTextField();
 		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum rodjenja profesora." + "<br>" + "Datum se unosi u formatu dd.mm.gggg." + "<br>" + "npr. 01.01.1998."+ "</html>");
 		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
+		unosDatumRodjenja.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[2])
+					unosDatumRodjenja.setBackground(Color.WHITE);
+				else
+					unosDatumRodjenja.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 2;
@@ -150,6 +229,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosAdresaStanovanja = new JTextField();
 		unosAdresaStanovanja.setToolTipText("Unesite adresu stanovanja profesora.");
 		unosAdresaStanovanja.setPreferredSize(new Dimension(200, 30));
+		unosAdresaStanovanja.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[3])
+					unosAdresaStanovanja.setBackground(Color.WHITE);
+				else
+					unosAdresaStanovanja.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 3;
@@ -158,7 +259,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosKontaktTelefon = new JTextField();
 		unosKontaktTelefon.setToolTipText("<html>" + "Unesite broj telefona profesora." + "<br>" + "Obavezno sa prefiksom drzave." + "<br>" + "npr. +381651234567"+ "</html>");
 		unosKontaktTelefon.setPreferredSize(new Dimension(200, 30));
-		
+		unosKontaktTelefon.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[4])
+					unosKontaktTelefon.setBackground(Color.WHITE);
+				else
+					unosKontaktTelefon.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 4;
 		panelUnosPodataka.add(unosKontaktTelefon, cTextBox);
@@ -166,6 +288,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosEmailAdresa = new JTextField();
 		unosEmailAdresa.setToolTipText("Unesite email adresu profesora.");
 		unosEmailAdresa.setPreferredSize(new Dimension(200, 30));
+		unosEmailAdresa.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[5])
+					unosEmailAdresa.setBackground(Color.WHITE);
+				else
+					unosEmailAdresa.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 5;
@@ -174,6 +318,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosAdresaKancelarije = new JTextField();
 		unosAdresaKancelarije.setToolTipText("Unesite adresu kancelarije profesora.");
 		unosAdresaKancelarije.setPreferredSize(new Dimension(200, 30));
+		unosAdresaKancelarije.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[6])
+					unosAdresaKancelarije.setBackground(Color.WHITE);
+				else
+					unosAdresaKancelarije.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 6;
@@ -182,7 +348,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosBrojLicneKarte = new JTextField();
 		unosBrojLicneKarte.setToolTipText("Unesite broj licne karte profesora.");
 		unosBrojLicneKarte.setPreferredSize(new Dimension(200, 30));
-		
+		unosBrojLicneKarte.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[7])
+					unosBrojLicneKarte.setBackground(Color.WHITE);
+				else
+					unosBrojLicneKarte.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 7;
 		panelUnosPodataka.add(unosBrojLicneKarte, cTextBox);
@@ -190,7 +377,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosTitula = new JTextField();
 		unosTitula.setToolTipText("<html>Unesite titulu profesora. <br> npr. dr </html>");
 		unosTitula.setPreferredSize(new Dimension(200, 30));
-		
+		unosTitula.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[8])
+					unosTitula.setBackground(Color.WHITE);
+				else
+					unosTitula.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 8;
 		panelUnosPodataka.add(unosTitula, cTextBox);
@@ -198,6 +406,28 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		unosZvanje = new JTextField();
 		unosZvanje.setToolTipText("<html>Unesite zvanje profesora. <br> npr. redovni profesor </html>");
 		unosZvanje.setPreferredSize(new Dimension(200, 30));
+		unosZvanje.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				dugmePotvrda.setEnabled(proveriUnos());
+				if(uslovi[9])
+					unosZvanje.setBackground(Color.WHITE);
+				else
+					unosZvanje.setBackground(new Color(255, 166, 166));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 9;
@@ -237,6 +467,62 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 	}
 
+	private Boolean proveriUnos() {
+		ime = unosIme.getText();
+	 	prezime = unosPrezime.getText();
+	 	datumRodjenja = unosDatumRodjenja.getText();
+		adresaStanovanja = unosAdresaStanovanja.getText();
+		kontaktTelefon = unosKontaktTelefon.getText();
+		emailAdresa = unosEmailAdresa.getText();
+		adresaKancelarije = unosAdresaKancelarije.getText();
+		brojLicneKarte = unosBrojLicneKarte.getText();
+		titula = unosTitula.getText();
+		zvanje = unosZvanje.getText();
+		
+		if(ime.matches("[A-Z][a-z]+")) 
+			uslovi[0] = true;
+		else
+			uslovi[0] = false;
+		if(prezime.matches("[A-Z][a-z]+"))
+			uslovi[1] = true;
+		else
+			uslovi[1] = false;
+		if(datumRodjenja.matches("0?([1-9]|[12][0-9]|3[01])\\.0?([1-9]|1[012])\\.(19|20)[0-9][0-9]\\."))
+			uslovi[2] = true;
+		else
+			uslovi[2] = false;
+		if(adresaStanovanja.matches("[A-Z][a-zA-Z 0-9]+"))
+			uslovi[3] = true;
+		else
+			uslovi[3] = false;
+		if(kontaktTelefon.matches("\\+381[1-9][1-9][0-9]{6,7}"))
+			uslovi[4] = true;
+		else
+			uslovi[4] = false;
+		if(emailAdresa.matches("[A-Za-z0-9][a-zA-Z_.0-9]+@[a-zA-Z_.0-9]+"))
+			uslovi[5] = true;		
+		else
+			uslovi[5] = false;
+		if(adresaKancelarije.matches("[A-Z][a-zA-Z 0-9]+"))
+			uslovi[6] = true;
+		else
+			uslovi[6] = false;
+		if(brojLicneKarte.matches("[0-9]{9}"))
+			uslovi[7] = true;
+		else
+			uslovi[7] = false;
+		if(titula.matches("[a-zA-Z]+"))
+			uslovi[8] = true;
+		else
+			uslovi[8] = false;
+		if(zvanje.matches("[a-z A-Z]+"))
+			uslovi[9] = true;
+		else
+			uslovi[9] = false;
+		return (uslovi[0] && uslovi[1] && uslovi[2] && uslovi[3] && uslovi[4] && uslovi[5] && uslovi[6] && uslovi[7] && uslovi[8] && uslovi[9]);
+		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton clicked = (JButton) e.getSource();
