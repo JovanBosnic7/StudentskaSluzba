@@ -6,13 +6,13 @@ public class TabbedPane extends JTabbedPane {
 
 	
 	private static final long serialVersionUID = -6641767877803421613L;
-
 	private PanelSaTabelama panelSaTabelomStudent;
 	private PanelSaTabelama panelSaTabelomPredmet;
 	private PanelSaTabelama panelSaTabelomProfesor;
 	private TabelaStudenata tabelaStudenata;
 	private TabelaProfesora tabelaProfesora;
 	private TabelaPredmeta tabelaPredmeta;
+	
 	private static TabbedPane instance;
 	
 	public static TabbedPane getInstance() {
@@ -22,8 +22,8 @@ public class TabbedPane extends JTabbedPane {
 	}
 	
 	private TabbedPane() {
-		tabelaStudenata = TabelaStudenata.getInstance();
-		JScrollPane studenti = new JScrollPane(tabelaStudenata);
+		tabelaStudenata =  TabelaStudenata.getInstance();
+		ScrollPaneStudenti studenti = new ScrollPaneStudenti(tabelaStudenata);
 		
 		tabelaProfesora = TabelaProfesora.getInstance();
 		JScrollPane profesori = new JScrollPane(tabelaProfesora);

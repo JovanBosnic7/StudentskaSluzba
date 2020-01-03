@@ -22,8 +22,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import kontroler.StudentiKontroler;
+import model.BazaProfesora;
 import model.BazaStudenata;
 import model.GodinaStudija;
+import model.Profesor;
 import model.Status;
 import model.Student;
 
@@ -71,11 +73,39 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	private ButtonGroup buttonGroupStatus;
 	private JComboBox<GodinaStudija> godStudijaComboBox;
 	private Boolean[] uslovi;
-	private int mod;
+	private Boolean izmena;
 	private int vrsta;
 	
-	public DodavanjeStudentaDijalog(int formaDijaloga, int row) {
+	
+	public DodavanjeStudentaDijalog(int row){
+		this();
+		if(row < 0) {
+			JOptionPane.showMessageDialog(null, "Niste oznacili profesora kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		izmena = true;
+		vrsta = TabelaStudenata.getInstance().convertRowIndexToModel(row);
+		Student s = BazaStudenata.getInstance().getStudenti().get(vrsta);
+		unosIme.setText(s.getIme());
+		unosPrezime.setText(s.getPrezime());
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+		unosDatumRodjenja.setText(df.format(s.getDatumRodjenja()));
+		unosAdresaStanovanja.setText(s.getAdresaStanovanja());
+		unosBrojTelefona.setText(s.getKontaktTelefon());
+		unosBrojIndeksa.setText(s.getBrojIndeksa());
+		unosEmailAdresa.setText(s.getEmailAdresa());
+		unosDatumUpisa.setText(df.format(s.getDatumUpisa()));
 		
+		if(s.getStatusStudenta() == Status.B)
+			buttonGroupStatus.setSelected(buttonBudzet.getModel(), true);
+		else
+			buttonGroupStatus.setSelected(buttonSamofinansiranje.getModel(), true);
+		
+		godStudijaComboBox.setSelectedItem(s.getTrenutnaGodinaStudija());
+	}
+	
+	public DodavanjeStudentaDijalog() {
+		izmena = false;
 		GridBagConstraints cLabele;
 		GridBagConstraints cTextBox;
 		GridBagConstraints cDugmad;
@@ -473,36 +503,6 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			}
 		});
 		
-		this.mod = formaDijaloga;
-		this.vrsta = row;
-		
-		if (row < 0 && formaDijaloga == 1) {
-			JOptionPane.showMessageDialog(null, "Niste oznacili studenta kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		
-		
-		if(formaDijaloga == 1) {
-			Student s = BazaStudenata.getInstance().getStudenti().get(row);
-			unosIme.setText(s.getIme());
-			unosPrezime.setText(s.getPrezime());
-			DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
-			unosDatumRodjenja.setText(df.format(s.getDatumRodjenja()));
-			unosAdresaStanovanja.setText(s.getAdresaStanovanja());
-			unosBrojTelefona.setText(s.getKontaktTelefon());
-			unosBrojIndeksa.setText(s.getBrojIndeksa());
-			unosEmailAdresa.setText(s.getEmailAdresa());
-			unosDatumUpisa.setText(df.format(s.getDatumUpisa()));
-			
-			if(s.getStatusStudenta() == Status.B)
-				buttonGroupStatus.setSelected(buttonBudzet.getModel(), true);
-			else
-				buttonGroupStatus.setSelected(buttonSamofinansiranje.getModel(), true);
-			
-			godStudijaComboBox.setSelectedItem(s.getTrenutnaGodinaStudija());
-			
-		}
-		
 		}
 
 	private Boolean proveriUnos() {
@@ -589,7 +589,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 				
 				s.setDatumRodjenja(datum);
 				s.setDatumUpisa(datumUpis);
-				if(mod == 0) {
+				if(izmena == false) {
 					if(!StudentiKontroler.getInstance().dodajStudenta(s))
 						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);}
 				else {

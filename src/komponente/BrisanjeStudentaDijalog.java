@@ -3,7 +3,6 @@ package komponente;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -24,13 +23,15 @@ public class BrisanjeStudentaDijalog extends JDialog {
 	private JButton potvrda;
 	private JPanel bottomPanel;
 	private JPanel centerPanel;
-	
+	private int vrsta;
 	public BrisanjeStudentaDijalog(int row) {
 		
 		if(row < 0) {
 			JOptionPane.showMessageDialog(null, "Prvo odaberite studenta kog zelite da obrisete!", "Greska", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		
+		vrsta = TabelaStudenata.getInstance().convertRowIndexToModel(row);
 		
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLayout(new BorderLayout());
@@ -85,7 +86,7 @@ public class BrisanjeStudentaDijalog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				StudentiKontroler.getInstance().izbrisiStudenta(row);
+				StudentiKontroler.getInstance().izbrisiStudenta(vrsta);
 				
 				setVisible(false);
 			}

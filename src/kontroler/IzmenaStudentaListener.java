@@ -12,7 +12,7 @@ public class IzmenaStudentaListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int row = TabelaStudenata.getInstance().getSelectedRow();
-		DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog(1, row);
+		DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog(row);
 		dijalogStudent.setLocationRelativeTo(MainFrame.getInstance());
 		if(row >= 0)
 			dijalogStudent.setVisible(true);

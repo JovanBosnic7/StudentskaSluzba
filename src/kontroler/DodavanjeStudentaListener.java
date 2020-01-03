@@ -10,7 +10,7 @@ public class DodavanjeStudentaListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog(0, -1);
+		DodavanjeStudentaDijalog dijalogStudent=new DodavanjeStudentaDijalog();
 		dijalogStudent.setLocationRelativeTo(MainFrame.getInstance());
 		dijalogStudent.setVisible(true);
 		
