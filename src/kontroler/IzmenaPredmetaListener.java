@@ -13,7 +13,7 @@ public class IzmenaPredmetaListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		int red = TabelaPredmeta.getInstance().getSelectedRow();
-		DijalogZaDodavanjePredmeta dijalogPredmet = new DijalogZaDodavanjePredmeta(1, red);
+		DijalogZaDodavanjePredmeta dijalogPredmet = new DijalogZaDodavanjePredmeta(red);
 		dijalogPredmet.setLocationRelativeTo(MainFrame.getInstance());
 		if(red >=0) 
 			dijalogPredmet.setVisible(true);

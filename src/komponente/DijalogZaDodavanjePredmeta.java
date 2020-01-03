@@ -48,13 +48,15 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private JComboBox<String> semestarComboBox;
 
 	Boolean[] uslovi = { false, false };
-	private int row;
+	private Boolean izmena;
+	private int vrsta;
 	private int formaDijaloga;
 
 	private GridBagConstraints c;
 	private GridBagConstraints b;
 
-	public DijalogZaDodavanjePredmeta(int forma, int red) {
+	public DijalogZaDodavanjePredmeta() {
+		izmena = false;
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -100,7 +102,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 
 		unosSifre = new JTextField();
 		unosSifre.setPreferredSize(new Dimension(200, 20));
-		unosSifre.setToolTipText("<html>" + "Unesite sifru predmeta." + "<br>" + "Sifra mora poceti velikim slovom." + "<br>" + "npr. EE123"+ "</html>");
+		unosSifre.setToolTipText("<html>" + "Unesite sifru predmeta." + "<br>" + "Sifra mora poceti velikim slovom."
+				+ "<br>" + "npr. EE123" + "</html>");
 		unosSifre.addKeyListener(this);
 
 		b.gridx = 1;
@@ -109,7 +112,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 
 		unosNaziva = new JTextField();
 		unosNaziva.setPreferredSize(new Dimension(200, 20));
-		unosNaziva.setToolTipText("<html>" + "Unesite naziv predmeta." + "<br>" + "Predmet mora poceti velikim slovom." + "<br>" + "npr. Matematika"+ "</html>");
+		unosNaziva.setToolTipText("<html>" + "Unesite naziv predmeta." + "<br>" + "Predmet mora poceti velikim slovom."
+				+ "<br>" + "npr. Matematika" + "</html>");
 		unosNaziva.addKeyListener(this);
 		b.gridx = 1;
 		b.gridy = 1;
@@ -157,63 +161,31 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		a.gridy = 0;
 		panelBottom.add(potvrda, a);
 		this.add(panelBottom, BorderLayout.SOUTH);
-		this.row = red;
-		this.formaDijaloga = forma;
-		if (red < 0 && forma == 1) {
-			JOptionPane.showMessageDialog(null, "Niste oznacili predmet koji zelite da izmenite");
-			return;
-		}
-
-		if (forma == 1) {
-			Predmet p = BazaPredmeta.getInstance().getPredmeti().get(red);
-			unosSifre.setText(p.getSifraPredmeta());
-			unosNaziva.setText(p.getNazivPredmeta());
-			semestarComboBox.setSelectedItem(p.getSemestar());
-			godStudijaComboBox.setSelectedItem(p.getGodinaUKojojSePredmetIzvodi());
-
-		}
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		JButton clicked = (JButton) e.getSource();
-		if (clicked == odustanak) {
-			setVisible(false);
-
+	public DijalogZaDodavanjePredmeta(int row) {
+		this();
+		if (row < 0) {
+			JOptionPane.showMessageDialog(null, "Niste oznacili predmet koji zelite da izmenite");
+			return;
 		}
-		if (clicked == potvrda) {
-			sifra = unosSifre.getText();
-			naziv = unosNaziva.getText();
-			semestar = (String) semestarComboBox.getSelectedItem();
-			godinaStudija = (GodinaStudija) godStudijaComboBox.getSelectedItem();
-			Predmet p = new Predmet();
-			p.setSifraPredmeta(sifra);
-			p.setNazivPredmeta(naziv);
-			p.setSemestar(semestar);
-			p.setGodinaUKojojSePredmetIzvodi(godinaStudija.toString());
+		izmena = true;
+		vrsta = TabelaPredmeta.getInstance().convertRowIndexToModel(row);
+		setTitle("Izmena predmeta");
+		Predmet p = BazaPredmeta.getInstance().getPredmeti().get(vrsta);
+		unosSifre.setText(p.getSifraPredmeta());
+		unosNaziva.setText(p.getNazivPredmeta());
+		semestarComboBox.setSelectedItem(p.getSemestar());
 
-			if (formaDijaloga == 0) {
-				if (!PredmetiKontroler.getInstance().dodajPredmet(p)) {
-					JOptionPane.showMessageDialog(null, "Uneli ste sifru predmeta koja vec postoji!");
-				}
-			}
-			if (formaDijaloga == 1) {
-				if (!PredmetiKontroler.getInstance().izmeniPredmet(row, p)) {
-					JOptionPane.showConfirmDialog(null, "Doslo je do greske pri izmeni predmeta");
-				}
+		godStudijaComboBox.setSelectedItem(p.getGodinaUKojojSePredmetIzvodi());
 
-			}
-			setVisible(false);
-
-		}
 	}
 
 	private Boolean proveriUnos() {
 		sifra = unosSifre.getText();
 		naziv = unosNaziva.getText();
-
+		
 		if (sifra.matches("[a-zA-Z0-9]*") && sifra.length() > 0) {
 			uslovi[0] = true;
 			unosSifre.setBackground(new Color(240, 240, 240));
@@ -232,6 +204,42 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		}
 
 		return (uslovi[0] && uslovi[1]);
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		JButton clicked = (JButton) e.getSource();
+		if (clicked == odustanak) {
+			setVisible(false);
+
+		}
+		if (clicked == potvrda) {
+			sifra = unosSifre.getText();
+			naziv = unosNaziva.getText();
+			semestar = (String) semestarComboBox.getSelectedItem();
+			godinaStudija = (GodinaStudija) godStudijaComboBox.getSelectedItem();
+			Predmet p = new Predmet();
+
+			p.setSifraPredmeta(sifra);
+			p.setNazivPredmeta(naziv);
+			p.setSemestar(semestar);
+			p.setGodinaUKojojSePredmetIzvodi(godinaStudija);
+
+			if (izmena) {
+				if (!PredmetiKontroler.getInstance().izmeniPredmet(vrsta, p)) {
+					JOptionPane.showConfirmDialog(null, "Doslo je do greske pri izmeni predmeta");
+				}
+
+			} else {
+
+				if (!PredmetiKontroler.getInstance().dodajPredmet(p)) {
+					JOptionPane.showMessageDialog(null, "Uneli ste sifru predmeta koja vec postoji!");
+				}
+			}
+			setVisible(false);
+		}
 
 	}
 

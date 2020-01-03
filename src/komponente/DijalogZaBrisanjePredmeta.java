@@ -28,13 +28,14 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 	private JLabel slika;
 	private JPanel bottomPanel;
 	private JPanel centerPanel;
-
+	private int vrsta;
 	public DijalogZaBrisanjePredmeta(int row) {
 		
 		if(row < 0) {
 			JOptionPane.showMessageDialog(null, "Prvo odaberite predmet  koji zelite da obrisete!", "Greska", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		vrsta=TabelaPredmeta.getInstance().convertRowIndexToModel(row);
 		// TODO Auto-generated constructor stub
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLayout(new BorderLayout());
@@ -93,8 +94,8 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 			setVisible(false);
 		}
 		if (clicked == potvrda) {
-			int red = TabelaPredmeta.getInstance().getSelectedRow();
-			PredmetiKontroler.getInstance().izbrisiPredmet(red);
+			
+			PredmetiKontroler.getInstance().izbrisiPredmet(vrsta);
 			TabbedPane.getInstance().azurirajPrikzazPredmeta();
 			setVisible(false);
 		}

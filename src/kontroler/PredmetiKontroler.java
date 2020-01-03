@@ -20,12 +20,11 @@ public class PredmetiKontroler {
 
 	public boolean dodajPredmet(Predmet p) {
 		boolean povratnaVrednost = BazaPredmeta.getInstance().dodajPredmet(p);
-		BazaPredmeta.getInstance().dodajPredmet(p);
 		TabbedPane.getInstance().azurirajPrikzazPredmeta();
 		return povratnaVrednost;
 	}
-	public boolean izmeniPredmet(int row, Predmet p) {
-		boolean povratnaVrednost = BazaPredmeta.getInstance().izmeniPredmet(row,p);
+	public Boolean izmeniPredmet(int row, Predmet p) {
+		Boolean povratnaVrednost = BazaPredmeta.getInstance().izmeniPredmet(row,p);
 		TabbedPane.getInstance().azurirajPrikzazPredmeta();
 
 		return povratnaVrednost;

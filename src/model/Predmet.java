@@ -4,11 +4,11 @@ public class Predmet {
 	private String sifraPredmeta;
 	private String nazivPredmeta;
 	private String semestar;
-	private String godinaUKojojSePredmetIzvodi;
+	private GodinaStudija godinaUKojojSePredmetIzvodi;
 	private Profesor predmetniProfesor;
 
 	// private ArrayList<Student> spisakStudenataKojiSlusajuPredmet
-	public Predmet(String sifraPredmeta, String nazivPredmeta, String semestar, String godinaUKojojSePredmetIzvodi,
+	public Predmet(String sifraPredmeta, String nazivPredmeta, String semestar, GodinaStudija godinaUKojojSePredmetIzvodi,
 			Profesor predmetniProfesor) {
 		super();
 		this.sifraPredmeta = sifraPredmeta;
@@ -18,7 +18,7 @@ public class Predmet {
 		this.predmetniProfesor = predmetniProfesor;
 	}
 
-	public Predmet(String sifraPredmeta2, String nazivPredmeta2, String semestar2, String godinaUKojojSePredmetIzvodi2) {
+	public Predmet(String sifraPredmeta2, String nazivPredmeta2, String semestar2, GodinaStudija godinaUKojojSePredmetIzvodi2) {
 			
 			super();
 		this.sifraPredmeta = sifraPredmeta2;
@@ -57,11 +57,11 @@ public class Predmet {
 		this.semestar = semestar;
 	}
 
-	public String getGodinaUKojojSePredmetIzvodi() {
+	public GodinaStudija getGodinaUKojojSePredmetIzvodi() {
 		return godinaUKojojSePredmetIzvodi;
 	}
 
-	public void setGodinaUKojojSePredmetIzvodi(String godinaUKojojSePredmetIzvodi) {
+	public void setGodinaUKojojSePredmetIzvodi(GodinaStudija godinaUKojojSePredmetIzvodi) {
 		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi;
 	}
 

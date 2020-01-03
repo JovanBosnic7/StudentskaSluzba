@@ -29,7 +29,7 @@ public class BazaPredmeta {
 		return predmeti;
 	}
 
-	public boolean dodajPredmet(Predmet p) {
+	public Boolean dodajPredmet(Predmet p) {
 		for (Predmet pr : this.predmeti)
 			if (p.getSifraPredmeta().equals(pr.getSifraPredmeta()))
 				return false;
@@ -41,17 +41,17 @@ public class BazaPredmeta {
 
 	public boolean izmeniPredmet(int row, Predmet p) {
 
+		
 		if (row < 0 || row > predmeti.size()) 
 			return false;
+		
 		
 		for (int i = 0; i < predmeti.size(); i++) 
 			if (p.getSifraPredmeta().equals(predmeti.get(i).getSifraPredmeta()) && i != row) 
 				return false;
-			
-		
 
 		predmeti.set(row, p);
-
+				
 		return true;
 
 	}
@@ -99,7 +99,7 @@ public class BazaPredmeta {
 		case 2:
 			return predmet.getSemestar();
 		case 3:
-			return predmet.getGodinaUKojojSePredmetIzvodi();
+			return predmet.getGodinaUKojojSePredmetIzvodi().toString();
 
 		default:
 			return null;

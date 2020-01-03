@@ -10,7 +10,7 @@ public class DodavanjePredmetaListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		DijalogZaDodavanjePredmeta dijalogPredmet=new DijalogZaDodavanjePredmeta(0,1);
+		DijalogZaDodavanjePredmeta dijalogPredmet=new DijalogZaDodavanjePredmeta();
 		dijalogPredmet.setLocationRelativeTo(MainFrame.getInstance());
 		dijalogPredmet.setVisible(true);
 		
