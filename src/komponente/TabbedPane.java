@@ -23,7 +23,7 @@ public class TabbedPane extends JTabbedPane {
 	
 	private TabbedPane() {
 		tabelaStudenata =  TabelaStudenata.getInstance();
-		ScrollPaneStudenti studenti = new ScrollPaneStudenti(tabelaStudenata);
+		ScrollPaneStudenti studenti = ScrollPaneStudenti.getInstance();
 		
 		tabelaProfesora = TabelaProfesora.getInstance();
 		ScrollPaneProfesori profesori = new ScrollPaneProfesori(tabelaProfesora);

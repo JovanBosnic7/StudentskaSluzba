@@ -2,6 +2,10 @@ package komponente;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
@@ -26,8 +30,16 @@ public class ToolBar extends JToolBar {
 	private JButton brisanjeStudenta;
 	private JButton brisanjePredmeta;
 	private JButton brisanjeProfesora;
-	private JButton pretraga;
-	private JTextField unosPretrage;
+	
+	private JButton pretragaStudenta;
+	private JButton pretragaProfesora;
+	private JButton pretragaPredmeta;
+	private JTextField unosPretrageStudenta;
+	private JTextField unosPretrageProfesora;
+	private JTextField unosPretragePredmeta;
+	
+	private String stringPretrage;
+	
 	private JButton dodavanjePredmeta;
 	private JButton dodavanjeStudentaNaPredemet;
 	private JButton dodavanjeProfesoraNaPredmet;
@@ -51,13 +63,10 @@ public class ToolBar extends JToolBar {
 		dodavanjeStudenta.addActionListener(new DodavanjeStudentaListener());
 		dodavanjeStudenta.setIcon(new ImageIcon("slike/dodavanje.png"));
 		
-		
 		dodavanjeProfesora = new JButton();
 		dodavanjeProfesora.setToolTipText("Dodavanje profesora");
 		dodavanjeProfesora.addActionListener(new DodavanjeProfesoraListener());
 		dodavanjeProfesora.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
-		
-		
 		
 		izmenaStudenta = new JButton();
 		izmenaStudenta.setToolTipText("Izmena studenta");
@@ -84,13 +93,57 @@ public class ToolBar extends JToolBar {
 		brisanjeProfesora.setIcon(new ImageIcon("slike/brisanje.png"));
 		brisanjeProfesora.addActionListener(new BrisanjeProfesoraListener());
 		
-		unosPretrage = new JTextField();
-		unosPretrage.setPreferredSize(new Dimension(250, 30));
+		unosPretrageStudenta = new JTextField();
+		unosPretrageStudenta.setPreferredSize(new Dimension(250, 30));
+		unosPretrageStudenta.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(unosPretrageStudenta.getText().equals("")) {
+					stringPretrage = unosPretrageStudenta.getText();
+					ScrollPaneStudenti.getInstance().pretrazi(stringPretrage);
+				}
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		pretragaStudenta = new JButton();
+		pretragaStudenta.setToolTipText("Pretrazite studente");
+		pretragaStudenta.setIcon(new ImageIcon("slike/pretraga.png"));
+		pretragaStudenta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stringPretrage = unosPretrageStudenta.getText();
+				ScrollPaneStudenti.getInstance().pretrazi(stringPretrage);
+			}
+		});
+		
+		unosPretrageProfesora = new JTextField();
+		unosPretrageProfesora.setPreferredSize(new Dimension(250, 30));
+		
+		pretragaProfesora = new JButton();
+		pretragaProfesora.setToolTipText("Pretrazite profesore");
+		pretragaProfesora.setIcon(new ImageIcon("slike/pretraga.png"));
 
-		pretraga = new JButton();
-		pretraga.setToolTipText("Pretrazite studente/profesore/predmete");
-		pretraga.setIcon(new ImageIcon("slike/pretraga.png"));
-
+		unosPretragePredmeta = new JTextField();
+		unosPretragePredmeta.setPreferredSize(new Dimension(250, 30));
+		
+		pretragaPredmeta = new JButton();
+		pretragaPredmeta.setToolTipText("Pretrazite predmete");
+		pretragaPredmeta.setIcon(new ImageIcon("slike/pretraga.png"));
+		
 		dodavanjeStudentaNaPredemet = new JButton();
 		dodavanjeStudentaNaPredemet.setToolTipText("Dodajte novog studenta na predmet");
 		dodavanjeStudentaNaPredemet.setIcon(new ImageIcon("slike/dodavanje.png"));
@@ -115,8 +168,7 @@ public class ToolBar extends JToolBar {
 	// iscrtavam komponente na osnovu kartice na kojoj se nalazim - menja se toolbar
 	// uvek ovu metodu pozivam u listeneru
 	public void iscrtajNaEkran(Tip t) {
-		removeAll();
-
+		removeAll();		
 		if (t == Tip.STUDENT) {
 			dodavanjeStudenta.setToolTipText("Dodavanje studenta");
 			add(dodavanjeStudenta);
@@ -129,11 +181,10 @@ public class ToolBar extends JToolBar {
 
 			add(Box.createHorizontalStrut(850));
 
-			add(unosPretrage);
+			add(unosPretrageStudenta);
 			addSeparator();
 
-			pretraga.setToolTipText("Pretrazite studente");
-			add(pretraga);
+			add(pretragaStudenta);
 
 		} else if (t == Tip.PROFESOR) {
 			
@@ -147,12 +198,11 @@ public class ToolBar extends JToolBar {
 
 			add(Box.createHorizontalStrut(850));
 
-			add(unosPretrage);
+			add(unosPretrageProfesora);
 
 			addSeparator();
 
-			pretraga.setToolTipText("Pretrazite profesora");
-			add(pretraga);
+			add(pretragaProfesora);
 
 		} else if (t == Tip.PREDMET) {
 			//dodavanjePredmeta.addActionListener(this);
@@ -174,12 +224,11 @@ public class ToolBar extends JToolBar {
 
 			add(Box.createHorizontalStrut(690));
 
-			add(unosPretrage);
+			add(unosPretragePredmeta);
 
 			addSeparator();
 
-			pretraga.setToolTipText("Pretrazite predmete");
-			add(pretraga);
+			add(pretragaPredmeta);
 
 		}
 
