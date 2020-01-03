@@ -22,10 +22,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import kontroler.StudentiKontroler;
-import model.BazaProfesora;
 import model.BazaStudenata;
 import model.GodinaStudija;
-import model.Profesor;
 import model.Status;
 import model.Student;
 

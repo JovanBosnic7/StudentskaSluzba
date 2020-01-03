@@ -78,7 +78,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			return;
 		}
 		izmena = true;
-		vrsta = TabelaStudenata.getInstance().convertRowIndexToModel(row);
+		vrsta = TabelaProfesora.getInstance().convertRowIndexToModel(row);
 		setTitle("Izmena profesora");
 		Profesor p = BazaProfesora.getInstance().getProfesori().get(row);
 		unosIme.setText(p.getIme());

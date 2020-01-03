@@ -17,10 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import kontroler.PredmetiKontroler;
 import kontroler.ProfesoriKontroler;
 
 public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -909160970319234612L;
 	private JLabel poruka;
 	private JButton odustanak;
 	private JButton potvrda;
@@ -83,7 +86,7 @@ public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListene
 		bottomPanel.add(potvrda, a);
 
 		this.add(bottomPanel, BorderLayout.SOUTH);
-		red=row;
+		red=TabelaProfesora.getInstance().convertRowIndexToModel(row);
 	}
 	
 
