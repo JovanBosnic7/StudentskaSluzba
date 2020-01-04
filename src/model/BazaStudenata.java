@@ -87,6 +87,10 @@ public class BazaStudenata {
 			return student;
 		}
 		
+		public void dodajPredmet(Student student, Predmet predmet) {
+			student.getSpisakPredmeta().add(predmet);
+		}
+		
 		public String getVrednostPolja(int row, int column) {
 			Student student = this.studenti.get(row);
 			switch (column) {

@@ -3,6 +3,7 @@ package kontroler;
 import komponente.TabbedPane;
 import model.BazaStudenata;
 import model.GodinaStudija;
+import model.Predmet;
 import model.Status;
 import model.Student;
 
@@ -34,6 +35,10 @@ private static StudentiKontroler instance = null;
 	public Student pronadjiPoIndeksu(String indeks) {
 		Student s = BazaStudenata.getInstance().pronadjiPoIndeksu(indeks);
 		return s;
+	}
+	
+	public void dodajPredmet(Student student, Predmet predmet) {
+		BazaStudenata.getInstance().dodajPredmet(student, predmet);
 	}
 	
 	public void izbrisiStudenta(int row) {

@@ -62,7 +62,6 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 			
 			centerPanel = new JPanel(new GridBagLayout());
 			centerPanel.setBackground(Color.WHITE);
-			
 
 			labelaIndeks = new JLabel("Indeks studenta*");
 			
@@ -134,6 +133,7 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					PredmetiKontroler.getInstance().dodajStudenta(vrsta, student);
+					StudentiKontroler.getInstance().dodajPredmet(student, predmet);
 					setVisible(false);
 				}
 			});

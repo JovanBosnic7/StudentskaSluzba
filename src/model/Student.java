@@ -38,6 +38,7 @@ public class Student {
 	
 	public Student() {
 		super();
+		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
 	public String getIme() {
 		return ime;
