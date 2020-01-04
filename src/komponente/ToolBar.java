@@ -38,7 +38,9 @@ public class ToolBar extends JToolBar {
 	private JTextField unosPretrageProfesora;
 	private JTextField unosPretragePredmeta;
 
-	private String stringPretrage;
+	private String stringPretrageStudenta;
+	private String stringPretragePredmeta;
+	private String stringPretrageProfesora;
 
 	private JButton dodavanjePredmeta;
 	private JButton dodavanjeStudentaNaPredemet;
@@ -105,8 +107,8 @@ public class ToolBar extends JToolBar {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (unosPretrageStudenta.getText().equals("")) {
-					stringPretrage = unosPretrageStudenta.getText();
-					ScrollPaneStudenti.getInstance().pretrazi(stringPretrage);
+					stringPretrageStudenta = unosPretrageStudenta.getText();
+					ScrollPaneStudenti.getInstance().pretrazi(stringPretrageStudenta);
 				}
 			}
 
@@ -124,8 +126,8 @@ public class ToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stringPretrage = unosPretrageStudenta.getText();
-				ScrollPaneStudenti.getInstance().pretrazi(stringPretrage);
+				stringPretrageStudenta = unosPretrageStudenta.getText();
+				ScrollPaneStudenti.getInstance().pretrazi(stringPretrageStudenta);
 			}
 		});
 
@@ -142,8 +144,8 @@ public class ToolBar extends JToolBar {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (unosPretrageProfesora.getText().equals("")) {
-					stringPretrage = unosPretrageProfesora.getText();
-					ScrollPaneProfesori.getInstance().pretrazi(stringPretrage);
+					stringPretrageProfesora = unosPretrageProfesora.getText();
+					ScrollPaneProfesori.getInstance().pretrazi(stringPretrageProfesora);
 				}
 			}
 
@@ -160,17 +162,47 @@ public class ToolBar extends JToolBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stringPretrage = unosPretrageProfesora.getText();
-				ScrollPaneProfesori.getInstance().pretrazi(stringPretrage);
+				stringPretrageProfesora = unosPretrageProfesora.getText();
+				ScrollPaneProfesori.getInstance().pretrazi(stringPretrageProfesora);
 			}
 		});
 
 		unosPretragePredmeta = new JTextField();
 		unosPretragePredmeta.setPreferredSize(new Dimension(250, 30));
+		unosPretragePredmeta.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (unosPretragePredmeta.getText().equals("")) {
+					stringPretragePredmeta = unosPretragePredmeta.getText();
+					ScrollPanePredmeti.getInstance().pretrazi(stringPretragePredmeta);
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 		pretragaPredmeta = new JButton();
 		pretragaPredmeta.setToolTipText("Pretrazite predmete");
 		pretragaPredmeta.setIcon(new ImageIcon("slike/pretraga.png"));
+		pretragaPredmeta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stringPretragePredmeta = unosPretragePredmeta.getText();
+				ScrollPanePredmeti.getInstance().pretrazi(stringPretragePredmeta);
+			}
+		});
 
 		dodavanjeStudentaNaPredemet = new JButton();
 		dodavanjeStudentaNaPredemet.setToolTipText("Dodajte novog studenta na predmet");
