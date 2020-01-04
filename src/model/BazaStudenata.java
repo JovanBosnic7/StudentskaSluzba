@@ -77,6 +77,16 @@ public class BazaStudenata {
 			return this.studenti.get(rowIndex);
 		}
 
+		public Student pronadjiPoIndeksu(String indeks) {
+			Student student = null;
+			for(Student s : studenti)
+				if(s.getBrojIndeksa().equalsIgnoreCase(indeks)) {
+					student = s;
+					break;
+				}
+			return student;
+		}
+		
 		public String getVrednostPolja(int row, int column) {
 			Student student = this.studenti.get(row);
 			switch (column) {

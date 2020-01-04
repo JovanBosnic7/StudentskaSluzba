@@ -15,6 +15,7 @@ import kontroler.BrisanjeStudentaListener;
 import kontroler.DodavanjePredmetaListener;
 import kontroler.DodavanjeProfesoraListener;
 import kontroler.DodavanjeStudentaListener;
+import kontroler.DodavanjeStudentaNaPredmetListener;
 import kontroler.IzmenaPredmetaListener;
 import kontroler.IzmenaProfesoraListener;
 import kontroler.IzmenaStudentaListener;
@@ -207,7 +208,8 @@ public class ToolBar extends JToolBar {
 		dodavanjeStudentaNaPredemet = new JButton();
 		dodavanjeStudentaNaPredemet.setToolTipText("Dodajte novog studenta na predmet");
 		dodavanjeStudentaNaPredemet.setIcon(new ImageIcon("slike/dodavanje.png"));
-
+		dodavanjeStudentaNaPredemet.addActionListener(new DodavanjeStudentaNaPredmetListener());
+		
 		dodavanjePredmeta = new JButton();
 		dodavanjePredmeta.setToolTipText("Dodavanje predmeta");
 		dodavanjePredmeta.setIcon(new ImageIcon("slike/dodajpredmet.png"));

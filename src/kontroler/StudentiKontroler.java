@@ -31,6 +31,11 @@ private static StudentiKontroler instance = null;
 		return povratnaVrednost;
 	}
 	
+	public Student pronadjiPoIndeksu(String indeks) {
+		Student s = BazaStudenata.getInstance().pronadjiPoIndeksu(indeks);
+		return s;
+	}
+	
 	public void izbrisiStudenta(int row) {
 		BazaStudenata.getInstance().izbrisiStudenta(row);
 		TabbedPane.getInstance().azurirajPrikaz();
