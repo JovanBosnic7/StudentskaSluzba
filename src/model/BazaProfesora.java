@@ -121,4 +121,22 @@ public class BazaProfesora {
 		}
 
 	}
+
+
+
+	public void dodajPredmet(Profesor profesor, Predmet predmet) {
+		profesor.getPredmeti().add(predmet);		
+	}
+
+
+
+	public Profesor pronadjiPoBrLicneKarte(String brojLicneKarte) {
+		Profesor profesor = null;
+		for(Profesor p : profesori)
+			if(p.getBrojLicneKarte().equalsIgnoreCase(brojLicneKarte)) {
+				profesor = p;
+				break;
+			}
+		return profesor;
+	}
 }

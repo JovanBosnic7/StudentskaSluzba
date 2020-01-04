@@ -14,7 +14,7 @@ public class Profesor {
 	private String brojLicneKarte;
 	private String titula;
 	private String zvanje;
-	 private ArrayList<Predmet> predmeti;
+	private ArrayList<Predmet> predmeti;
 	
 	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje) {
@@ -29,11 +29,12 @@ public class Profesor {
 		this.brojLicneKarte = brojLicneKarte;
 		this.titula = titula;
 		this.zvanje = zvanje;
-		this.predmeti=new ArrayList<Predmet>();
+		
 	}
 	
 	public Profesor() {
 		super();
+		this.predmeti=new ArrayList<Predmet>();
 	}
 
 	public ArrayList<Predmet> getPredmeti() {
@@ -126,10 +127,7 @@ public class Profesor {
 
 	@Override
 	public String toString() {
-		return "Profesor [ime=" + ime + ", prezime=" + prezime + ", datumRodjenja=" + datumRodjenja
-				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", emailAdresa="
-				+ emailAdresa + ", adresaKancelarije=" + adresaKancelarije + ", brojLicneKarte=" + brojLicneKarte
-				+ ", titula=" + titula + ", zvanje=" + zvanje + "]";
+		return ""+ime + " " + "" + prezime;
 	}
 
 

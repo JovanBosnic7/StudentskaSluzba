@@ -96,6 +96,13 @@ public class BazaPredmeta {
 		predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet().add(s);
 		
 	}
+	public void dodajProfesora(int row, Profesor p) {
+		if (row < 0 || row > predmeti.size()) 
+			return;
+		
+		predmeti.get(row).setPredmetniProfesor(p);
+		
+	}
 	
 	public String getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
@@ -108,7 +115,8 @@ public class BazaPredmeta {
 			return predmet.getSemestar();
 		case 3:
 			return predmet.getGodinaUKojojSePredmetIzvodi().toString();
-
+		case 4:
+			return predmet.getPredmetniProfesor().toString();
 		default:
 			return null;
 

@@ -3,6 +3,7 @@ package kontroler;
 import komponente.TabbedPane;
 import model.BazaProfesora;
 import model.BazaStudenata;
+import model.Predmet;
 import model.Profesor;
 import model.Student;
 
@@ -32,6 +33,9 @@ public class ProfesoriKontroler {
 			TabbedPane.getInstance().azurirajPrikazProfesora();
 			return povratnaVrednost;
 		}
+		public void dodajPredmet(Profesor profesor, Predmet predmet) {
+			BazaProfesora.getInstance().dodajPredmet(profesor,predmet);
+		}
 		
 		public void izbrisiProfesora(int red) {
 			if(red<0) {
@@ -40,6 +44,12 @@ public class ProfesoriKontroler {
 			Profesor p = BazaProfesora.getInstance().getRow(red);
 			BazaProfesora.getInstance().izbrisiProfesora(p.getBrojLicneKarte());
 			TabbedPane.getInstance().azurirajPrikazProfesora();
+		}
+
+		public Profesor pronadjiPoBrLicneKarte(String brojLicneKarte) {
+			// TODO Auto-generated method stub
+			Profesor p = BazaProfesora.getInstance().pronadjiPoBrLicneKarte(brojLicneKarte);
+			return p;
 		}
 	}
 

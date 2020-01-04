@@ -35,8 +35,9 @@ public class Predmet {
 	public Predmet() {
 	super();	// TODO Auto-generated constructor stub
 	this.spisakStudenataKojiSlusajuPredmet = new ArrayList<Student>();
+	this.predmetniProfesor = new Profesor();
 	}
-
+	
 	public ArrayList<Student> getSpisakStudenataKojiSlusajuPredmet() {
 		return spisakStudenataKojiSlusajuPredmet;
 	}

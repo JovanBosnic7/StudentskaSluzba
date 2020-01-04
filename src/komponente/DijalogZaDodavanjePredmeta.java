@@ -194,7 +194,7 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 			uslovi[0] = false;
 			unosSifre.setBackground(new Color(255, 166, 166));
 		}
-		if (naziv.matches("[A-Z][a-z]+") && naziv.length() > 0) {
+		if (naziv.matches("[a-zA-Z0-9_]*") && naziv.length() > 0) {
 			uslovi[1] = true;
 			unosNaziva.setBackground(new Color(240, 240, 240));
 
