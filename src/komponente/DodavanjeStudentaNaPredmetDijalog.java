@@ -34,6 +34,7 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 		private int vrsta;
 		private Boolean uslov;
 		private GodinaStudija godinaStudija;
+		private Student student;
 		
 		public DodavanjeStudentaNaPredmetDijalog(int row) {
 			
@@ -41,7 +42,7 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 				JOptionPane.showMessageDialog(null, "Prvo odaberite predmet na kog zelite da dodate studenta!", "Greska", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			
+			uslov = false;
 			vrsta = TabelaPredmeta.getInstance().convertRowIndexToModel(row);
 			Predmet predmet = BazaPredmeta.getInstance().getPredmeti().get(vrsta);
 			godinaStudija = predmet.getGodinaUKojojSePredmetIzvodi();
@@ -85,8 +86,9 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 				@Override
 				public void keyReleased(KeyEvent e) {
 					potvrda.setEnabled(proveriUnos());
-					if(uslov)
+					if(uslov) {
 						unosIndeks.setBackground(Color.WHITE);
+					}
 					else
 						unosIndeks.setBackground(new Color(255, 166, 166));
 					
@@ -131,7 +133,7 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
+					PredmetiKontroler.getInstance().dodajStudenta(vrsta, student);
 					setVisible(false);
 				}
 			});
@@ -152,10 +154,10 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 			Boolean povratnaVrednost = false;
 			if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]")) {
 				uslov = true;
-				Student s = StudentiKontroler.getInstance().pronadjiPoIndeksu(brojIndeksa);
-				if(s != null && s.getTrenutnaGodinaStudija() == godinaStudija)
+				student = StudentiKontroler.getInstance().pronadjiPoIndeksu(brojIndeksa);
+				if(student != null && student.getTrenutnaGodinaStudija() == godinaStudija)
 					povratnaVrednost = true;
-			}		
+			}
 			else
 				uslov = false;
 			

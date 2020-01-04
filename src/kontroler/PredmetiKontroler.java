@@ -3,6 +3,7 @@ package kontroler;
 import komponente.TabbedPane;
 import model.BazaPredmeta;
 import model.Predmet;
+import model.Student;
 
 public class PredmetiKontroler {
 
@@ -30,6 +31,10 @@ public class PredmetiKontroler {
 		return povratnaVrednost;
 	}
 
+	public void dodajStudenta(int row, Student student) {
+		BazaPredmeta.getInstance().dodajStudenta(row, student);
+	}
+	
 	public void izbrisiPredmet(int red) {
 		if (red < 0) {
 			return;

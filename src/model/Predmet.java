@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Predmet {
 	private String sifraPredmeta;
 	private String nazivPredmeta;
@@ -7,7 +9,7 @@ public class Predmet {
 	private GodinaStudija godinaUKojojSePredmetIzvodi;
 	private Profesor predmetniProfesor;
 
-	// private ArrayList<Student> spisakStudenataKojiSlusajuPredmet
+	private ArrayList<Student> spisakStudenataKojiSlusajuPredmet;
 	public Predmet(String sifraPredmeta, String nazivPredmeta, String semestar, GodinaStudija godinaUKojojSePredmetIzvodi,
 			Profesor predmetniProfesor) {
 		super();
@@ -16,6 +18,7 @@ public class Predmet {
 		this.semestar = semestar;
 		this.godinaUKojojSePredmetIzvodi = godinaUKojojSePredmetIzvodi;
 		this.predmetniProfesor = predmetniProfesor;
+		this.spisakStudenataKojiSlusajuPredmet = new ArrayList<Student>();
 	}
 
 	public Predmet(String sifraPredmeta2, String nazivPredmeta2, String semestar2, GodinaStudija godinaUKojojSePredmetIzvodi2) {
@@ -31,6 +34,14 @@ public class Predmet {
 
 	public Predmet() {
 	super();	// TODO Auto-generated constructor stub
+	}
+
+	public ArrayList<Student> getSpisakStudenataKojiSlusajuPredmet() {
+		return spisakStudenataKojiSlusajuPredmet;
+	}
+
+	public void setSpisakStudenataKojiSlusajuPredmet(ArrayList<Student> spisakStudenataKojiSlusajuPredmet) {
+		this.spisakStudenataKojiSlusajuPredmet = spisakStudenataKojiSlusajuPredmet;
 	}
 
 	public String getSifraPredmeta() {

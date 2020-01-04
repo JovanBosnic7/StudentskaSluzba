@@ -89,6 +89,14 @@ public class BazaPredmeta {
 		}
 	}
 
+	public void dodajStudenta(int row, Student s) {
+		if (row < 0 || row > predmeti.size()) 
+			return;
+		
+		predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet().add(s);
+		
+	}
+	
 	public String getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
 		switch (column) {
