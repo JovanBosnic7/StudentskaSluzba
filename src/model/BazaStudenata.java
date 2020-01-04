@@ -1,4 +1,6 @@
 package model;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class BazaStudenata {
@@ -22,9 +24,15 @@ public class BazaStudenata {
 			this.kolone.add("Indeks");
 			this.kolone.add("Ime");
 			this.kolone.add("Prezime");
+			this.kolone.add("Datum rodjenja");
+			this.kolone.add("Adresa");
+			this.kolone.add("Broj telefona");
+			this.kolone.add("Email adresa");
+			this.kolone.add("Datum upisa");
 			this.kolone.add("Godina studija");
 			this.kolone.add("Status");
 			this.kolone.add("Prosek");
+			this.kolone.add("Predmeti");
 
 		}
 
@@ -66,7 +74,7 @@ public class BazaStudenata {
 		}
 
 		public int getBrojKolona() {
-			return 6;
+			return kolone.size();
 		}
 
 		public String getImeKolone(int index) {
@@ -93,6 +101,7 @@ public class BazaStudenata {
 		
 		public String getVrednostPolja(int row, int column) {
 			Student student = this.studenti.get(row);
+			DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
 			switch (column) {
 			case 0:
 				return student.getBrojIndeksa();
@@ -101,10 +110,20 @@ public class BazaStudenata {
 			case 2:
 				return student.getPrezime();
 			case 3:
-				return student.getTrenutnaGodinaStudija().toString();
+				return df.format(student.getDatumRodjenja());
 			case 4:
-				return student.getStatusStudenta() == Status.B ? "Budzet" : "Samofinansiranje";
+				return student.getAdresaStanovanja();
 			case 5:
+				return student.getKontaktTelefon();
+			case 6:
+				return student.getEmailAdresa();
+			case 7:
+				return df.format(student.getDatumUpisa());
+			case 8:
+				return student.getTrenutnaGodinaStudija().toString();
+			case 9:
+				return student.getStatusStudenta() == Status.B ? "Budzet" : "Samofinansiranje";
+			case 10:
 				return Double.toString(student.getProsecnaOcena());
 			default:
 				return null;
