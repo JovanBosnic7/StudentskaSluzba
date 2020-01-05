@@ -93,6 +93,10 @@ public class BazaPredmeta {
 		if (row < 0 || row > predmeti.size()) 
 			return;
 		
+		for(Student stud : predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet())
+			if(stud == s)
+				return;
+		
 		predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet().add(s);
 		
 	}

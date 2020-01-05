@@ -96,6 +96,10 @@ public class BazaStudenata {
 		}
 		
 		public void dodajPredmet(Student student, Predmet predmet) {
+			for(Predmet p : student.getSpisakPredmeta())
+				if(p == predmet)
+					return;
+			
 			student.getSpisakPredmeta().add(predmet);
 		}
 		
