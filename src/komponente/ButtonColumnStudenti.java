@@ -1,6 +1,7 @@
 package komponente;
 
 import java.awt.Component;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -8,7 +9,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -21,8 +21,10 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 	private JButton editorButton;
 	private JTable table;
 	private boolean isEditorActive = false;
+	private Point position;
 	
 	public ButtonColumnStudenti(JTable table, int column) {
+	this.position = new Point();
 	this.table = table;
 	this.table.getColumnModel().getColumn(column).setCellRenderer(this);
 	this.table.getColumnModel().getColumn(column).setCellEditor(this);
@@ -35,11 +37,15 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fireEditingStopped();
-			System.out.println("proba");
+			int row = TabelaStudenata.getInstance().getSelectedRow();
+			SpisakPredmetaStudent spisak = new SpisakPredmetaStudent(row, position);
+			if(row>=0)
+				spisak.setVisible(true);
 		}
 	});
 	
 	this.isEditorActive = false;
+	
 	}
 	
 	@Override
@@ -50,7 +56,8 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 	
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-	return new PanelSaTabelama(this.editorButton, 0);
+	
+		return new PanelSaTabelama(this.editorButton, 0);
 	}
 	
 	@Override
@@ -65,6 +72,7 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 	if (table.isEditing() && table.getCellEditor() == this) {
+		position.setLocation(e.getLocationOnScreen());
 		this.isEditorActive = true;
 	}
 	}

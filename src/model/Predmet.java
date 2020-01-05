@@ -91,9 +91,10 @@ public class Predmet {
 
 	@Override
 	public String toString() {
-		return "Predmet [sifraPredmeta=" + sifraPredmeta + ", nazivPredmeta=" + nazivPredmeta + ", semestar=" + semestar
-				+ ", godinaUKojojSePredmetIzvodi=" + godinaUKojojSePredmetIzvodi + ", predmetniProfesor="
-				 + "]";
+
+		return "Sifra predmeta : " + sifraPredmeta + ", Naziv predmeta : " + nazivPredmeta + ", Semestar : " + semestar
+				+ ", Godina u kojoj se predmet izvodi : " + godinaUKojojSePredmetIzvodi + ", Predmetni profesor : "
+				 + 	predmetniProfesor.getIme() + " " + predmetniProfesor.getPrezime();
 	}
 
 }

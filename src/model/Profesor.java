@@ -34,6 +34,8 @@ public class Profesor {
 	
 	public Profesor() {
 		super();
+		this.ime = "";
+		this.prezime = "";
 		this.predmeti=new ArrayList<Predmet>();
 	}
 
