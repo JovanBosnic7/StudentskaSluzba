@@ -82,6 +82,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			return;
 		}
 		izmena = true;
+		this.setTitle("Izmena studenta");
 		vrsta = TabelaStudenata.getInstance().convertRowIndexToModel(row);
 		Student s = BazaStudenata.getInstance().getStudenti().get(vrsta);
 		unosIme.setText(s.getIme());
