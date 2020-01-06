@@ -38,6 +38,17 @@ public class Student {
 	
 	public Student() {
 		super();
+		this.ime = "";
+		this.prezime = "";
+		this.datumRodjenja = new Date(0);
+		this.adresaStanovanja = "";
+		this.kontaktTelefon = "";
+		this.emailAdresa = "";
+		this.brojIndeksa = "";
+		this.datumUpisa = new Date(0);
+		this.trenutnaGodinaStudija = GodinaStudija.I;
+		this.statusStudenta = Status.B;
+		this.prosecnaOcena = 6 + Math.round(400*Math.random())/100;
 		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
 	public String getIme() {
@@ -134,6 +145,11 @@ public class Student {
 
 	public void setSpisakPredmeta(ArrayList<Predmet> spisakPredmeta) {
 		this.spisakPredmeta = spisakPredmeta;
+	}
+	
+	@Override
+	public String toString() {
+		return this.brojIndeksa;
 	}
 	
 }
