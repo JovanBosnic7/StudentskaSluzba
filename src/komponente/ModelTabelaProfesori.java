@@ -34,6 +34,9 @@ import java.util.ArrayList;
 		public void  dodajProfesore() {
 			
 		}
+		public boolean isCellEditable(int rowIndex, int columnIndex) {
+			return columnIndex >= 9;
+		}
 
 	}
 

@@ -18,5 +18,6 @@ public class TabelaProfesora  extends JTable {
 		this.setColumnSelectionAllowed(false);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new ModelTabelaProfesori());
+		new ButtonColumnProfesori(this, 9);
 	}
 }

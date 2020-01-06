@@ -33,6 +33,7 @@ public class BazaProfesora {
 		kolone.add("Adresa kancelarije");
 		kolone.add("Titula");
 		kolone.add("Zvanje");
+		kolone.add("Predmeti");
 		}
 
 
@@ -70,7 +71,7 @@ public class BazaProfesora {
 
 
 	public int getKolone() {
-		return 9;
+		return kolone.size();
 	}
 	public String getImeKolone(int index) {
 		return this.kolone.get(index);
