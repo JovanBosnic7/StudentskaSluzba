@@ -207,7 +207,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[0])
-					unosIme.setBackground(new Color(240, 240, 240));
+					unosIme.setBackground(Color.WHITE);
 				else
 					unosIme.setBackground(new Color(255, 166, 166));
 			}
@@ -237,7 +237,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[1])
-					unosPrezime.setBackground(new Color(240, 240, 240));
+					unosPrezime.setBackground(Color.WHITE);
 				else
 					unosPrezime.setBackground(new Color(255, 166, 166));
 			}
@@ -267,7 +267,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[2])
-					unosDatumRodjenja.setBackground(new Color(240, 240, 240));
+					unosDatumRodjenja.setBackground(Color.WHITE);
 				else
 					unosDatumRodjenja.setBackground(new Color(255, 166, 166));
 			}
@@ -296,7 +296,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[3])
-					unosAdresaStanovanja.setBackground(new Color(240, 240, 240));
+					unosAdresaStanovanja.setBackground(Color.WHITE);
 				else
 					unosAdresaStanovanja.setBackground(new Color(255, 166, 166));
 			}
@@ -325,7 +325,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[4])
-					unosBrojTelefona.setBackground(new Color(240, 240, 240));
+					unosBrojTelefona.setBackground(Color.WHITE);
 				else
 					unosBrojTelefona.setBackground(new Color(255, 166, 166));
 			}
@@ -354,7 +354,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[6])
-					unosEmailAdresa.setBackground(new Color(240, 240, 240));
+					unosEmailAdresa.setBackground(Color.WHITE);
 				else 
 					unosEmailAdresa.setBackground(new Color(255, 166, 166));
 				
@@ -386,7 +386,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[5])
-					unosBrojIndeksa.setBackground(new Color(240, 240, 240));
+					unosBrojIndeksa.setBackground(Color.WHITE);
 				else 
 					unosBrojIndeksa.setBackground(new Color(255, 166, 166));
 				
@@ -417,7 +417,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			public void keyReleased(KeyEvent e) {
 				dugmePotvrda.setEnabled(proveriUnos());
 				if(uslovi[7])
-					unosDatumUpisa.setBackground(new Color(240, 240, 240));
+					unosDatumUpisa.setBackground(Color.WHITE);
 				else
 					unosDatumUpisa.setBackground(new Color(255, 166, 166));
 			}
@@ -513,11 +513,11 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		emailAdresa = unosEmailAdresa.getText();
 		datumUpisa = unosDatumUpisa.getText();
 		
-		if(ime.matches("[A-Z][a-z]+")) 
+		if(ime.matches("[\\p{L} ]+")) 
 			uslovi[0] = true;
 		else
 			uslovi[0] = false;
-		if(prezime.matches("[A-Z][a-z]+"))
+		if(prezime.matches("[\\p{L} ]+"))
 			uslovi[1] = true;
 		else
 			uslovi[1] = false;
@@ -525,15 +525,15 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[2] = true;
 		else
 			uslovi[2] = false;
-		if(adresaStanovanja.matches("[A-Z][a-zA-Z 0-9]+"))
+		if(adresaStanovanja.matches("[\\p{L} ]+"))
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
-		if(brojTelefona.matches("\\+381[1-9][1-9][0-9]{6,7}"))
+		if(brojTelefona.matches("\\+[0-9]{3}[1-9][1-9][0-9]{6,7}")) 
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
-		if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]"))
+		if(brojIndeksa.matches("(([a-z][a-z])|([A-Z][A-Z]))\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]"))
 			uslovi[5] = true;		
 		else
 			uslovi[5] = false;
@@ -565,7 +565,6 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 					status = Status.S;
 				
 				Student s = new Student();
-				s.setBrojIndeksa(brojIndeksa);
 				s.setIme(ime);
 				s.setPrezime(prezime);
 				s.setBrojIndeksa(brojIndeksa);

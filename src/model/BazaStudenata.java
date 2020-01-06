@@ -57,7 +57,17 @@ public class BazaStudenata {
 				if(student.getBrojIndeksa().equals(studenti.get(i).getBrojIndeksa()) && i != row)
 					return false;
 			
-			studenti.set(row, student);
+			Student s = studenti.get(row);
+			s.setBrojIndeksa(student.getBrojIndeksa());
+			s.setIme(student.getIme());
+			s.setPrezime(student.getPrezime());
+			s.setAdresaStanovanja(student.getAdresaStanovanja());
+			s.setKontaktTelefon(student.getKontaktTelefon());
+			s.setStatusStudenta(student.getStatusStudenta());
+			s.setTrenutnaGodinaStudija(student.getTrenutnaGodinaStudija());
+			s.setEmailAdresa(student.getEmailAdresa());
+			s.setDatumRodjenja(student.getDatumRodjenja());
+			s.setDatumUpisa(student.getDatumUpisa());
 			return true;
 			
 		}
