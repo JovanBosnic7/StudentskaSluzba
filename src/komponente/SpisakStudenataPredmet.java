@@ -1,6 +1,7 @@
 package komponente;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -9,21 +10,16 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
-import javafx.scene.control.ComboBox;
-import kontroler.StudentiKontroler;
 import model.BazaPredmeta;
-import model.BazaStudenata;
-import model.Predmet;
 import model.Student;
 
 public class SpisakStudenataPredmet extends JDialog {
 
+	private static final long serialVersionUID = -2688263043637520599L;
 	private JPanel bottomPanel;
-	private JScrollPane centerPanel;
+	private PanelSaTabelama centerPanel;
 	private int vrsta;
 	private JComboBox<Student> studentiComboBox;
 
@@ -41,26 +37,23 @@ public class SpisakStudenataPredmet extends JDialog {
 		this.setTitle("Studenti");
 
 		bottomPanel = new JPanel();
-		bottomPanel.setPreferredSize(new Dimension(screenDimension.width / 5, 30));
+		bottomPanel.setPreferredSize(new Dimension(screenDimension.width / 6, 30));
 		bottomPanel.setBackground(new Color(240, 240, 240));
 		this.add(bottomPanel, BorderLayout.SOUTH);
 
 		ArrayList<Student> s = BazaPredmeta.getInstance().getPredmeti().get(vrsta)
 				.getSpisakStudenataKojiSlusajuPredmet();
-
-		Student[] studenti = new Student[s.size()];
-
-		for (int i = 0; i < s.size(); i++) {
-			studenti[i] = s.get(i);
-		}
+		
 		studentiComboBox = new JComboBox<Student>();
 
-		for (int i = 0; i < studenti.length; i++) {
-			studentiComboBox.addItem(studenti[i]);
+		for (int i = 0; i < s.size(); i++) {
+			studentiComboBox.addItem(s.get(i));
 
 		}
-
-		this.add(studentiComboBox, BorderLayout.CENTER);
+		
+		centerPanel = new PanelSaTabelama(studentiComboBox,30);
+		
+		this.add(centerPanel, BorderLayout.CENTER);
 	}
 
 }

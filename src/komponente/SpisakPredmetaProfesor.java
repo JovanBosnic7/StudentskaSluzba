@@ -7,23 +7,20 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
-import javax.annotation.PreDestroy;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Predmet;
-import model.Student;
 
 public class SpisakPredmetaProfesor extends JDialog {
 
+	private static final long serialVersionUID = -1883696510588121601L;
 	private JPanel bottomPanel;
 	private JScrollPane centerPanel;
 	private int vrsta;
-	private JComboBox<Predmet> predmetiComboBox;
 
 	public SpisakPredmetaProfesor(int row, Point position) {
 
@@ -47,17 +44,16 @@ public class SpisakPredmetaProfesor extends JDialog {
 		
 		Predmet[] predmeti = new Predmet[p.size()];
 
-		for (int i = 0; i < p.size(); i++) {
+		for(int i = 0; i < p.size(); i++) {
 			predmeti[i] = p.get(i);
 		}
-		predmetiComboBox = new JComboBox<Predmet>();
+		
+		JList<Predmet> lista = new JList<Predmet>(predmeti);
+		
+		centerPanel = new JScrollPane(lista);
+		centerPanel.setBackground(Color.WHITE);
 
-		for (int i = 0; i < predmeti.length; i++) {
-			predmetiComboBox.addItem(predmeti[i]);
-
-		}
-
-		this.add(predmetiComboBox, BorderLayout.CENTER);
+		this.add(centerPanel, BorderLayout.CENTER);
 	}
 
 }
