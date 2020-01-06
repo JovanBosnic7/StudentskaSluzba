@@ -33,6 +33,9 @@ public class ModelTabelaPredmeti extends AbstractTableModel{
 	public String getColumnName(int column){
 		return BazaPredmeta.getInstance().getImeKolone(column);
 	}
-
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return columnIndex >= 5;
+	}
 
 }

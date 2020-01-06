@@ -23,6 +23,7 @@ public class BazaPredmeta {
 		kolone.add("Semestar");
 		kolone.add("Godina u kojoj se izvodi");
 		kolone.add("Profesor");
+		kolone.add("Studenti");
 	}
 
 	public ArrayList<Predmet> getPredmeti() {
@@ -61,7 +62,7 @@ public class BazaPredmeta {
 	}
 
 	public int getKolone() {
-		return 5;
+		return kolone.size();
 	}
 
 	public void setKolone(ArrayList<String> kolone) {
@@ -121,6 +122,7 @@ public class BazaPredmeta {
 			return predmet.getGodinaUKojojSePredmetIzvodi().toString();
 		case 4:
 			return predmet.getPredmetniProfesor().toString();
+		
 		default:
 			return null;
 
