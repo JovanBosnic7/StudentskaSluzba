@@ -50,7 +50,7 @@ public class BazaStudenata {
 		}
 		
 		public Boolean izmeniStudenta(int row, Student student) {
-			if(row < 0 || row > studenti.size())
+			if(row < 0 || row >= studenti.size())
 				return false;
 
 			for(int i = 0; i < studenti.size(); i++)
@@ -73,7 +73,7 @@ public class BazaStudenata {
 		}
 		
 		public void izbrisiStudenta(int row) {
-			if(row < 0 || row > studenti.size())
+			if(row < 0 || row >= studenti.size())
 				return;
 			
 			this.studenti.remove(row);
@@ -111,6 +111,13 @@ public class BazaStudenata {
 					return;
 			
 			student.getSpisakPredmeta().add(predmet);
+		}
+		
+		public void izbrisiPredmet(Student student, Predmet predmet) {
+			if(student == null)
+				return;
+			
+			student.getSpisakPredmeta().remove(predmet);
 		}
 		
 		public String getVrednostPolja(int row, int column) {

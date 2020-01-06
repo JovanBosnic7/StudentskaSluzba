@@ -35,6 +35,11 @@ public class PredmetiKontroler {
 	public void dodajStudenta(int row, Student student) {
 		BazaPredmeta.getInstance().dodajStudenta(row, student);
 	}
+	
+	public void izbrisiStudenta(int row, int index) {
+		BazaPredmeta.getInstance().izbrisiStudenta(row, index);
+	}
+	
 	public void dodajProfesora(int row, Profesor profesor) {
 		BazaPredmeta.getInstance().dodajProfesora(row, profesor);
 	}

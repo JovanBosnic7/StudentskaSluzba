@@ -41,6 +41,10 @@ private static StudentiKontroler instance = null;
 		BazaStudenata.getInstance().dodajPredmet(student, predmet);
 	}
 	
+	public void izbrisiPredmet(Student student, Predmet predmet) {
+		BazaStudenata.getInstance().izbrisiPredmet(student, predmet);
+	}
+	
 	public void izbrisiStudenta(int row) {
 		BazaStudenata.getInstance().izbrisiStudenta(row);
 		TabbedPane.getInstance().azurirajPrikaz();

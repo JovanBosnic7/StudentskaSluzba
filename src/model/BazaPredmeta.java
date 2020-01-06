@@ -101,6 +101,20 @@ public class BazaPredmeta {
 		predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet().add(s);
 		
 	}
+
+	public void izbrisiStudenta(int row, int idx) {
+		if (row < 0 || row > predmeti.size()) 
+			return;
+		
+		Predmet p = predmeti.get(row);
+		
+		if (idx < 0 || idx > p.getSpisakStudenataKojiSlusajuPredmet().size()) 
+			return;
+		
+		p.getSpisakStudenataKojiSlusajuPredmet().remove(idx);
+		
+	}
+	
 	public void dodajProfesora(int row, Profesor p) {
 		if (row < 0 || row > predmeti.size()) 
 			return;
