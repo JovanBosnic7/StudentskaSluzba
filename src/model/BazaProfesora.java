@@ -6,24 +6,21 @@ import java.util.ArrayList;
 
 public class BazaProfesora {
 	public static BazaProfesora instance = null;
-	
+
 	public static BazaProfesora getInstance() {
-		if(instance == null) {
-			instance=new BazaProfesora();
+		if (instance == null) {
+			instance = new BazaProfesora();
 		}
 		return instance;
 	}
-	
+
 	private ArrayList<Profesor> profesori;
 	private ArrayList<String> kolone;
-	
-	
-	
+
 	private BazaProfesora() {
 		this.profesori = new ArrayList<Profesor>();
 		this.kolone = new ArrayList<String>();
-		
-		
+
 		kolone.add("Broj licne karte");
 		kolone.add("Ime");
 		kolone.add("Prezime");
@@ -34,45 +31,42 @@ public class BazaProfesora {
 		kolone.add("Titula");
 		kolone.add("Zvanje");
 		kolone.add("Predmeti");
-		}
-
-
+	}
 
 	public ArrayList<Profesor> getProfesori() {
 		return profesori;
 	}
 
 	public Boolean dodajProfesora(Profesor profesor) {
-		for(Profesor p : this.profesori)
-			if(profesor.getBrojLicneKarte().equals(p.getBrojLicneKarte()))
+		for (Profesor p : this.profesori)
+			if (profesor.getBrojLicneKarte().equals(p.getBrojLicneKarte()))
 				return false;
-		
+
 		profesori.add(profesor);
 		return true;
 	}
-	
+
 	public Boolean izmeniProfesora(int row, Profesor profesor) {
-		if(row < 0 || row > profesori.size())
+		if (row < 0 || row > profesori.size())
 			return false;
 
-		for(int i = 0; i < profesori.size(); i++)
-			if(profesor.getBrojLicneKarte().equals(profesori.get(i).getBrojLicneKarte()) && i != row)
+		for (int i = 0; i < profesori.size(); i++)
+			if (profesor.getBrojLicneKarte().equals(profesori.get(i).getBrojLicneKarte()) && i != row)
 				return false;
-		
+
 		profesori.set(row, profesor);
 		return true;
-		
+
 	}
 
 	public void setProfesori(ArrayList<Profesor> profesori) {
 		this.profesori = profesori;
 	}
 
-
-
 	public int getKolone() {
 		return kolone.size();
 	}
+
 	public String getImeKolone(int index) {
 		return this.kolone.get(index);
 	}
@@ -80,20 +74,24 @@ public class BazaProfesora {
 	public Profesor getRow(int rowIndex) {
 		return this.profesori.get(rowIndex);
 	}
+
 	public void setKolone(ArrayList<String> kolone) {
 		this.kolone = kolone;
 	}
+
 	public void izbrisiProfesora(String brlk) {
-		for(Profesor p : profesori) {
-			if(p.getBrojLicneKarte().matches(brlk)) {
+		for (Profesor p : profesori) {
+			if (p.getBrojLicneKarte().matches(brlk)) {
 				profesori.remove(p);
 				break;
 			}
 		}
 	}
+
 	public static void setInstance(BazaProfesora instance) {
 		BazaProfesora.instance = instance;
 	}
+
 	public String getValueAt(int row, int column) {
 		Profesor prof = this.profesori.get(row);
 		switch (column) {
@@ -123,21 +121,23 @@ public class BazaProfesora {
 
 	}
 
-
-
 	public void dodajPredmet(Profesor profesor, Predmet predmet) {
-		profesor.getPredmeti().add(predmet);		
+		profesor.getPredmeti().add(predmet);
 	}
-
-
 
 	public Profesor pronadjiPoBrLicneKarte(String brojLicneKarte) {
 		Profesor profesor = null;
-		for(Profesor p : profesori)
-			if(p.getBrojLicneKarte().equalsIgnoreCase(brojLicneKarte)) {
+		for (Profesor p : profesori)
+			if (p.getBrojLicneKarte().equalsIgnoreCase(brojLicneKarte)) {
 				profesor = p;
 				break;
 			}
 		return profesor;
+	}
+
+	public void izbrisiPredmet(Profesor profesor, Predmet predmet) {
+		if (profesor == null)
+			return;
+		profesor.getPredmeti().remove(predmet);
 	}
 }

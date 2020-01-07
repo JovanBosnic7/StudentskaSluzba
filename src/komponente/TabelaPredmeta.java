@@ -23,6 +23,7 @@ public class TabelaPredmeta extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new ModelTabelaPredmeti());
 		new ButtonColumnPredmeti(this, 5);
+		new ButtonColumnProfesorPredmeti(this, 4);
 	}
 
 }

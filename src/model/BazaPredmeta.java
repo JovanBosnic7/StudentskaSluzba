@@ -42,17 +42,15 @@ public class BazaPredmeta {
 
 	public boolean izmeniPredmet(int row, Predmet p) {
 
-		
-		if (row < 0 || row > predmeti.size()) 
+		if (row < 0 || row > predmeti.size())
 			return false;
-		
-		
-		for (int i = 0; i < predmeti.size(); i++) 
-			if (p.getSifraPredmeta().equals(predmeti.get(i).getSifraPredmeta()) && i != row) 
+
+		for (int i = 0; i < predmeti.size(); i++)
+			if (p.getSifraPredmeta().equals(predmeti.get(i).getSifraPredmeta()) && i != row)
 				return false;
 
 		predmeti.set(row, p);
-				
+
 		return true;
 
 	}
@@ -91,38 +89,47 @@ public class BazaPredmeta {
 	}
 
 	public void dodajStudenta(int row, Student s) {
-		if (row < 0 || row > predmeti.size()) 
+		if (row < 0 || row > predmeti.size())
 			return;
-		
-		for(Student stud : predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet())
-			if(stud == s)
+
+		for (Student stud : predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet())
+			if (stud == s)
 				return;
-		
+
 		predmeti.get(row).getSpisakStudenataKojiSlusajuPredmet().add(s);
-		
+
 	}
 
 	public void izbrisiStudenta(int row, int idx) {
-		if (row < 0 || row > predmeti.size()) 
+		if (row < 0 || row > predmeti.size())
 			return;
-		
+
 		Predmet p = predmeti.get(row);
-		
-		if (idx < 0 || idx > p.getSpisakStudenataKojiSlusajuPredmet().size()) 
+
+		if (idx < 0 || idx > p.getSpisakStudenataKojiSlusajuPredmet().size())
 			return;
-		
+
 		p.getSpisakStudenataKojiSlusajuPredmet().remove(idx);
-		
+
 	}
-	
-	public void dodajProfesora(int row, Profesor p) {
-		if (row < 0 || row > predmeti.size()) 
+
+	public void izbrisiProfesora(int row) {
+		if (row < 0 || row > predmeti.size())
 			return;
-		
-		predmeti.get(row).setPredmetniProfesor(p);
-		
+
+		Predmet p = predmeti.get(row);
+
+		p.setPredmetniProfesor(null);
 	}
-	
+
+	public void dodajProfesora(int row, Profesor p) {
+		if (row < 0 || row > predmeti.size())
+			return;
+
+		predmeti.get(row).setPredmetniProfesor(p);
+
+	}
+
 	public String getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
 		switch (column) {
@@ -134,9 +141,8 @@ public class BazaPredmeta {
 			return predmet.getSemestar();
 		case 3:
 			return predmet.getGodinaUKojojSePredmetIzvodi().toString();
-		case 4:
-			return predmet.getPredmetniProfesor().toString();
-		
+	
+
 		default:
 			return null;
 

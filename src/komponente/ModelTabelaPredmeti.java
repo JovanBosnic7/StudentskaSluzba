@@ -35,7 +35,7 @@ public class ModelTabelaPredmeti extends AbstractTableModel{
 	}
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return columnIndex >= 5;
+		return columnIndex >= 4;
 	}
 
 }

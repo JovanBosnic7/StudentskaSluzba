@@ -25,8 +25,9 @@ public class PredmetiKontroler {
 		TabbedPane.getInstance().azurirajPrikzazPredmeta();
 		return povratnaVrednost;
 	}
+
 	public Boolean izmeniPredmet(int row, Predmet p) {
-		Boolean povratnaVrednost = BazaPredmeta.getInstance().izmeniPredmet(row,p);
+		Boolean povratnaVrednost = BazaPredmeta.getInstance().izmeniPredmet(row, p);
 		TabbedPane.getInstance().azurirajPrikzazPredmeta();
 
 		return povratnaVrednost;
@@ -35,16 +36,19 @@ public class PredmetiKontroler {
 	public void dodajStudenta(int row, Student student) {
 		BazaPredmeta.getInstance().dodajStudenta(row, student);
 	}
-	
+
 	public void izbrisiStudenta(int row, int index) {
 		BazaPredmeta.getInstance().izbrisiStudenta(row, index);
 	}
-	
+
+	public void izbrisiProfesora(int row) {
+		BazaPredmeta.getInstance().izbrisiProfesora(row);
+	}
+
 	public void dodajProfesora(int row, Profesor profesor) {
 		BazaPredmeta.getInstance().dodajProfesora(row, profesor);
 	}
-	
-	
+
 	public void izbrisiPredmet(int red) {
 		if (red < 0) {
 			return;
