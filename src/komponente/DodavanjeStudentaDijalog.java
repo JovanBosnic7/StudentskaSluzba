@@ -526,7 +526,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[2] = true;
 		else
 			uslovi[2] = false;
-		if(adresaStanovanja.matches("[\\p{L} ]+"))
+		if(adresaStanovanja.matches("[\\p{L} 0-9]+"))
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
