@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.*;
 
 import kontroler.*;
+import model.BazaPodataka;
 
 
 public class MainFrame extends JFrame {
@@ -25,7 +26,8 @@ public class MainFrame extends JFrame {
 	}
 	
 	public MainFrame() {
-
+		BazaPodataka baza = new BazaPodataka();
+		baza.LoadFromFile();
 		setLayout(new BorderLayout());
 	//	toolbar= ToolBar.getInstance();
 		this.setJMenuBar(MenuBar.getInstance());

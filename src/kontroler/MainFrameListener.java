@@ -4,6 +4,8 @@ import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
 
+import model.BazaPodataka;
+
 
 public class MainFrameListener implements WindowListener {
 
@@ -26,6 +28,8 @@ public class MainFrameListener implements WindowListener {
 		int biranje= JOptionPane.showConfirmDialog(frame, "Da li ste sigurni da zelite da zatvorite aplikaciju?", "Zatvaranje aplikacije",
 				JOptionPane.YES_NO_OPTION);
 		if(biranje==JOptionPane.YES_OPTION) {
+			BazaPodataka bp = new BazaPodataka();
+			bp.saveToFile();
 			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		} else 
 			frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

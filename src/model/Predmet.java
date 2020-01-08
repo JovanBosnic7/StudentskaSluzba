@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Predmet {
+public class Predmet implements Serializable {
+	private static final long serialVersionUID = -8961322483451450597L;
 	private String sifraPredmeta;
 	private String nazivPredmeta;
 	private String semestar;

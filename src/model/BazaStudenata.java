@@ -14,7 +14,7 @@ public class BazaStudenata {
 			return instance;
 		}
 
-		private ArrayList<Student> studenti;
+		protected ArrayList<Student> studenti;
 		private ArrayList<String> kolone;
 
 		private BazaStudenata() {

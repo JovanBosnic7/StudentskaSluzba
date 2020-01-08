@@ -12,7 +12,7 @@ public class BazaPredmeta {
 		return instance;
 	}
 
-	private ArrayList<Predmet> predmeti;
+	protected ArrayList<Predmet> predmeti;
 	private ArrayList<String> kolone;
 
 	private BazaPredmeta() {
