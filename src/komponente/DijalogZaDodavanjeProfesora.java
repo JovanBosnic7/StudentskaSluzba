@@ -513,11 +513,11 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		titula = unosTitula.getText();
 		zvanje = unosZvanje.getText();
 		
-		if(ime.matches("[A-Z][a-z]+")) 
+		if(ime.matches("[\\p{L} ]+")) 
 			uslovi[0] = true;
 		else
 			uslovi[0] = false;
-		if(prezime.matches("[A-Z][a-z]+"))
+		if(prezime.matches("[\\p{L} ]+"))
 			uslovi[1] = true;
 		else
 			uslovi[1] = false;
@@ -525,11 +525,11 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			uslovi[2] = true;
 		else
 			uslovi[2] = false;
-		if(adresaStanovanja.matches("[A-Z][a-zA-Z 0-9]+"))
+		if(adresaStanovanja.matches("[\\p{L} 0-9]+"))
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
-		if(kontaktTelefon.matches("\\+381[1-9][1-9][0-9]{6,7}"))
+		if(kontaktTelefon.matches("\\+[0-9]{3}[1-9][1-9][0-9]{6,7}"))
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
@@ -537,7 +537,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			uslovi[5] = true;		
 		else
 			uslovi[5] = false;
-		if(adresaKancelarije.matches("[A-Z][a-zA-Z 0-9]+"))
+		if(adresaKancelarije.matches("[\\p{L} 0-9]+"))
 			uslovi[6] = true;
 		else
 			uslovi[6] = false;
@@ -545,11 +545,11 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			uslovi[7] = true;
 		else
 			uslovi[7] = false;
-		if(titula.matches("[a-zA-Z]+"))
+		if(titula.matches("[\\p{L} ]+"))
 			uslovi[8] = true;
 		else
 			uslovi[8] = false;
-		if(zvanje.matches("[a-z A-Z]+"))
+		if(zvanje.matches("[\\p{L} ]+"))
 			uslovi[9] = true;
 		else
 			uslovi[9] = false;
