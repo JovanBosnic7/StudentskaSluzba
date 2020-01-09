@@ -167,6 +167,17 @@ public class MenuBar extends JMenuBar{
 		itemAbout.setIcon(new ImageIcon("slike/about.png"));
 		itemAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK));
 		itemAbout.setMnemonic(KeyEvent.VK_A);
+		itemAbout.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Studentska slu\u017Eba verzija 1.0\nAplikacija namenjena"
+						+ " za vo\u0111enje "
+						+ "evidencije o studentima, profesorima i predmetima\n"
+						+ "RA176/2017, Aleksandar Stevanovi\u010B, \u0160abac, Srbija\n"
+						+ "RA173/2017, Jovan Bosni\u010B, \u0160abac, Srbija\n", "About", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		
 		menuHelp.add(itemHelp);
 		menuHelp.addSeparator();
