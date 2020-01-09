@@ -72,11 +72,15 @@ public class BazaStudenata {
 			
 		}
 		
-		public void izbrisiStudenta(int row) {
+		public Boolean izbrisiStudenta(int row) {
 			if(row < 0 || row >= studenti.size())
-				return;
+				return false;
+			
+			if(BazaPredmeta.getInstance().hasRefTo(studenti.get(row)))
+				return false;
 			
 			this.studenti.remove(row);
+			return true;
 		}
 		
 		public void setStudenti(ArrayList<Student> studenti) {
@@ -118,6 +122,19 @@ public class BazaStudenata {
 				return;
 			
 			student.getSpisakPredmeta().remove(predmet);
+		}
+		
+		public Boolean hasRefTo(Predmet predmet) {
+			Boolean retVal = false;
+			for (Student s : studenti) {
+				for (Predmet pre : s.getSpisakPredmeta()) {
+					if(pre == predmet) {
+						retVal = true;
+						break;
+					}
+				}
+			}
+			return retVal;
 		}
 		
 		public String getVrednostPolja(int row, int column) {

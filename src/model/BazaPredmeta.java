@@ -129,6 +129,31 @@ public class BazaPredmeta {
 		predmeti.get(row).setPredmetniProfesor(p);
 
 	}
+	
+	public Boolean hasRefTo(Object o) {
+		Boolean retVal = false;
+		if(o instanceof Student) {
+			Student student = (Student) o;
+			for (Predmet p : predmeti) {
+				for (Student s : p.getSpisakStudenataKojiSlusajuPredmet()) {
+					if(student == s) {
+						retVal = true;
+						break;
+					}
+				}
+			}
+		}
+		else if(o instanceof Profesor) {
+			Profesor profesor = (Profesor) o;
+			for (Predmet p : predmeti) {
+					if(profesor == p.getPredmetniProfesor()) {
+						retVal = true;
+						break;
+					}
+			}
+		}
+		return retVal;
+	}
 
 	public String getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);

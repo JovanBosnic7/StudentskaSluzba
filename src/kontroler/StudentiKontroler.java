@@ -45,8 +45,9 @@ private static StudentiKontroler instance = null;
 		BazaStudenata.getInstance().izbrisiPredmet(student, predmet);
 	}
 	
-	public void izbrisiStudenta(int row) {
-		BazaStudenata.getInstance().izbrisiStudenta(row);
+	public Boolean izbrisiStudenta(int row) {
+		Boolean povratnaVrednost = BazaStudenata.getInstance().izbrisiStudenta(row);
 		TabbedPane.getInstance().azurirajPrikaz();
+		return povratnaVrednost;
 	}
 }

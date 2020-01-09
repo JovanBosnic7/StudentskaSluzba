@@ -134,6 +134,19 @@ public class BazaProfesora {
 			}
 		return profesor;
 	}
+	
+	public Boolean hasRefTo(Predmet predmet) {
+		Boolean retVal = false;
+		for (Profesor pro : profesori) {
+			for (Predmet pre : pro.getPredmeti()) {
+				if(pre == predmet) {
+					retVal = true;
+					break;
+				}
+			}
+		}
+		return retVal;
+	}
 
 	public void izbrisiPredmet(Profesor profesor, Predmet predmet) {
 		if (profesor == null)
