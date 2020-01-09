@@ -122,8 +122,17 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		semestarComboBox = new JComboBox<String>();
 		semestarComboBox.setBackground(Color.WHITE);
 		semestarComboBox.setPreferredSize(new Dimension(200, 30));
-		semestarComboBox.addItem("Letnji");
-		semestarComboBox.addItem("Zimski");
+		semestarComboBox.addItem("1");
+		semestarComboBox.addItem("2");
+		semestarComboBox.addItem("3");
+		semestarComboBox.addItem("4");
+		semestarComboBox.addItem("5");
+		semestarComboBox.addItem("6");
+		semestarComboBox.addItem("7");
+		semestarComboBox.addItem("8");
+		semestarComboBox.addItem("9");
+		semestarComboBox.addItem("10");
+
 		b.gridx = 1;
 		b.gridy = 2;
 		panelCenter.add(semestarComboBox, b);
@@ -146,8 +155,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		odustanak.addActionListener(this);
 
 		potvrda = new JButton("Potrvda");
-		potvrda.setBackground(new Color(131, 237, 253));
-		// potvrda.setEnabled(false);
+		//potvrda.setBackground(new Color(131, 237, 253));
+		potvrda.setEnabled(false);
 		potvrda.addActionListener(this);
 
 		GridBagConstraints a = new GridBagConstraints();
@@ -186,7 +195,7 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		sifra = unosSifre.getText();
 		naziv = unosNaziva.getText();
 		
-		if (sifra.matches("[a-zA-Z0-9]*") && sifra.length() > 0) {
+		if (sifra.matches("[a-zA-Z0-9]*")) {
 			uslovi[0] = true;
 			unosSifre.setBackground(new Color(240, 240, 240));
 
@@ -194,7 +203,7 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 			uslovi[0] = false;
 			unosSifre.setBackground(new Color(255, 166, 166));
 		}
-		if (naziv.matches("[a-zA-Z0-9_]*") && naziv.length() > 0) {
+		if (naziv.matches("[a-zA-Z0-9 ]*")) {
 			uslovi[1] = true;
 			unosNaziva.setBackground(new Color(240, 240, 240));
 
@@ -226,7 +235,6 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 			p.setNazivPredmeta(naziv);
 			p.setSemestar(semestar);
 			p.setGodinaUKojojSePredmetIzvodi(godinaStudija);
-
 			if (izmena) {
 				if (!PredmetiKontroler.getInstance().izmeniPredmet(vrsta, p)) {
 					JOptionPane.showConfirmDialog(null, "Doslo je do greske pri izmeni predmeta");

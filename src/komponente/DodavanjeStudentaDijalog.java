@@ -78,7 +78,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	public DodavanjeStudentaDijalog(int row){
 		this();
 		if(row < 0) {
-			JOptionPane.showMessageDialog(null, "Niste oznacili profesora kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Niste oznacili studenta kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		izmena = true;

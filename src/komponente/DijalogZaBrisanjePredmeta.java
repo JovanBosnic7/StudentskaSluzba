@@ -77,7 +77,6 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 
 		potvrda = new JButton("Potvrda");
 		potvrda.addActionListener(this);
-		potvrda.setBackground(new Color(131, 237, 253));
 
 		a.gridx = 1;
 		a.gridy = 0;

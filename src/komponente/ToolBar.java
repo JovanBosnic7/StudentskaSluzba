@@ -65,37 +65,44 @@ public class ToolBar extends JToolBar {
 		dodavanjeStudenta = new JButton();
 		dodavanjeStudenta.addActionListener(new DodavanjeStudentaListener());
 		dodavanjeStudenta.setIcon(new ImageIcon("slike/dodavanje.png"));
-
+		dodavanjeStudenta.setMnemonic(KeyEvent.VK_D);
+		
 		dodavanjeProfesora = new JButton();
-		dodavanjeProfesora.setToolTipText("Dodavanje profesora");
+		dodavanjeProfesora.setToolTipText("Dodavanje profesora Alt+D");
 		dodavanjeProfesora.addActionListener(new DodavanjeProfesoraListener());
 		dodavanjeProfesora.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
-
+		dodavanjeProfesora.setMnemonic(KeyEvent.VK_D);
+		
 		izmenaStudenta = new JButton();
-		izmenaStudenta.setToolTipText("Izmena studenta");
+		izmenaStudenta.setToolTipText("Izmena studenta Alt+I");
 		izmenaStudenta.setIcon(new ImageIcon("slike/izmena.png"));
 		izmenaStudenta.addActionListener(new IzmenaStudentaListener());
-
+		izmenaStudenta.setMnemonic(KeyEvent.VK_I);
+		
 		izmenaPredmeta = new JButton();
-		izmenaPredmeta.setToolTipText("Izmena predmeta");
+		izmenaPredmeta.setToolTipText("Izmena predmeta Alt+I");
 		izmenaPredmeta.setIcon(new ImageIcon("slike/izmena.png"));
 		izmenaPredmeta.addActionListener(new IzmenaPredmetaListener());
-
+		izmenaPredmeta.setMnemonic(KeyEvent.VK_I);
+		
 		izmenaProfesora = new JButton();
-		izmenaProfesora.setToolTipText("Izmena profesora");
+		izmenaProfesora.setToolTipText("Izmena profesora Alt+I");
 		izmenaProfesora.setIcon(new ImageIcon("slike/izmena.png"));
 		izmenaProfesora.addActionListener(new IzmenaProfesoraListener());
-
+		izmenaProfesora.setMnemonic(KeyEvent.VK_I);
+		
 		brisanjeStudenta = new JButton();
-		brisanjeStudenta.setToolTipText("Brisanje studenta");
+		brisanjeStudenta.setToolTipText("Brisanje studenta Alt+B");
 		brisanjeStudenta.setIcon(new ImageIcon("slike/brisanje.png"));
 		brisanjeStudenta.addActionListener(new BrisanjeStudentaListener());
+		brisanjeStudenta.setMnemonic(KeyEvent.VK_B);
 
 		brisanjeProfesora = new JButton();
-		brisanjeProfesora.setToolTipText("Brisanje profesora");
+		brisanjeProfesora.setToolTipText("Brisanje profesora Alt+B");
 		brisanjeProfesora.setIcon(new ImageIcon("slike/brisanje.png"));
 		brisanjeProfesora.addActionListener(new BrisanjeProfesoraListener());
-
+		brisanjeProfesora.setMnemonic(KeyEvent.VK_B);
+		
 		unosPretrageStudenta = new JTextField();
 		unosPretrageStudenta.setPreferredSize(new Dimension(250, 30));
 		unosPretrageStudenta.addKeyListener(new KeyListener() {
@@ -122,9 +129,11 @@ public class ToolBar extends JToolBar {
 		});
 
 		pretragaStudenta = new JButton();
-		pretragaStudenta.setToolTipText("Pretrazite studente");
+		pretragaStudenta.setToolTipText("Pretrazite studente Alt+P");
 		pretragaStudenta.setIcon(new ImageIcon("slike/pretraga.png"));
+		pretragaStudenta.setMnemonic(KeyEvent.VK_P);
 		pretragaStudenta.addActionListener(new ActionListener() {
+		
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -158,8 +167,9 @@ public class ToolBar extends JToolBar {
 			}
 		});
 		pretragaProfesora = new JButton();
-		pretragaProfesora.setToolTipText("Pretrazite profesore");
+		pretragaProfesora.setToolTipText("Pretrazite profesore Alt+P");
 		pretragaProfesora.setIcon(new ImageIcon("slike/pretraga.png"));
+		pretragaProfesora.setMnemonic(KeyEvent.VK_P);
 		pretragaProfesora.addActionListener(new ActionListener() {
 
 			@Override
@@ -195,7 +205,8 @@ public class ToolBar extends JToolBar {
 		});
 
 		pretragaPredmeta = new JButton();
-		pretragaPredmeta.setToolTipText("Pretrazite predmete");
+		pretragaPredmeta.setToolTipText("Pretrazite predmete Alt+P");
+		pretragaPredmeta.setMnemonic(KeyEvent.VK_P);
 		pretragaPredmeta.setIcon(new ImageIcon("slike/pretraga.png"));
 		pretragaPredmeta.addActionListener(new ActionListener() {
 
@@ -207,23 +218,27 @@ public class ToolBar extends JToolBar {
 		});
 
 		dodavanjeStudentaNaPredemet = new JButton();
-		dodavanjeStudentaNaPredemet.setToolTipText("Dodajte novog studenta na predmet");
+		dodavanjeStudentaNaPredemet.setToolTipText("Dodajte novog studenta na predmet Alt+S");
 		dodavanjeStudentaNaPredemet.setIcon(new ImageIcon("slike/dodavanje.png"));
+		dodavanjeStudentaNaPredemet.setMnemonic(KeyEvent.VK_S);
 		dodavanjeStudentaNaPredemet.addActionListener(new DodavanjeStudentaNaPredmetListener());
 		
 		dodavanjePredmeta = new JButton();
-		dodavanjePredmeta.setToolTipText("Dodavanje predmeta");
+		dodavanjePredmeta.setToolTipText("Dodavanje predmeta Alt+D");
+		dodavanjePredmeta.setMnemonic(KeyEvent.VK_D);
 		dodavanjePredmeta.setIcon(new ImageIcon("slike/dodajpredmet.png"));
 		dodavanjePredmeta.addActionListener(new DodavanjePredmetaListener());
 
 		dodavanjeProfesoraNaPredmet = new JButton();
-		dodavanjeProfesoraNaPredmet.setToolTipText("Dodajte novog profesora na predmet");
+		dodavanjeProfesoraNaPredmet.setToolTipText("Dodajte novog profesora na predmet Alt+N");
 		dodavanjeProfesoraNaPredmet.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
+		dodavanjeProfesoraNaPredmet.setMnemonic(KeyEvent.VK_N);
 		dodavanjeProfesoraNaPredmet.addActionListener(new DodavanjeProfesoraNaPredmetListener());
 
 		brisanjePredmeta = new JButton();
-		brisanjePredmeta.setToolTipText("Brisanje predmeta");
+		brisanjePredmeta.setToolTipText("Brisanje predmeta Alt+B");
 		brisanjePredmeta.setIcon(new ImageIcon("slike/brisanje.png"));
+		brisanjePredmeta.setMnemonic(KeyEvent.VK_B);
 		brisanjePredmeta.addActionListener(new BrisanjePredmetaListener());
 
 		iscrtajNaEkran(Tip.STUDENT);
@@ -234,7 +249,7 @@ public class ToolBar extends JToolBar {
 	public void iscrtajNaEkran(Tip t) {
 		removeAll();
 		if (t == Tip.STUDENT) {
-			dodavanjeStudenta.setToolTipText("Dodavanje studenta");
+			dodavanjeStudenta.setToolTipText("Dodavanje studenta Alt+D");
 			add(dodavanjeStudenta);
 
 			addSeparator();
