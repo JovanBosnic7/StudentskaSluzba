@@ -17,6 +17,7 @@ public class MainFrame extends JFrame {
 	private ToolBar toolbar= ToolBar.getInstance();
 	private static MainFrame instance=null;
 	private TabbedPane tabbedPane;
+	private MenuBar menubar;
 	//ovo je za singlton klasu 
 	public static MainFrame getInstance() {
 		if(instance==null) {
@@ -30,7 +31,8 @@ public class MainFrame extends JFrame {
 		baza.LoadFromFile();
 		setLayout(new BorderLayout());
 	//	toolbar= ToolBar.getInstance();
-		this.setJMenuBar(MenuBar.getInstance());
+		menubar = new MenuBar();
+		this.setJMenuBar(menubar);
 		add(toolbar, BorderLayout.NORTH);
 		
 		tabbedPane= TabbedPane.getInstance();
