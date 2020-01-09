@@ -49,7 +49,8 @@ public class Student implements Serializable {
 		this.datumUpisa = new Date(0);
 		this.trenutnaGodinaStudija = GodinaStudija.I;
 		this.statusStudenta = Status.B;
-		this.prosecnaOcena = 6 + Math.round(400*Math.random())/100;
+		double tmp = (double) Math.round(400*Math.random());
+		this.prosecnaOcena = 6 + tmp/100;
 		this.spisakPredmeta = new ArrayList<Predmet>();
 	}
 	public String getIme() {
