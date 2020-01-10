@@ -162,6 +162,14 @@ public class MenuBar extends JMenuBar{
 		itemHelp.setIcon(new ImageIcon("slike/help.png"));
 		itemHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK));
 		itemHelp.setMnemonic(KeyEvent.VK_H);
+		itemHelp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HelpDijalog help = new HelpDijalog();
+				
+			}
+		});
 		
 		itemAbout.setPreferredSize(new Dimension(200, 25));
 		itemAbout.setIcon(new ImageIcon("slike/about.png"));
