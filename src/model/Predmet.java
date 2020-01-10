@@ -93,10 +93,14 @@ public class Predmet implements Serializable {
 
 	@Override
 	public String toString() {
-
+		
+		String imePrezime = "";
+		if(predmetniProfesor != null) 
+			imePrezime=predmetniProfesor.getIme() + " " + predmetniProfesor.getPrezime();
+		
 		return "Sifra predmeta : " + sifraPredmeta + ", Naziv predmeta : " + nazivPredmeta + ", Semestar : " + semestar
-				+ ", Godina u kojoj se predmet izvodi : " + godinaUKojojSePredmetIzvodi + ", Predmetni profesor : "
-				 + 	predmetniProfesor.getIme() + " " + predmetniProfesor.getPrezime();
+				+ ", Godina u kojoj se predmet izvodi : " + godinaUKojojSePredmetIzvodi + ", Predmetni profesor : " + imePrezime;
+				
 	}
 
 	public void obrisiProfesora(Profesor p) {

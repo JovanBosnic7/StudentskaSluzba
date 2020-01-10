@@ -55,7 +55,6 @@ public class BazaPredmeta {
 
 	}
 
-
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
@@ -84,9 +83,34 @@ public class BazaPredmeta {
 		for (Predmet p : predmeti) {
 			if (p.getSifraPredmeta().matches(sifra)) {
 				predmeti.remove(p);
+				izbrisiPredmetSaProfesora(p);
+				izbrisiPredmetSaStudenta(p);
 				break;
 			}
 		}
+	}
+
+	public void izbrisiPredmetSaProfesora(Predmet p) {
+		for (Profesor profesor : BazaProfesora.getInstance().getProfesori()) {
+			for (int i = 0; i < profesor.getPredmeti().size(); i++) {
+				if (p == profesor.getPredmeti().get(i)) {
+					profesor.getPredmeti().remove(i);
+				
+				}
+			}
+		}
+
+	}
+
+	public void izbrisiPredmetSaStudenta(Predmet p) {
+		for (Student student : BazaStudenata.getInstance().getStudenti()) {
+			for (int i = 0; i < student.getSpisakPredmeta().size(); i++) {
+				if (p == student.getSpisakPredmeta().get(i)) {
+					student.getSpisakPredmeta().remove(i);
+				}
+			}
+		}
+
 	}
 
 	public void dodajStudenta(int row, Student s) {
@@ -130,27 +154,26 @@ public class BazaPredmeta {
 		predmeti.get(row).setPredmetniProfesor(p);
 
 	}
-	
+
 	public Boolean hasRefTo(Object o) {
 		Boolean retVal = false;
-		if(o instanceof Student) {
+		if (o instanceof Student) {
 			Student student = (Student) o;
 			for (Predmet p : predmeti) {
 				for (Student s : p.getSpisakStudenataKojiSlusajuPredmet()) {
-					if(student == s) {
+					if (student == s) {
 						retVal = true;
 						break;
 					}
 				}
 			}
-		}
-		else if(o instanceof Profesor) {
+		} else if (o instanceof Profesor) {
 			Profesor profesor = (Profesor) o;
 			for (Predmet p : predmeti) {
-					if(profesor == p.getPredmetniProfesor()) {
-						retVal = true;
-						break;
-					}
+				if (profesor == p.getPredmetniProfesor()) {
+					retVal = true;
+					break;
+				}
 			}
 		}
 		return retVal;
@@ -167,7 +190,6 @@ public class BazaPredmeta {
 			return predmet.getSemestar();
 		case 3:
 			return predmet.getGodinaUKojojSePredmetIzvodi().toString();
-	
 
 		default:
 			return null;
