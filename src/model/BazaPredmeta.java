@@ -55,6 +55,7 @@ public class BazaPredmeta {
 
 	}
 
+
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}

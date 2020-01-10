@@ -81,8 +81,14 @@ public class BazaProfesora {
 
 	public void izbrisiProfesora(String brlk) {
 		for (Profesor p : profesori) {
+
 			if (p.getBrojLicneKarte().matches(brlk)) {
 				profesori.remove(p);
+				for (int i = 0; i < BazaPredmeta.getInstance().getPredmeti().size(); i++) {
+					if (p == BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor()) {
+						BazaPredmeta.getInstance().getPredmeti().get(i).obrisiProfesora(p);
+					}
+				}
 				break;
 			}
 		}
@@ -134,12 +140,12 @@ public class BazaProfesora {
 			}
 		return profesor;
 	}
-	
+
 	public Boolean hasRefTo(Predmet predmet) {
 		Boolean retVal = false;
 		for (Profesor pro : profesori) {
 			for (Predmet pre : pro.getPredmeti()) {
-				if(pre == predmet) {
+				if (pre == predmet) {
 					retVal = true;
 					break;
 				}

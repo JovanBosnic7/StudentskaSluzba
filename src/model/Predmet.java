@@ -99,5 +99,12 @@ public class Predmet implements Serializable {
 				 + 	predmetniProfesor.getIme() + " " + predmetniProfesor.getPrezime();
 	}
 
+	public void obrisiProfesora(Profesor p) {
+		// TODO Auto-generated method stub
+		if(p == predmetniProfesor) {
+			predmetniProfesor=null;
+		}
+	}
+
 }
 

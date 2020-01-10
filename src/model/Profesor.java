@@ -131,7 +131,7 @@ public class Profesor implements Serializable {
 
 	@Override
 	public String toString() {
-		return ""+ brojLicneKarte+  ""+ime + " " + "" + prezime;
+		return ""+ brojLicneKarte+  " "+ime + " " + "" + prezime;
 	}
 
 
