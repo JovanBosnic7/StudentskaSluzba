@@ -526,11 +526,11 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[2] = true;
 		else
 			uslovi[2] = false;
-		if(adresaStanovanja.matches("[\\p{L} 0-9]+"))
+		if(adresaStanovanja.matches("[\\p{L} 0-9 ,]+"))
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
-		if(brojTelefona.matches("\\+[0-9]{3}[1-9][1-9][0-9]{6,7}")) 
+		if(brojTelefona.matches("\\+[0-9]{3}[1-9][0-9][0-9]{6,7}")) 
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;

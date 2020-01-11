@@ -525,11 +525,11 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			uslovi[2] = true;
 		else
 			uslovi[2] = false;
-		if(adresaStanovanja.matches("[\\p{L} 0-9]+"))
+		if(adresaStanovanja.matches("[\\p{L} , 0-9]+"))
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
-		if(kontaktTelefon.matches("\\+[0-9]{3}[1-9][1-9][0-9]{6,7}"))
+		if(kontaktTelefon.matches("\\+[0-9]{3}[1-9][0-9][0-9]{6,7}"))
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
@@ -537,7 +537,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			uslovi[5] = true;		
 		else
 			uslovi[5] = false;
-		if(adresaKancelarije.matches("[\\p{L} 0-9]+"))
+		if(adresaKancelarije.matches("[\\p{L} , 0-9]+"))
 			uslovi[6] = true;
 		else
 			uslovi[6] = false;
