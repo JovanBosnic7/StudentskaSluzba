@@ -76,8 +76,12 @@ public class HelpDijalog extends JDialog{
 				+ "Dugme za <b>dodavanje</b> studenta na predmet - pre\u010Dica <b>\"Alt+S\"</b><br>"
 				+ "Dugme za <b>dodavanje</b> profesora na predmet - pre\u010Dica <b>\"Alt+N\"</b><br>"
 				+ "Dugme za <b>brisanje</b> postoje\u0107eg predmeta - pre\u010Dica <b>\"Alt+B\"</b><br>"
-				+ "Pored navedenih alata zajedni\u010Dki alat za sve kartice je alat za pretragu entiteta. O njemu detaljnije kasnije. <br>"
-				+ "Svi navedeni alati sem pretrage pozivaju dijalog pomo\u0107u kog se data funkcionalnost sprovodi u delo."
+				+ "Pored navedenih alata zajedni\u010Dki alat za sve kartice je alat za pretragu entiteta(zavisi od trenutne kartice).<br>"
+				+ "Svi navedeni alati sem pretrage pozivaju dijalog pomo\u0107u kog se data funkcionalnost sprovodi u delo.<br>"
+				+ "Pretraga se vr\u0161i pritiskom dugmeta \"Pretra\u017ei\"<br>"
+				+ "Unos pretrage za studenta je u formatu \"ime:xxx; prezime:xxx; indeks:xxx\". Pretraga je kombinovana. Mo\u017e se vr\u0161iti pretraga po pojedina\u010dnim parametrima, kao i po svim.<br>"
+				+ "Unos pretrage za profesora je u formatu \"ime:xxx; prezime:xxx; brLicneKarte:xxx\". Pretraga je kombinovana. Mo\u017e se vr\u0161iti pretraga po pojedina\u010dnim parametrima, kao i po svim.<br>"
+				+ "Unos pretrage za predmet je u formatu \"nazivPredmeta:xxx; sifraPredmeta:xxx\". Pretraga je kombinovana. Mo\u017e se vr\u0161iti pretraga po pojedina\u010dnim parametrima, kao i po svim.<br>"
 				+ "<h2> Dijalozi</h2>"
 				+ "<h2>Student</h2>" 
 				+ "</p><p style = \"font-size:12px\">"
@@ -156,7 +160,7 @@ public class HelpDijalog extends JDialog{
 				+ "Prikaz podataka se vr\u0161i tabelarno uz pomo\u0107 3 tabele u zavisnosti od odabrane kartice. Tabele su: <br>"
 				+ "<u> Tabela studenata </u>- Prikazuje podatke o studentima. Svi podaci osim liste predmeta koje student slu\u0161a prikazani su leksikografski."
 				+ "<br> Lista predmeta koje student slu\u0161a dobija se odabirom dugmeta koje se nalazi u poslednjoj koloni tabele studenata.<br>"
-				+ "<u> Tabela profeosra </u>- Prikazuje podatke o profesorima. Svi podaci osim liste predmeta koje profesor predaje prikazani su leksikografski."
+				+ "<u> Tabela profesora </u>- Prikazuje podatke o profesorima. Svi podaci osim liste predmeta koje profesor predaje prikazani su leksikografski."
 				+ "<br> Lista predmeta koje profesor predaje dobija se odabirom dugmeta koje se nalazi u poslednjoj koloni tabele profesora.<br>"
 				+ "<u> Tabela predmeta </u>- Prikazuje podatke o predmetima. Svi podaci osim predmetnog profesora i liste studenata na predmetu prikazani su leksikografski."
 				+ "<br> Lista studenata koji poha\u0111aju predmet dobija se odabirom dugmeta koje se nalazi u poslednjoj koloni tabele predmeta."
@@ -174,7 +178,6 @@ public class HelpDijalog extends JDialog{
 		JScrollPane scrollPane = new JScrollPane(textPane);
 		scrollPane.setWheelScrollingEnabled(true);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setAlignmentY(0);
 		this.add(scrollPane);
 		this.setVisible(true);
 
