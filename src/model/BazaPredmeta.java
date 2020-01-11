@@ -155,28 +155,16 @@ public class BazaPredmeta {
 
 	}
 
-	public Boolean hasRefTo(Object o) {
-		Boolean retVal = false;
-		if (o instanceof Student) {
-			Student student = (Student) o;
-			for (Predmet p : predmeti) {
-				for (Student s : p.getSpisakStudenataKojiSlusajuPredmet()) {
-					if (student == s) {
-						retVal = true;
-						break;
-					}
-				}
-			}
-		} else if (o instanceof Profesor) {
-			Profesor profesor = (Profesor) o;
-			for (Predmet p : predmeti) {
-				if (profesor == p.getPredmetniProfesor()) {
-					retVal = true;
-					break;
-				}
+	public void izbrisiStudentaSaSvihPredmeta(Student student) {
+		for(int i = 0; i < predmeti.size(); i++) {
+			Predmet p = predmeti.get(i);
+			for(int j = 0; j < p.getSpisakStudenataKojiSlusajuPredmet().size(); j++) {
+				Student s = p.getSpisakStudenataKojiSlusajuPredmet().get(j);
+				if(student == s)
+					izbrisiStudenta(i, j);
 			}
 		}
-		return retVal;
+			
 	}
 
 	public String getValueAt(int row, int column) {

@@ -86,8 +86,7 @@ public class BrisanjeStudentaDijalog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(!StudentiKontroler.getInstance().izbrisiStudenta(vrsta))
-					JOptionPane.showMessageDialog(null, "Pre brisanja, uklonite studenta sa svih predmeta!", "Greska", JOptionPane.ERROR_MESSAGE);
+				StudentiKontroler.getInstance().izbrisiStudenta(vrsta);
 					
 				setVisible(false);
 			}

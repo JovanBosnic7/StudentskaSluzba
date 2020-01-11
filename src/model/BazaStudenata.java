@@ -76,10 +76,10 @@ public class BazaStudenata {
 			if(row < 0 || row >= studenti.size())
 				return false;
 			
-			if(BazaPredmeta.getInstance().hasRefTo(studenti.get(row)))
-				return false;
-			
+			Student s = studenti.get(row);
+			BazaPredmeta.getInstance().izbrisiStudentaSaSvihPredmeta(s);
 			this.studenti.remove(row);
+			
 			return true;
 		}
 		
