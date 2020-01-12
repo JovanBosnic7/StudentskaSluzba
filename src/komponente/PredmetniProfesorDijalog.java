@@ -40,7 +40,6 @@ public class PredmetniProfesorDijalog extends JDialog {
 
 		vrsta = TabelaPredmeta.getInstance().convertRowIndexToModel(row);
 
-		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
@@ -50,7 +49,7 @@ public class PredmetniProfesorDijalog extends JDialog {
 		this.setTitle("Predmetni profesor");
 
 		bottomPanel = new JPanel();
-		bottomPanel.setMinimumSize(new Dimension(480, 30));
+		bottomPanel.setMinimumSize(new Dimension(480, 20));
 		bottomPanel.setBackground(new Color(240, 240, 240));
 		this.add(bottomPanel, BorderLayout.SOUTH);
 
@@ -62,11 +61,7 @@ public class PredmetniProfesorDijalog extends JDialog {
 
 		profesorComboBox.setPreferredSize(new Dimension(200, 30));
 
-		profesorComboBox.addItem(null);
-
-		if (profesor != null) {
-			profesorComboBox.addItem(profesor);
-		}
+		profesorComboBox.addItem(profesor);
 
 		profesorComboBox.addActionListener(new ActionListener() {
 
