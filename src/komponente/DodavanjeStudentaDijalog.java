@@ -63,7 +63,6 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	
 	private JButton dugmePotvrda;
 	private JButton dugmeOdustanak;
-	private JPanel panelBottom;
 	private JPanel panelUnosPodataka;
 	private JPanel panelCenter;
 	private JRadioButton buttonBudzet;
@@ -114,14 +113,17 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setSize(1 * screenDimension.width / 4, screenDimension.height / 2);
+		setMinimumSize(new Dimension(400, 500));
+		setSize(screenDimension.width / 4, screenDimension.height / 2);
 		setLocationRelativeTo(MainFrame.getInstance());
 		setTitle("Dodavanje studenta");
 		setModal(true);
 		
 		panelUnosPodataka = new JPanel();
 		panelUnosPodataka.setLayout(new GridBagLayout());
-
+		panelUnosPodataka.setMinimumSize(new Dimension(480, 400));
+		panelUnosPodataka.setPreferredSize(new Dimension(480, 400));
+		
 		cLabele = new GridBagConstraints();
 		cTextBox = new GridBagConstraints();
 		cTextBox.fill = GridBagConstraints.HORIZONTAL;
@@ -196,7 +198,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosIme = new JTextField();
 		unosIme.setToolTipText("<html>" + "Unesite ime studenta." + "<br>" + "Ime mora po\u010deti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
-		unosIme.setPreferredSize(new Dimension(200, 30));
+		unosIme.setMinimumSize(new Dimension(200, 20));
+		unosIme.setPreferredSize(new Dimension(200,25));
 		unosIme.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -226,7 +229,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosPrezime = new JTextField();
 		unosPrezime.setToolTipText("<html>" + "Unesite prezime studenta." + "<br>" + "Prezime mora po\u010deti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
-		unosPrezime.setPreferredSize(new Dimension(200, 30));
+		unosPrezime.setMinimumSize(new Dimension(200, 20));
+		unosPrezime.setPreferredSize(new Dimension(200,25));
 		unosPrezime.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -256,7 +260,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosDatumRodjenja = new JTextField();
 		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum ro\u0111enja studenta." + "<br>" + "Datum se unosi u formatu dd.MM.GGGG." + "<br>" + "npr. 01.01.1998."+ "</html>");
-		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
+		unosDatumRodjenja.setMinimumSize(new Dimension(200, 20));
+		unosDatumRodjenja.setPreferredSize(new Dimension(200,25));
 		unosDatumRodjenja.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -285,7 +290,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosAdresaStanovanja = new JTextField();
 		unosAdresaStanovanja.setToolTipText("Unesite adresu stanovanja studenta.");
-		unosAdresaStanovanja.setPreferredSize(new Dimension(200, 30));
+		unosAdresaStanovanja.setMinimumSize(new Dimension(200, 20));
+		unosAdresaStanovanja.setPreferredSize(new Dimension(200,25));
 		unosAdresaStanovanja.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -314,7 +320,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosBrojTelefona = new JTextField();
 		unosBrojTelefona.setToolTipText("<html>" + "Unesite broj telefona studenta." + "<br>" + "Dozvoljene su cifre, kao i karakteri / +(ako se unosi prefiks dr\u017eave) i -." + "<br>" + "npr. +38165/1234567"+ "</html>");
-		unosBrojTelefona.setPreferredSize(new Dimension(200, 30));
+		unosBrojTelefona.setMinimumSize(new Dimension(200, 20));
+		unosBrojTelefona.setPreferredSize(new Dimension(200,25));
 		unosBrojTelefona.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -343,7 +350,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosEmailAdresa = new JTextField();
 		unosEmailAdresa.setToolTipText("Unesite email adresu studenta.");
-		unosEmailAdresa.setPreferredSize(new Dimension(200, 30));
+		unosEmailAdresa.setMinimumSize(new Dimension(200, 20));
+		unosEmailAdresa.setPreferredSize(new Dimension(200,25));
 		unosEmailAdresa.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -375,7 +383,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		unosBrojIndeksa.setToolTipText("<html>" + "Unesite broj indeksa studenta." + "<br>" + "xx-yyy-zzzz" + 
 		"<br>" + "xx - oznaka studijskog programa" + "<br>" + "yyy - broj indeksa"+
 		"<br>" + "zzzz - godina upisa "+ "<br>" + "npr. ra-1-2020"+ "</html>");
-		unosBrojIndeksa.setPreferredSize(new Dimension(200, 30));
+		unosBrojIndeksa.setMinimumSize(new Dimension(200, 20));
+		unosBrojIndeksa.setPreferredSize(new Dimension(200,25));
 		unosBrojIndeksa.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -406,7 +415,8 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		unosDatumUpisa = new JTextField();
 		unosDatumUpisa.setToolTipText("<html>" + "Unesite datum upisa studenta." + "<br>" + "Datum se unosi u formatu dd.MM.GGGG." + "<br>" + "npr. 01.01.1998."+ "</html>");
-		unosDatumUpisa.setPreferredSize(new Dimension(200, 30));
+		unosDatumUpisa.setMinimumSize(new Dimension(200, 20));
+		unosDatumUpisa.setPreferredSize(new Dimension(200,25));
 		unosDatumUpisa.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -441,26 +451,30 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		godStudijaComboBox.addItem(GodinaStudija.III);
 		godStudijaComboBox.addItem(GodinaStudija.IV);
 		godStudijaComboBox.addItem(GodinaStudija.V);
-		godStudijaComboBox.setPreferredSize(new Dimension(200, 30));
+		godStudijaComboBox.setMinimumSize(new Dimension(200, 20));
+		godStudijaComboBox.setPreferredSize(new Dimension(200,25));
 		cTextBox.gridx = 1;
 		cTextBox.gridy = 8;
 		panelUnosPodataka.add(godStudijaComboBox, cTextBox);
 		panelUnosPodataka.setBackground(new Color(240, 240, 240));
-		this.add(panelUnosPodataka, BorderLayout.NORTH);
 		
 		dugmePotvrda = new JButton("Potvrda");
 		dugmePotvrda.setBackground(Color.WHITE);
 		dugmePotvrda.setEnabled(false);
 		dugmePotvrda.addActionListener(this);
+		dugmePotvrda.setMinimumSize(new Dimension(100,20));
 		dugmePotvrda.setPreferredSize(new Dimension(100, 30));
 		
 		dugmeOdustanak = new JButton("Odustanak");
 		dugmeOdustanak.setBackground(Color.WHITE);
 		dugmeOdustanak.addActionListener(this);
+		dugmeOdustanak.setMinimumSize(new Dimension(100,20));
 		dugmeOdustanak.setPreferredSize(new Dimension(100, 30));
 		
 		panelCenter = new JPanel();
 		panelCenter.setLayout(new GridBagLayout());
+		panelCenter.setMinimumSize(new Dimension(screenDimension.width/4, 100));
+		panelCenter.setPreferredSize(new Dimension(screenDimension.width/4, 120));
 		
 		cDugmad = new GridBagConstraints();
 		cDugmad.gridx = 0;
@@ -471,11 +485,16 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		cDugmad.gridy = 0;
 		panelCenter.add(dugmePotvrda, cDugmad);
 		panelCenter.setBackground(new Color(240, 240, 240));
-		this.add(panelCenter, BorderLayout.CENTER);
-		panelBottom = new JPanel();
-		panelBottom.setPreferredSize(new Dimension(screenDimension.width, 30));
-		panelBottom.setBackground(new Color(240, 240, 240));
-		this.add(panelBottom, BorderLayout.SOUTH);
+		
+		JPanel prikaz = new JPanel();
+		prikaz.setPreferredSize(new Dimension(480,500));
+		prikaz.setBackground(new Color(240, 240, 240));
+		prikaz.add(panelUnosPodataka, BorderLayout.NORTH);
+		prikaz.add(panelCenter, BorderLayout.SOUTH);
+		
+		JScrollPane scroll = new JScrollPane(prikaz);
+		
+		this.add(scroll);
 		
 		buttonBudzet.addChangeListener(new ChangeListener() {
 			
