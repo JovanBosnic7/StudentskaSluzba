@@ -33,17 +33,16 @@ public class BrisanjeStudentaDijalog extends JDialog {
 		
 		vrsta = TabelaStudenata.getInstance().convertRowIndexToModel(row);
 		
-		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(true);
-		this.setSize(1 * screenDimension.width / 4, screenDimension.height / 5);
+		this.setSize(480, 216);
 		this.setTitle("Brisanje studenta");
 		this.setModal(false);
 		this.setLocationRelativeTo(MainFrame.getInstance());
 		
 		bottomPanel = new JPanel();
-		bottomPanel.setPreferredSize(new Dimension(screenDimension.width/5, 30));
+		bottomPanel.setPreferredSize(new Dimension(480, 20));
 		bottomPanel.setBackground(new Color(240,240,240));
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		

@@ -46,17 +46,16 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 			vrsta = TabelaPredmeta.getInstance().convertRowIndexToModel(row);
 			Predmet predmet = BazaPredmeta.getInstance().getPredmeti().get(vrsta);
 			godinaStudija = predmet.getGodinaUKojojSePredmetIzvodi();
-			Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 			this.setLayout(new BorderLayout());
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			this.setResizable(false);
-			this.setSize(1 * screenDimension.width / 4, screenDimension.height / 5);
+			this.setSize(480,216);
 			this.setTitle("Predmet - dodavanje studenta");
 			this.setModal(true);
 			this.setLocationRelativeTo(MainFrame.getInstance());
 			
 			bottomPanel = new JPanel();
-			bottomPanel.setPreferredSize(new Dimension(screenDimension.width/5, 30));
+			bottomPanel.setPreferredSize(new Dimension(480, 20));
 			bottomPanel.setBackground(new Color(240,240,240));
 			this.add(bottomPanel, BorderLayout.SOUTH);
 			
