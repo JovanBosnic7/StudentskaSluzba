@@ -121,7 +121,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		panelUnosPodataka = new JPanel();
 		panelUnosPodataka.setLayout(new GridBagLayout());
-		panelUnosPodataka.setMinimumSize(new Dimension(480, 400));
+		panelUnosPodataka.setMinimumSize(new Dimension(480, 380));
 		panelUnosPodataka.setPreferredSize(new Dimension(480, 400));
 		
 		cLabele = new GridBagConstraints();
@@ -473,13 +473,13 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		
 		panelCenter = new JPanel();
 		panelCenter.setLayout(new GridBagLayout());
-		panelCenter.setMinimumSize(new Dimension(screenDimension.width/4, 100));
-		panelCenter.setPreferredSize(new Dimension(screenDimension.width/4, 120));
+		panelCenter.setMinimumSize(new Dimension(screenDimension.width/4, 70));
+		panelCenter.setPreferredSize(new Dimension(screenDimension.width/4, 80));
 		
 		cDugmad = new GridBagConstraints();
 		cDugmad.gridx = 0;
 		cDugmad.gridy = 0;
-		cDugmad.insets=new Insets(40,40,40,40);
+		cDugmad.insets=new Insets(20,40,20,40);
 		panelCenter.add(dugmeOdustanak, cDugmad);
 		cDugmad.gridx = 1;
 		cDugmad.gridy = 0;
@@ -487,7 +487,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelCenter.setBackground(new Color(240, 240, 240));
 		
 		JPanel prikaz = new JPanel();
-		prikaz.setPreferredSize(new Dimension(480,500));
+		prikaz.setPreferredSize(new Dimension(460,480));
 		prikaz.setBackground(new Color(240, 240, 240));
 		prikaz.add(panelUnosPodataka, BorderLayout.NORTH);
 		prikaz.add(panelCenter, BorderLayout.SOUTH);

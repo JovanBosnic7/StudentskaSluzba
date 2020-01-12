@@ -63,7 +63,6 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 	
 	private JButton dugmeOdustanak;
 	private JButton dugmePotvrda;
-	private JPanel panelBottom;
 	private JPanel panelUnosPodataka;
 	private JPanel panelCenter;
 	
@@ -105,14 +104,16 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setSize(1 * screenDimension.width / 4, screenDimension.height / 2);
+		setMinimumSize(new Dimension(screenDimension.width / 4, screenDimension.height / 2));
+		setSize(screenDimension.width / 4, screenDimension.height / 2);
 		setLocationRelativeTo(MainFrame.getInstance());
 		setTitle("Dodavanje profesora");
 		setModal(true);
 		
 		panelUnosPodataka = new JPanel();
 		panelUnosPodataka.setLayout(new GridBagLayout());
-
+		panelUnosPodataka.setPreferredSize(new Dimension(480, 400));
+		
 		cLabele = new GridBagConstraints();
 		cTextBox = new GridBagConstraints();
 		cTextBox.fill = GridBagConstraints.HORIZONTAL;
@@ -173,7 +174,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosIme = new JTextField();
 		unosIme.setToolTipText("<html>" + "Unesite ime profesora." + "<br>" + "Ime mora po\u010deti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
-		unosIme.setPreferredSize(new Dimension(200, 30));
+		unosIme.setMinimumSize(new Dimension(200, 20));
+		unosIme.setPreferredSize(new Dimension(200, 25));
 		unosIme.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -203,7 +205,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosPrezime = new JTextField();
 		unosPrezime.setToolTipText("<html>" + "Unesite prezime profesora." + "<br>" + "Prezime mora po\u010deti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
-		unosPrezime.setPreferredSize(new Dimension(200, 30));
+		unosPrezime.setMinimumSize(new Dimension(200, 20));
+		unosPrezime.setPreferredSize(new Dimension(200, 25));
 		unosPrezime.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -232,7 +235,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosDatumRodjenja = new JTextField();
 		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum ro\u0111enja profesora." + "<br>" + "Datum se unosi u formatu dd.mm.gggg." + "<br>" + "npr. 01.01.1998."+ "</html>");
-		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
+		unosDatumRodjenja.setMinimumSize(new Dimension(200, 20));
+		unosDatumRodjenja.setPreferredSize(new Dimension(200, 25));
 		unosDatumRodjenja.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -262,7 +266,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosAdresaStanovanja = new JTextField();
 		unosAdresaStanovanja.setToolTipText("Unesite adresu stanovanja profesora.");
-		unosAdresaStanovanja.setPreferredSize(new Dimension(200, 30));
+		unosAdresaStanovanja.setMinimumSize(new Dimension(200, 20));
+		unosAdresaStanovanja.setPreferredSize(new Dimension(200, 25));
 		unosAdresaStanovanja.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -292,7 +297,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosKontaktTelefon = new JTextField();
 		unosKontaktTelefon.setToolTipText("<html>" + "Unesite broj telefona profesora." + "<br>" + "Dozvoljene su cifre, kao i karakteri / +(ako se unosi prefiks dr\u017eave) i -." + "<br>" + "npr. +38165/1234567"+ "</html>");
-		unosKontaktTelefon.setPreferredSize(new Dimension(200, 30));
+		unosKontaktTelefon.setMinimumSize(new Dimension(200, 20));
+		unosKontaktTelefon.setPreferredSize(new Dimension(200, 25));
 		unosKontaktTelefon.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -321,7 +327,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosEmailAdresa = new JTextField();
 		unosEmailAdresa.setToolTipText("Unesite email adresu profesora.");
-		unosEmailAdresa.setPreferredSize(new Dimension(200, 30));
+		unosEmailAdresa.setMinimumSize(new Dimension(200, 20));
+		unosEmailAdresa.setPreferredSize(new Dimension(200, 25));
 		unosEmailAdresa.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -351,7 +358,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosAdresaKancelarije = new JTextField();
 		unosAdresaKancelarije.setToolTipText("Unesite adresu kancelarije profesora.");
-		unosAdresaKancelarije.setPreferredSize(new Dimension(200, 30));
+		unosAdresaKancelarije.setMinimumSize(new Dimension(200, 20));
+		unosAdresaKancelarije.setPreferredSize(new Dimension(200, 25));
 		unosAdresaKancelarije.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -381,7 +389,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosBrojLicneKarte = new JTextField();
 		unosBrojLicneKarte.setToolTipText("Unesite broj li\u010dne karte profesora.");
-		unosBrojLicneKarte.setPreferredSize(new Dimension(200, 30));
+		unosBrojLicneKarte.setMinimumSize(new Dimension(200, 20));
+		unosBrojLicneKarte.setPreferredSize(new Dimension(200, 25));
 		unosBrojLicneKarte.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -410,7 +419,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosTitula = new JTextField();
 		unosTitula.setToolTipText("<html>Unesite titulu profesora. <br> npr. dr </html>");
-		unosTitula.setPreferredSize(new Dimension(200, 30));
+		unosTitula.setMinimumSize(new Dimension(200, 20));
+		unosTitula.setPreferredSize(new Dimension(200, 25));
 		unosTitula.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -439,7 +449,8 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		
 		unosZvanje = new JTextField();
 		unosZvanje.setToolTipText("<html>Unesite zvanje profesora. <br> npr. redovni profesor </html>");
-		unosZvanje.setPreferredSize(new Dimension(200, 30));
+		unosZvanje.setMinimumSize(new Dimension(200, 20));
+		unosZvanje.setPreferredSize(new Dimension(200, 25));
 		unosZvanje.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -468,36 +479,47 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		panelUnosPodataka.add(unosZvanje, cTextBox);
 		
 		panelUnosPodataka.setBackground(new Color(240, 240, 240));
-		this.add(panelUnosPodataka, BorderLayout.NORTH);
 		
 		dugmePotvrda = new JButton("Potvrda");
 		dugmePotvrda.setBackground(Color.WHITE);
 		dugmePotvrda.setEnabled(false);
 		dugmePotvrda.addActionListener(this);
+		dugmePotvrda.setMinimumSize(new Dimension(100,20));
 		dugmePotvrda.setPreferredSize(new Dimension(100, 30));
 		
 		dugmeOdustanak = new JButton("Odustanak");
 		dugmeOdustanak.setBackground(Color.WHITE);
 		dugmeOdustanak.addActionListener(this);
+		dugmeOdustanak.setMinimumSize(new Dimension(100,20));
 		dugmeOdustanak.setPreferredSize(new Dimension(100, 30));
 		
 		panelCenter = new JPanel();
 		panelCenter.setLayout(new GridBagLayout());
+		panelCenter.setMinimumSize(new Dimension(screenDimension.width/4, 70));
+		panelCenter.setPreferredSize(new Dimension(screenDimension.width/4, 80));
+		
+		
 		
 		cDugmad = new GridBagConstraints();
 		cDugmad.gridx = 0;
 		cDugmad.gridy = 0;
-		cDugmad.insets=new Insets(40,40,40,40);
+		cDugmad.insets=new Insets(20,40,20,40);
 		panelCenter.add(dugmeOdustanak, cDugmad);
 		cDugmad.gridx = 1;
 		cDugmad.gridy = 0;
 		panelCenter.add(dugmePotvrda, cDugmad);
 		panelCenter.setBackground(new Color(240, 240, 240));
-		this.add(panelCenter, BorderLayout.CENTER);
-		panelBottom = new JPanel();
-		panelBottom.setPreferredSize(new Dimension(screenDimension.width, 30));
-		panelBottom.setBackground(new Color(240, 240, 240));
-		this.add(panelBottom, BorderLayout.SOUTH);
+		
+
+		JPanel prikaz = new JPanel();
+		prikaz.setPreferredSize(new Dimension(460,480));
+		prikaz.setBackground(new Color(240, 240, 240));
+		prikaz.add(panelUnosPodataka, BorderLayout.NORTH);
+		prikaz.add(panelCenter, BorderLayout.SOUTH);
+		
+		JScrollPane scroll = new JScrollPane(prikaz);
+		
+		this.add(scroll);
 		
 	}
 
