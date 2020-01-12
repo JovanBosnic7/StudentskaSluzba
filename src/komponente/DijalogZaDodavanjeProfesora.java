@@ -567,11 +567,11 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			uslovi[7] = true;
 		else
 			uslovi[7] = false;
-		if(titula.matches("[\\p{L} ]+"))
+		if(titula.matches("[\\p{L} .-/]+"))
 			uslovi[8] = true;
 		else
 			uslovi[8] = false;
-		if(zvanje.matches("[\\p{L} ]+"))
+		if(zvanje.matches("[\\p{L} .-/]+"))
 			uslovi[9] = true;
 		else
 			uslovi[9] = false;

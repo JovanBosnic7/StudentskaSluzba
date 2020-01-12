@@ -151,7 +151,7 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 		private Boolean proveriUnos() {
 			brojIndeksa = unosIndeks.getText();
 			Boolean povratnaVrednost = false;
-			if(brojIndeksa.matches("[a-z][a-z]\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]")) {
+			if(brojIndeksa.matches("(([a-z][a-z])|([A-Z][A-Z]))\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-(19|20)[0-9][0-9]")) {
 				uslov = true;
 				student = StudentiKontroler.getInstance().pronadjiPoIndeksu(brojIndeksa);
 				if(student != null && student.getTrenutnaGodinaStudija() == godinaStudija)
