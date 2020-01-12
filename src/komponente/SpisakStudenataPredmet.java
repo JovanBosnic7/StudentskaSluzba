@@ -44,17 +44,16 @@ public class SpisakStudenataPredmet extends JDialog {
 		
 		vrsta = TabelaPredmeta.getInstance().convertRowIndexToModel(row);
 
-		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
 		this.setModal(true);
-		this.setSize(screenDimension.width / 4, screenDimension.height / 4);
+		this.setSize(480, 270);
 		this.setLocation(position);
 		this.setTitle("Studenti");
 
 		bottomPanel = new JPanel();
-		bottomPanel.setPreferredSize(new Dimension(screenDimension.width / 4, 30));
+		bottomPanel.setPreferredSize(new Dimension(480, 20));
 		bottomPanel.setBackground(new Color(240, 240, 240));
 		this.add(bottomPanel, BorderLayout.SOUTH);
 
@@ -65,6 +64,8 @@ public class SpisakStudenataPredmet extends JDialog {
 		studentiComboBox = new JComboBox<Student>();
 
 		studentiComboBox.setPreferredSize(new Dimension(200,30));
+		
+		studentiComboBox.addItem(null);
 		
 		for (int i = 0; i < s.size(); i++) {
 			studentiComboBox.addItem(s.get(i));

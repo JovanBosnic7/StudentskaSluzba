@@ -27,7 +27,7 @@ public class BrisanjeStudentaDijalog extends JDialog {
 	public BrisanjeStudentaDijalog(int row) {
 		
 		if(row < 0) {
-			JOptionPane.showMessageDialog(null, "Prvo odaberite studenta kog zelite da obrisete!", "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Prvo odaberite studenta kog \u017eelite da obri\u0161ete!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
@@ -51,7 +51,7 @@ public class BrisanjeStudentaDijalog extends JDialog {
 		centerPanel.setBackground(Color.WHITE);
 		
 
-		brisanje = new JLabel("Da li ste sigurni da zelite da obrisete studenta?");
+		brisanje = new JLabel("Da li ste sigurni da \u017eelite da obri\u0161ete studenta?");
 		brisanje.setIcon(new ImageIcon("slike/brisanje.png") );
 		
 		GridBagConstraints gbcLabela = new GridBagConstraints();
