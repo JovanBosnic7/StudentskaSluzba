@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -60,6 +61,10 @@ public class SpisakStudenataPredmet extends JDialog {
 		Predmet p = BazaPredmeta.getInstance().getPredmeti().get(vrsta);
 		
 		ArrayList<Student> s = p.getSpisakStudenataKojiSlusajuPredmet();
+		
+		ComparatorStudenti comp = new ComparatorStudenti();
+		
+		Collections.sort(s, comp);
 		
 		studentiComboBox = new JComboBox<Student>();
 

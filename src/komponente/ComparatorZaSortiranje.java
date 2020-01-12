@@ -11,7 +11,7 @@ public class ComparatorZaSortiranje implements Comparator<String>{
 			if(s1.matches("(([a-z][a-z])|([A-Z][A-Z]))\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-[0-9]{4}")) {
 				String[] podeljen1 = s1.split("\\-");
 				String[] podeljen2 = s2.split("\\-");
-				int prvoPoredjenje = podeljen1[0].compareTo(podeljen2[0]);
+				int prvoPoredjenje = podeljen1[0].compareToIgnoreCase(podeljen2[0]);
 				if(prvoPoredjenje == 0) {
 					int godinaUpisa1 = Integer.parseInt(podeljen1[2]);
 					int godinaUpisa2 = Integer.parseInt(podeljen2[2]);

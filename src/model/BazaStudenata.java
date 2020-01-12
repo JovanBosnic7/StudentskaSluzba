@@ -160,7 +160,7 @@ public class BazaStudenata {
 			case 8:
 				return student.getTrenutnaGodinaStudija().toString();
 			case 9:
-				return student.getStatusStudenta() == Status.B ? "Budzet" : "Samofinansiranje";
+				return student.getStatusStudenta() == Status.B ? "Bud\u017eet" : "Samofinansiranje";
 			case 10:
 				return Double.toString(student.getProsecnaOcena());
 			default:

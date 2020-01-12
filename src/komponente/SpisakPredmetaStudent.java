@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JDialog;
 import javax.swing.JList;
@@ -42,6 +43,10 @@ public class SpisakPredmetaStudent extends JDialog{
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		
 		ArrayList<Predmet> p = BazaStudenata.getInstance().getStudenti().get(vrsta).getSpisakPredmeta();
+		
+		ComparatorPredmet comp = new ComparatorPredmet();
+		
+		Collections.sort(p, comp);
 		
 		Predmet[] predmeti = new Predmet[p.size()];
 		

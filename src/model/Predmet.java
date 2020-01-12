@@ -98,7 +98,7 @@ public class Predmet implements Serializable {
 		if(predmetniProfesor != null) 
 			imePrezime=predmetniProfesor.getIme() + " " + predmetniProfesor.getPrezime();
 		
-		return "Sifra predmeta : " + sifraPredmeta + ", Naziv predmeta : " + nazivPredmeta + ", Semestar : " + semestar
+		return "\u0160ifra predmeta : " + sifraPredmeta + ", Naziv predmeta : " + nazivPredmeta + ", Semestar : " + semestar
 				+ ", Godina u kojoj se predmet izvodi : " + godinaUKojojSePredmetIzvodi + ", Predmetni profesor : " + imePrezime;
 				
 	}
