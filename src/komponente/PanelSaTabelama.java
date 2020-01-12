@@ -30,8 +30,8 @@ public class PanelSaTabelama extends JPanel {
    
     public PanelSaTabelama(Component c, int pomeraj) {
         this();
-        leviPanel.setPreferredSize(new Dimension(pomeraj, pomeraj));
-        desniPanel.setPreferredSize(new Dimension(pomeraj, pomeraj));
+        leviPanel.setPreferredSize(new Dimension(0,0));
+        desniPanel.setPreferredSize(new Dimension(0,0));
         gornjiPanel.setPreferredSize(new Dimension(pomeraj, pomeraj));
         donjiPanel.setPreferredSize(new Dimension(pomeraj, pomeraj));
         add(c, BorderLayout.CENTER);
