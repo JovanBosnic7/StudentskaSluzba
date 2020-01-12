@@ -140,7 +140,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		cLabele.gridy = 1;
 		panelUnosPodataka.add(labelaPrezime, cLabele);
 
-		labelaDatumRodjenja = new JLabel("Datum rodjenja*");
+		labelaDatumRodjenja = new JLabel("Datum ro\u0111enja*");
 		cLabele.gridx = 0;
 		cLabele.gridy = 2;
 		panelUnosPodataka.add(labelaDatumRodjenja, cLabele);
@@ -175,7 +175,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		cLabele.gridy = 8;
 		panelUnosPodataka.add(labelaGodinaStudija, cLabele);
 		
-		buttonBudzet = new JRadioButton("Budzet");
+		buttonBudzet = new JRadioButton("Bud\u017eet");
 		buttonSamofinansiranje = new JRadioButton("Samofinansiranje");
 		
 		buttonBudzet.setBackground(new Color(240, 240, 240));
@@ -195,7 +195,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(buttonSamofinansiranje, cLabele);
 		
 		unosIme = new JTextField();
-		unosIme.setToolTipText("<html>" + "Unesite ime studenta." + "<br>" + "Ime mora poceti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
+		unosIme.setToolTipText("<html>" + "Unesite ime studenta." + "<br>" + "Ime mora po\u010deti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
 		unosIme.setPreferredSize(new Dimension(200, 30));
 		unosIme.addKeyListener(new KeyListener() {
 			
@@ -225,7 +225,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosIme, cTextBox);
 		
 		unosPrezime = new JTextField();
-		unosPrezime.setToolTipText("<html>" + "Unesite prezime studenta." + "<br>" + "Prezime mora poceti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
+		unosPrezime.setToolTipText("<html>" + "Unesite prezime studenta." + "<br>" + "Prezime mora po\u010deti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
 		unosPrezime.setPreferredSize(new Dimension(200, 30));
 		unosPrezime.addKeyListener(new KeyListener() {
 			
@@ -255,7 +255,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosPrezime, cTextBox);
 		
 		unosDatumRodjenja = new JTextField();
-		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum rodjenja studenta." + "<br>" + "Datum se unosi u formatu dd.MM.GGGG." + "<br>" + "npr. 01.01.1998."+ "</html>");
+		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum ro\u0111enja studenta." + "<br>" + "Datum se unosi u formatu dd.MM.GGGG." + "<br>" + "npr. 01.01.1998."+ "</html>");
 		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
 		unosDatumRodjenja.addKeyListener(new KeyListener() {
 			
@@ -313,7 +313,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 		panelUnosPodataka.add(unosAdresaStanovanja, cTextBox);
 		
 		unosBrojTelefona = new JTextField();
-		unosBrojTelefona.setToolTipText("<html>" + "Unesite broj telefona studenta." + "<br>" + "Obavezno sa prefiksom drzave." + "<br>" + "npr. +381651234567"+ "</html>");
+		unosBrojTelefona.setToolTipText("<html>" + "Unesite broj telefona studenta." + "<br>" + "Dozvoljene su cifre, kao i karakteri / +(ako se unosi prefiks dr\u017eave) i -." + "<br>" + "npr. +38165/1234567"+ "</html>");
 		unosBrojTelefona.setPreferredSize(new Dimension(200, 30));
 		unosBrojTelefona.addKeyListener(new KeyListener() {
 			
@@ -530,11 +530,11 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
-		if(brojTelefona.matches("\\+[0-9]{3}[1-9][0-9][0-9]{6,7}")) 
+		if(brojTelefona.matches("[0-9 /+-]+")) 
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
-		if(brojIndeksa.matches("(([a-z][a-z])|([A-Z][A-Z]))\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-20[0-9][0-9]"))
+		if(brojIndeksa.matches("(([a-z][a-z])|([A-Z][A-Z]))\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-[0-9]{4}"))
 			uslovi[5] = true;		
 		else
 			uslovi[5] = false;
@@ -542,7 +542,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[6] = true;		
 		else
 			uslovi[6] = false;
-		if(datumUpisa.matches("0?([1-9]|[12][0-9]|3[01])\\.0?([1-9]|1[012])\\.(19|20)[0-9][0-9]\\."))
+		if(datumUpisa.matches("0?([1-9]|[12][0-9]|3[01])\\.0?([1-9]|1[012])\\.[0-9]{4}\\."))
 			uslovi[7] = true;
 		else
 			uslovi[7] = false;
@@ -589,10 +589,10 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 				s.setDatumUpisa(datumUpis);
 				if(izmena == false) {
 					if(!StudentiKontroler.getInstance().dodajStudenta(s))
-						JOptionPane.showMessageDialog(null, "Uneti broj indeksa vec postoji u bazi podataka!", "Greska", JOptionPane.ERROR_MESSAGE);}
+						JOptionPane.showMessageDialog(null, "Uneti broj indeksa ve\u0107 postoji u bazi podataka!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);}
 				else {
 					if(!StudentiKontroler.getInstance().izmeniStudenta(vrsta, s))
-						JOptionPane.showMessageDialog(null, "Doslo je do greske pri izmeni studenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Do\u0161lo je do gre\u0161ke pri izmeni studenta!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 				}
 				setVisible(false);
 		}
