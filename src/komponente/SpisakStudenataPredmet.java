@@ -80,7 +80,7 @@ public class SpisakStudenataPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				idx = studentiComboBox.getSelectedIndex();
+				idx = studentiComboBox.getSelectedIndex()-1;
 				student = (Student) studentiComboBox.getSelectedItem();
 			}
 		});
