@@ -61,10 +61,10 @@ public class SpisakStudenataPredmet extends JDialog {
 		Predmet p = BazaPredmeta.getInstance().getPredmeti().get(vrsta);
 		
 		ArrayList<Student> s = p.getSpisakStudenataKojiSlusajuPredmet();
-		
-		ComparatorStudenti comp = new ComparatorStudenti();
-		
-		Collections.sort(s, comp);
+//Otkomentarisati u slucaju da studenti u comboboxu treba da budu sortirani
+//		ComparatorStudenti comp = new ComparatorStudenti();
+//		
+//		Collections.sort(s, comp);
 		
 		studentiComboBox = new JComboBox<Student>();
 
@@ -114,7 +114,7 @@ public class SpisakStudenataPredmet extends JDialog {
 		gbcNazad.insets = new Insets(30, 10, 10, 10);
 		centerPanel.add(nazad, gbcNazad);
 	
-		obrisi = new JButton("Obrisi");
+		obrisi = new JButton("Obri\u0161i");
 		obrisi.addActionListener(new ActionListener() {
 			
 			@Override

@@ -43,10 +43,10 @@ public class SpisakPredmetaStudent extends JDialog{
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		
 		ArrayList<Predmet> p = BazaStudenata.getInstance().getStudenti().get(vrsta).getSpisakPredmeta();
-		
-		ComparatorPredmet comp = new ComparatorPredmet();
-		
-		Collections.sort(p, comp);
+//Otkomentarisati u slucaju da je potrebno da predmeti u comboboxu budu sortirani
+//		ComparatorPredmet comp = new ComparatorPredmet();
+//		
+//		Collections.sort(p, comp);
 		
 		Predmet[] predmeti = new Predmet[p.size()];
 		
