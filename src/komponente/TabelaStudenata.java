@@ -17,6 +17,7 @@ public class TabelaStudenata extends JTable {
 		this.setColumnSelectionAllowed(false);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new ModelTabelaStudenti());
+		this.getTableHeader().setReorderingAllowed(false);
 		new ButtonColumnStudenti(this, 11);
 	}
 }
