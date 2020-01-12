@@ -25,8 +25,12 @@ public class MainFrameListener implements WindowListener {
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
 		JFrame frame= (JFrame) e.getComponent();
-		int biranje= JOptionPane.showConfirmDialog(frame, "Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?", "Zatvaranje aplikacije",
-				JOptionPane.YES_NO_OPTION);
+
+		Object[] daNe = {"Da", "Ne"};
+		Object podrazumevano = daNe[1];
+		
+		int biranje= JOptionPane.showOptionDialog(frame, "Da li ste sigurni da \u017Eelite da zatvorite aplikaciju?", "Zatvaranje aplikacije",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, daNe, podrazumevano);
 		if(biranje==JOptionPane.YES_OPTION) {
 			BazaPodataka bp = new BazaPodataka();
 			bp.saveToFile();

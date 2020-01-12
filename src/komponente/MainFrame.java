@@ -42,7 +42,7 @@ public class MainFrame extends JFrame {
 		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize( 3* screenDimension.width / 4, 3* screenDimension.height / 4);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("Studentska služba");
+		setTitle("Studentska slu\u017Eba");
 		setResizable(false);
 		setLocation(screenDimension.width/2 - getWidth()/2, screenDimension.height/2 -getHeight()/2);
 		
