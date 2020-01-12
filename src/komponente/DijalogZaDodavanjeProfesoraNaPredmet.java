@@ -42,7 +42,7 @@ public class DijalogZaDodavanjeProfesoraNaPredmet extends JDialog {
 	public DijalogZaDodavanjeProfesoraNaPredmet(int row) {
 		
 		if(row < 0) {
-			JOptionPane.showMessageDialog(null, "Prvo odaberite predmet na kog zelite da dodate profesora!", "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Prvo odaberite predmet na kog \u017Eelite da dodate profesora!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		uslov = false;
@@ -52,20 +52,20 @@ public class DijalogZaDodavanjeProfesoraNaPredmet extends JDialog {
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
-		this.setSize(1 * screenDimension.width / 4, screenDimension.height / 5);
+		this.setSize(480,216);
 		this.setTitle("Predmet - dodavanje profesora");
 		this.setModal(true);
 		this.setLocationRelativeTo(MainFrame.getInstance());
 		
 		bottomPanel = new JPanel();
-		bottomPanel.setPreferredSize(new Dimension(screenDimension.width/5, 30));
+		bottomPanel.setPreferredSize(new Dimension(480,20));
 		bottomPanel.setBackground(new Color(240,240,240));
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		
 		centerPanel = new JPanel(new GridBagLayout());
 		centerPanel.setBackground(Color.WHITE);
 
-		labelaLicnaKarta = new JLabel("Broj licne karte profesora*");
+		labelaLicnaKarta = new JLabel("Broj li\u010Dne karte profesora*");
 		
 		GridBagConstraints gbcUnos = new GridBagConstraints();
 		gbcUnos.gridx = 0;
@@ -75,6 +75,7 @@ public class DijalogZaDodavanjeProfesoraNaPredmet extends JDialog {
 		centerPanel.add(labelaLicnaKarta, gbcUnos);
 		
 		unosLicneKarte = new JTextField();
+		unosLicneKarte.setMinimumSize( new Dimension(250,30));
 		unosLicneKarte.setPreferredSize(new Dimension(250, 30));
 		unosLicneKarte.addKeyListener(new KeyListener() {
 			

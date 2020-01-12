@@ -36,7 +36,6 @@ public class PredmetniProfesorDijalog extends JDialog {
 
 	public PredmetniProfesorDijalog(int row, Point position) {
 
-	
 		profesor = null;
 
 		vrsta = TabelaPredmeta.getInstance().convertRowIndexToModel(row);
@@ -46,12 +45,12 @@ public class PredmetniProfesorDijalog extends JDialog {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
 		this.setModal(true);
-		this.setSize(screenDimension.width / 4, screenDimension.height / 4);
+		this.setSize(480, 270);
 		this.setLocation(position);
 		this.setTitle("Predmetni profesor");
 
 		bottomPanel = new JPanel();
-		bottomPanel.setPreferredSize(new Dimension(screenDimension.width / 4, 30));
+		bottomPanel.setMinimumSize(new Dimension(480, 30));
 		bottomPanel.setBackground(new Color(240, 240, 240));
 		this.add(bottomPanel, BorderLayout.SOUTH);
 
@@ -63,13 +62,17 @@ public class PredmetniProfesorDijalog extends JDialog {
 
 		profesorComboBox.setPreferredSize(new Dimension(200, 30));
 
-		profesorComboBox.addItem(profesor);
+		profesorComboBox.addItem(null);
+
+		if (profesor != null) {
+			profesorComboBox.addItem(profesor);
+		}
 
 		profesorComboBox.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				profesor = (Profesor) profesorComboBox.getSelectedItem();
 			}
 		});
@@ -103,7 +106,7 @@ public class PredmetniProfesorDijalog extends JDialog {
 		gbcNazad.insets = new Insets(30, 10, 10, 10);
 		centerPanel.add(nazad, gbcNazad);
 
-		obrisi = new JButton("Obrisi");
+		obrisi = new JButton("Obri\u0161i");
 		obrisi.addActionListener(new ActionListener() {
 
 			@Override

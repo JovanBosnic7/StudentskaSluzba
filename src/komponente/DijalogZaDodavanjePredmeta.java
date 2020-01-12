@@ -44,6 +44,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private JButton potvrda;
 	private JPanel panelBottom;
 	private JPanel panelCenter;
+	private JPanel prikaz;
+	private JScrollPane scroll;
 	private JComboBox<GodinaStudija> godStudijaComboBox;
 	private JComboBox<String> semestarComboBox;
 
@@ -61,13 +63,17 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setSize(2 * screenDimension.width / 7, screenDimension.height / 2);
+		setMinimumSize(new Dimension(400, 500));
+		setSize(screenDimension.width / 4, screenDimension.height / 2);
 		setLocation(screenDimension.width / 2 - getWidth() / 2, screenDimension.height / 2 - getHeight() / 2);
 		setTitle("Dodavanje predmeta");
 		setModal(true);
 		setLocationRelativeTo(null);
-//		setLayout(new GridBagLayout());
+		prikaz=new JPanel();
+		prikaz.setPreferredSize(new Dimension(480,500));
 		panelCenter = new JPanel();
+		panelCenter.setMinimumSize(new Dimension(480, 400));
+		panelCenter.setPreferredSize(new Dimension(480, 400));
 		panelCenter.setLayout(new GridBagLayout());
 
 		c = new GridBagConstraints();
@@ -76,6 +82,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		b.insets = new Insets(10, 10, 10, 100);
 
 		labelNazivPredmeta = new JLabel("Naziv predmeta:");
+		labelNazivPredmeta.setMinimumSize(new Dimension(200,20));
+		labelNazivPredmeta.setPreferredSize(new Dimension(200,25));
 		c.gridx = 0;
 		c.gridy = 1;
 		c.weightx = 100;
@@ -83,26 +91,33 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		c.insets = new Insets(20, 20, 20, 20);
 		panelCenter.add(labelNazivPredmeta, c);
 
-		labelSifraPredmeta = new JLabel("Sifra predmeta:");
+		labelSifraPredmeta = new JLabel("\u0160ifra predmeta:");
+		labelSifraPredmeta.setMinimumSize(new Dimension(200,20));
+		labelSifraPredmeta.setPreferredSize(new Dimension(200,25));
 		c.gridx = 0;
 		c.gridy = 0;
 		panelCenter.add(labelSifraPredmeta, c);
 
 		labelSemestar = new JLabel("Semestar:");
+		labelSemestar.setMinimumSize(new Dimension(200,20));
+		labelSemestar.setPreferredSize(new Dimension(200,25));
 		c.gridx = 0;
 		c.gridy = 2;
 		panelCenter.add(labelSemestar, c);
 
-		labelGodinaUKojojeSePredmetIzvodi = new JLabel("Godina u kojoj se izvodi:");
+		labelGodinaUKojojeSePredmetIzvodi = new JLabel("Godina izvo\u0111enja:");
+		labelGodinaUKojojeSePredmetIzvodi.setMinimumSize(new Dimension(300,20));
+		labelGodinaUKojojeSePredmetIzvodi.setPreferredSize(new Dimension(250,25));
 		c.gridx = 0;
 		c.gridy = 3;
 		panelCenter.add(labelGodinaUKojojeSePredmetIzvodi, c);
 
-		this.add(panelCenter, BorderLayout.CENTER);
+		//this.add(panelCenter, BorderLayout.CENTER);
 
 		unosSifre = new JTextField();
-		unosSifre.setPreferredSize(new Dimension(200, 20));
-		unosSifre.setToolTipText("<html>" + "Unesite sifru predmeta." + "<br>" + "Sifra mora poceti velikim slovom."
+		unosSifre.setMinimumSize(new Dimension(200, 20));
+		unosSifre.setPreferredSize(new Dimension(200, 25));
+		unosSifre.setToolTipText("<html>" + "Unesite \u0161ifru predmeta." + "<br>" + "Sifra mora poceti velikim slovom."
 				+ "<br>" + "npr. EE123" + "</html>");
 		unosSifre.addKeyListener(this);
 
@@ -111,7 +126,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		panelCenter.add(unosSifre, b);
 
 		unosNaziva = new JTextField();
-		unosNaziva.setPreferredSize(new Dimension(200, 20));
+		unosNaziva.setMinimumSize(new Dimension(200, 20));
+		unosNaziva.setPreferredSize(new Dimension(200, 25));
 		unosNaziva.setToolTipText("<html>" + "Unesite naziv predmeta." + "<br>" + "Predmet mora poceti velikim slovom."
 				+ "<br>" + "npr. Matematika" + "</html>");
 		unosNaziva.addKeyListener(this);
@@ -121,7 +137,8 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 
 		semestarComboBox = new JComboBox<String>();
 		semestarComboBox.setBackground(Color.WHITE);
-		semestarComboBox.setPreferredSize(new Dimension(200, 30));
+		semestarComboBox.setMinimumSize(new Dimension(200, 20));
+		semestarComboBox.setPreferredSize(new Dimension(200, 25));
 		semestarComboBox.addItem("1");
 		semestarComboBox.addItem("2");
 		semestarComboBox.addItem("3");
@@ -145,17 +162,22 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		godStudijaComboBox.addItem(GodinaStudija.III);
 		godStudijaComboBox.addItem(GodinaStudija.IV);
 		godStudijaComboBox.addItem(GodinaStudija.V);
-		godStudijaComboBox.setPreferredSize(new Dimension(200, 30));
+		godStudijaComboBox.setMinimumSize(new Dimension(200, 20));
+
+		godStudijaComboBox.setPreferredSize(new Dimension(200, 25));
 
 		b.gridx = 1;
 		b.gridy = 3;
 		panelCenter.add(godStudijaComboBox, b);
 
 		odustanak = new JButton("Odustanak");
+		odustanak.setMinimumSize(new Dimension(100,20));
+		odustanak.setPreferredSize(new Dimension(100,30));
 		odustanak.addActionListener(this);
 
 		potvrda = new JButton("Potrvda");
-		//potvrda.setBackground(new Color(131, 237, 253));
+		potvrda.setMinimumSize(new Dimension(100,20));
+		potvrda.setPreferredSize(new Dimension(100,30));
 		potvrda.setEnabled(false);
 		potvrda.addActionListener(this);
 
@@ -169,14 +191,19 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 		a.gridx = 1;
 		a.gridy = 0;
 		panelBottom.add(potvrda, a);
-		this.add(panelBottom, BorderLayout.SOUTH);
+		panelBottom.setMinimumSize(new Dimension(screenDimension.width/4,100));
+		panelBottom.setPreferredSize(new Dimension(screenDimension.width/4,120));
+		prikaz.add(panelCenter, BorderLayout.NORTH);
+		prikaz.add(panelBottom,BorderLayout.SOUTH);
+		scroll= new  JScrollPane(prikaz);
+		this.add(scroll);
 
 	}
 
 	public DijalogZaDodavanjePredmeta(int row) {
 		this();
 		if (row < 0) {
-			JOptionPane.showMessageDialog(null, "Niste oznacili predmet koji zelite da izmenite");
+			JOptionPane.showMessageDialog(null, "Niste ozna\u010Dili predmet koji \u017Eelite da izmenite");
 			return;
 		}
 		izmena = true;
@@ -194,7 +221,7 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 	private Boolean proveriUnos() {
 		sifra = unosSifre.getText();
 		naziv = unosNaziva.getText();
-		
+
 		if (sifra.matches("[a-zA-Z0-9]*")) {
 			uslovi[0] = true;
 			unosSifre.setBackground(new Color(240, 240, 240));
@@ -237,13 +264,13 @@ public class DijalogZaDodavanjePredmeta extends JDialog implements ActionListene
 			p.setGodinaUKojojSePredmetIzvodi(godinaStudija);
 			if (izmena) {
 				if (!PredmetiKontroler.getInstance().izmeniPredmet(vrsta, p)) {
-					JOptionPane.showConfirmDialog(null, "Doslo je do greske pri izmeni predmeta");
+					JOptionPane.showConfirmDialog(null, "Doslo je do gre\u0161ke pri izmeni predmeta");
 				}
 
 			} else {
 
 				if (!PredmetiKontroler.getInstance().dodajPredmet(p)) {
-					JOptionPane.showMessageDialog(null, "Uneli ste sifru predmeta koja vec postoji!");
+					JOptionPane.showMessageDialog(null, "Uneli ste \u0161ifru predmeta koja vec postoji!");
 				}
 			}
 			setVisible(false);

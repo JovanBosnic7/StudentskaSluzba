@@ -32,7 +32,7 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 	public DijalogZaBrisanjePredmeta(int row) {
 		
 		if(row < 0) {
-			JOptionPane.showMessageDialog(null, "Prvo odaberite predmet  koji zelite da obrisete!", "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Prvo odaberite predmet  koji \u017Eelite da obri\u0161ete!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		vrsta=TabelaPredmeta.getInstance().convertRowIndexToModel(row);
@@ -41,7 +41,7 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setSize(2 * screenDimension.width / 8, screenDimension.height / 5);
+		setSize(480,216);
 		setLocation(screenDimension.width / 2 - getWidth() / 2, screenDimension.height / 2 - getHeight() / 2);
 		setTitle("Brisanje predmeta");
 		setModal(true);
@@ -52,7 +52,7 @@ public class DijalogZaBrisanjePredmeta extends JDialog implements ActionListener
 		GridBagConstraints c = new GridBagConstraints();
 		GridBagConstraints b = new GridBagConstraints();
 
-		poruka = new JLabel("Da li ste sigurni da zelite da obrišete predmet?");
+		poruka = new JLabel("Da li ste sigurni da \u017Eelite da obrišete predmet?");
 		c.gridx = 1;
 		c.gridy = 0;
 		c.insets = new Insets(70, 10, 30, 30);

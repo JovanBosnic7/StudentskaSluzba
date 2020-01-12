@@ -9,9 +9,9 @@ public enum GodinaStudija {
 		else if(this == II)
 			return "II (druga)";
 		else if(this == III)
-			return "III (treca)";
+			return "III (tre\u0107a)";
 		else if(this == IV)
-			return "IV (cetvrta)";
+			return "IV (\u010Detvrta)";
 		else if(this == V)
 			return "V (peta)";
 		else

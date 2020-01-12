@@ -21,7 +21,7 @@ public class BazaProfesora {
 		this.profesori = new ArrayList<Profesor>();
 		this.kolone = new ArrayList<String>();
 
-		kolone.add("Broj licne karte");
+		kolone.add("Broj li\u010Dne karte");
 		kolone.add("Ime");
 		kolone.add("Prezime");
 		kolone.add("Datum ro\u0111enja");

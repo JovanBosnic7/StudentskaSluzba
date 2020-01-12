@@ -18,7 +18,7 @@ public class BazaPredmeta {
 	private BazaPredmeta() {
 		this.predmeti = new ArrayList<Predmet>();
 		this.kolone = new ArrayList<String>();
-		kolone.add("Sifra predmeta");
+		kolone.add("\u0160ifra predmeta");
 		kolone.add("Naziv predmeta");
 		kolone.add("Semestar");
 		kolone.add("Godina u kojoj se izvodi");

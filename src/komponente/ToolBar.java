@@ -1,5 +1,6 @@
 package komponente;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -24,6 +25,8 @@ import kontroler.IzmenaStudentaListener;
 public class ToolBar extends JToolBar {
 
 	private static final long serialVersionUID = -3632212177343556646L;
+	private JPanel leviPanel;
+	private JPanel desniPanel;
 	private JButton dodavanjeStudenta;
 	private JButton dodavanjeProfesora;
 	private JButton izmenaStudenta;
@@ -60,37 +63,42 @@ public class ToolBar extends JToolBar {
 
 	private ToolBar() {
 
-		setLayout(new FlowLayout(FlowLayout.LEFT));
+		setLayout(new BorderLayout());
 		setFloatable(false);
+		leviPanel = new JPanel();
+		leviPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		desniPanel = new JPanel();
+		desniPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
 		dodavanjeStudenta = new JButton();
 		dodavanjeStudenta.addActionListener(new DodavanjeStudentaListener());
 		dodavanjeStudenta.setIcon(new ImageIcon("slike/dodavanje.png"));
 		dodavanjeStudenta.setMnemonic(KeyEvent.VK_D);
-		
+
 		dodavanjeProfesora = new JButton();
 		dodavanjeProfesora.setToolTipText("Dodavanje profesora Alt+D");
 		dodavanjeProfesora.addActionListener(new DodavanjeProfesoraListener());
 		dodavanjeProfesora.setIcon(new ImageIcon("slike/dodavanjeprofesora.png"));
 		dodavanjeProfesora.setMnemonic(KeyEvent.VK_D);
-		
+
 		izmenaStudenta = new JButton();
 		izmenaStudenta.setToolTipText("Izmena studenta Alt+I");
 		izmenaStudenta.setIcon(new ImageIcon("slike/izmena.png"));
 		izmenaStudenta.addActionListener(new IzmenaStudentaListener());
 		izmenaStudenta.setMnemonic(KeyEvent.VK_I);
-		
+
 		izmenaPredmeta = new JButton();
 		izmenaPredmeta.setToolTipText("Izmena predmeta Alt+I");
 		izmenaPredmeta.setIcon(new ImageIcon("slike/izmena.png"));
 		izmenaPredmeta.addActionListener(new IzmenaPredmetaListener());
 		izmenaPredmeta.setMnemonic(KeyEvent.VK_I);
-		
+
 		izmenaProfesora = new JButton();
 		izmenaProfesora.setToolTipText("Izmena profesora Alt+I");
 		izmenaProfesora.setIcon(new ImageIcon("slike/izmena.png"));
 		izmenaProfesora.addActionListener(new IzmenaProfesoraListener());
 		izmenaProfesora.setMnemonic(KeyEvent.VK_I);
-		
+
 		brisanjeStudenta = new JButton();
 		brisanjeStudenta.setToolTipText("Brisanje studenta Alt+B");
 		brisanjeStudenta.setIcon(new ImageIcon("slike/brisanje.png"));
@@ -102,9 +110,12 @@ public class ToolBar extends JToolBar {
 		brisanjeProfesora.setIcon(new ImageIcon("slike/brisanje.png"));
 		brisanjeProfesora.addActionListener(new BrisanjeProfesoraListener());
 		brisanjeProfesora.setMnemonic(KeyEvent.VK_B);
-		
+
 		unosPretrageStudenta = new JTextField();
+		unosPretrageStudenta.setMinimumSize(new Dimension(200,25));
 		unosPretrageStudenta.setPreferredSize(new Dimension(250, 30));
+		unosPretrageStudenta.setToolTipText("<html>" + "Pretragu unesite u slede\u0107em formatu ime:_____; prezime:_____;indeks:____;" + "</html>");
+
 		unosPretrageStudenta.addKeyListener(new KeyListener() {
 
 			@Override
@@ -129,11 +140,10 @@ public class ToolBar extends JToolBar {
 		});
 
 		pretragaStudenta = new JButton();
-		pretragaStudenta.setToolTipText("Pretrazite studente Alt+P");
+		pretragaStudenta.setToolTipText("Pretra\u017Eite studente Alt+P");
 		pretragaStudenta.setIcon(new ImageIcon("slike/pretraga.png"));
 		pretragaStudenta.setMnemonic(KeyEvent.VK_P);
 		pretragaStudenta.addActionListener(new ActionListener() {
-		
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -143,7 +153,10 @@ public class ToolBar extends JToolBar {
 		});
 
 		unosPretrageProfesora = new JTextField();
+		unosPretrageProfesora.setMinimumSize(new Dimension(200,25));
 		unosPretrageProfesora.setPreferredSize(new Dimension(250, 30));
+		unosPretrageProfesora.setToolTipText("<html>" + "Pretragu unesite u slede\u0107em formatu ime:_____; prezime:_____;brLicneKarte:_____;" + "</html>");
+
 		unosPretrageProfesora.addKeyListener(new KeyListener() {
 
 			@Override
@@ -167,7 +180,7 @@ public class ToolBar extends JToolBar {
 			}
 		});
 		pretragaProfesora = new JButton();
-		pretragaProfesora.setToolTipText("Pretrazite profesore Alt+P");
+		pretragaProfesora.setToolTipText("Pretra\u017Eite profesore Alt+P");
 		pretragaProfesora.setIcon(new ImageIcon("slike/pretraga.png"));
 		pretragaProfesora.setMnemonic(KeyEvent.VK_P);
 		pretragaProfesora.addActionListener(new ActionListener() {
@@ -180,6 +193,8 @@ public class ToolBar extends JToolBar {
 		});
 
 		unosPretragePredmeta = new JTextField();
+		unosPretragePredmeta.setToolTipText("<html>" + "Pretragu unesite u slede\u0107em formatu sifraPredmeta:_____; nazivPredmeta:_____;" + "</html>");
+		unosPretragePredmeta.setMinimumSize(new Dimension(200,25));
 		unosPretragePredmeta.setPreferredSize(new Dimension(250, 30));
 		unosPretragePredmeta.addKeyListener(new KeyListener() {
 
@@ -205,7 +220,7 @@ public class ToolBar extends JToolBar {
 		});
 
 		pretragaPredmeta = new JButton();
-		pretragaPredmeta.setToolTipText("Pretrazite predmete Alt+P");
+		pretragaPredmeta.setToolTipText("Pretra\u017Eite predmete Alt+P");
 		pretragaPredmeta.setMnemonic(KeyEvent.VK_P);
 		pretragaPredmeta.setIcon(new ImageIcon("slike/pretraga.png"));
 		pretragaPredmeta.addActionListener(new ActionListener() {
@@ -222,7 +237,7 @@ public class ToolBar extends JToolBar {
 		dodavanjeStudentaNaPredemet.setIcon(new ImageIcon("slike/dodavanje.png"));
 		dodavanjeStudentaNaPredemet.setMnemonic(KeyEvent.VK_S);
 		dodavanjeStudentaNaPredemet.addActionListener(new DodavanjeStudentaNaPredmetListener());
-		
+
 		dodavanjePredmeta = new JButton();
 		dodavanjePredmeta.setToolTipText("Dodavanje predmeta Alt+D");
 		dodavanjePredmeta.setMnemonic(KeyEvent.VK_D);
@@ -249,65 +264,61 @@ public class ToolBar extends JToolBar {
 	public void iscrtajNaEkran(Tip t) {
 		removeAll();
 		if (t == Tip.STUDENT) {
+			leviPanel.removeAll();
+			desniPanel.removeAll();
 			dodavanjeStudenta.setToolTipText("Dodavanje studenta Alt+D");
-			add(dodavanjeStudenta);
+			leviPanel.add(dodavanjeStudenta);
 
-			addSeparator();
-			add(izmenaStudenta);
+			leviPanel.add(izmenaStudenta);
 
-			addSeparator();
-			add(brisanjeStudenta);
+			leviPanel.add(brisanjeStudenta);
 
-			add(Box.createHorizontalStrut(850));
+			add(leviPanel, BorderLayout.WEST);
 
-			add(unosPretrageStudenta);
-			addSeparator();
+			desniPanel.add(unosPretrageStudenta);
 
-			add(pretragaStudenta);
+			desniPanel.add(pretragaStudenta);
+
+			add(desniPanel, BorderLayout.EAST);
 
 		} else if (t == Tip.PROFESOR) {
+			leviPanel.removeAll();
+			desniPanel.removeAll();
+			leviPanel.add(dodavanjeProfesora);
 
-			add(dodavanjeProfesora);
+			leviPanel.add(izmenaProfesora);
 
-			addSeparator();
-			add(izmenaProfesora);
+			leviPanel.add(brisanjeProfesora);
 
-			addSeparator();
-			add(brisanjeProfesora);
+			add(leviPanel, BorderLayout.WEST);
 
-			add(Box.createHorizontalStrut(850));
+			desniPanel.add(unosPretrageProfesora);
 
-			add(unosPretrageProfesora);
-
-			addSeparator();
-
-			add(pretragaProfesora);
+			desniPanel.add(pretragaProfesora);
+			add(desniPanel, BorderLayout.EAST);
 
 		} else if (t == Tip.PREDMET) {
 			// dodavanjePredmeta.addActionListener(this);
-			add(dodavanjePredmeta);
+			leviPanel.removeAll();
+			desniPanel.removeAll();
 
-			addSeparator();
+			leviPanel.add(dodavanjePredmeta);
 
-			add(dodavanjeStudentaNaPredemet);
-			addSeparator();
+			leviPanel.add(dodavanjeStudentaNaPredemet);
 
-			add(dodavanjeProfesoraNaPredmet);
-			addSeparator();
+			leviPanel.add(dodavanjeProfesoraNaPredmet);
 
-			add(izmenaPredmeta);
+			leviPanel.add(izmenaPredmeta);
 
-			addSeparator();
+			leviPanel.add(brisanjePredmeta);
 
-			add(brisanjePredmeta);
+			add(leviPanel, BorderLayout.WEST);
 
-			add(Box.createHorizontalStrut(690));
+			desniPanel.add(unosPretragePredmeta);
 
-			add(unosPretragePredmeta);
+			desniPanel.add(pretragaPredmeta);
 
-			addSeparator();
-
-			add(pretragaPredmeta);
+			add(desniPanel, BorderLayout.EAST);
 
 		}
 

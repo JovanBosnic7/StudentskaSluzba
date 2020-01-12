@@ -25,6 +25,8 @@ public class ScrollPanePredmeti extends JScrollPane {
 		super(tabela);
 		ModelTabelaPredmeti model = new ModelTabelaPredmeti();
 		sorter = new TableRowSorter<ModelTabelaPredmeti>(model);
+		sorter.setSortable(4, false);
+		sorter.setSortable(5, false);
 		tabela.setRowSorter(sorter);
 		filteri = new ArrayList<RowFilter<ModelTabelaPredmeti, Object>>();
 	}

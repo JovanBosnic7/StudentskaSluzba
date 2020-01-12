@@ -34,7 +34,7 @@ public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListene
 	public DijalogZaBrisanjeProfesora(int row) {
 
 		if (row < 0) {
-			JOptionPane.showMessageDialog(null, "Prvo odaberite profesora kog zelite da obrisete!", "Greska",
+			JOptionPane.showMessageDialog(null, "Prvo odaberite profesora kog \u017Eelite da obri\u0161ete!", "Gre\u0161ka",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -43,7 +43,7 @@ public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListene
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setSize(2 * screenDimension.width / 8, screenDimension.height / 5);
+		setSize(480,216);
 		setLocation(screenDimension.width / 2 - getWidth() / 2, screenDimension.height / 2 - getHeight() / 2);
 		setTitle("Brisanje profesora");
 		setModal(true);
@@ -54,7 +54,7 @@ public class DijalogZaBrisanjeProfesora extends JDialog implements ActionListene
 		GridBagConstraints c = new GridBagConstraints();
 		GridBagConstraints b = new GridBagConstraints();
 
-		poruka = new JLabel("Da li ste sigurni da zelite da obrišete profesora?");
+		poruka = new JLabel("Da li ste sigurni da \u017Eelite da obri\u0161ete profesora?");
 		c.gridx = 1;
 		c.gridy = 0;
 		c.insets = new Insets(70, 10, 30, 30);
