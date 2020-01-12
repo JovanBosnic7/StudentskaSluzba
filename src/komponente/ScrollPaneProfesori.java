@@ -26,6 +26,15 @@ public class ScrollPaneProfesori extends JScrollPane {
 		super(tabela);
 		ModelTabelaProfesori model = new ModelTabelaProfesori();
 		sorter = new TableRowSorter<ModelTabelaProfesori>(model);
+		ComparatorZaSortiranje comparator = new ComparatorZaSortiranje();
+	    sorter.setComparator(3, comparator);
+	    sorter.setSortable(0, false);
+	    sorter.setSortable(4, false);
+	    sorter.setSortable(5, false);
+	    sorter.setSortable(6, false);
+	    sorter.setSortable(7, false);
+	    sorter.setSortable(8, false);
+	    sorter.setSortable(9, false);
 		tabela.setRowSorter(sorter);
 		filteri = new ArrayList<RowFilter<ModelTabelaProfesori, Object>>();
 	}
