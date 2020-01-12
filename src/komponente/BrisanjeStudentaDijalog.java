@@ -27,22 +27,23 @@ public class BrisanjeStudentaDijalog extends JDialog {
 	public BrisanjeStudentaDijalog(int row) {
 		
 		if(row < 0) {
-			JOptionPane.showMessageDialog(null, "Prvo odaberite studenta kog zelite da obrisete!", "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Prvo odaberite studenta kog \u017eelite da obri\u0161ete!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
 		vrsta = TabelaStudenata.getInstance().convertRowIndexToModel(row);
 		
+		Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(true);
-		this.setSize(480, 216);
+		this.setSize(1 * screenDimension.width / 4, screenDimension.height / 5);
 		this.setTitle("Brisanje studenta");
 		this.setModal(false);
 		this.setLocationRelativeTo(MainFrame.getInstance());
 		
 		bottomPanel = new JPanel();
-		bottomPanel.setPreferredSize(new Dimension(480, 20));
+		bottomPanel.setPreferredSize(new Dimension(screenDimension.width/5, 30));
 		bottomPanel.setBackground(new Color(240,240,240));
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		
@@ -50,7 +51,7 @@ public class BrisanjeStudentaDijalog extends JDialog {
 		centerPanel.setBackground(Color.WHITE);
 		
 
-		brisanje = new JLabel("Da li ste sigurni da zelite da obrisete studenta?");
+		brisanje = new JLabel("Da li ste sigurni da \u017eelite da obri\u0161ete studenta?");
 		brisanje.setIcon(new ImageIcon("slike/brisanje.png") );
 		
 		GridBagConstraints gbcLabela = new GridBagConstraints();
