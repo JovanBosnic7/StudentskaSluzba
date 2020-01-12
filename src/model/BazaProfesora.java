@@ -24,7 +24,7 @@ public class BazaProfesora {
 		kolone.add("Broj licne karte");
 		kolone.add("Ime");
 		kolone.add("Prezime");
-		kolone.add("Datum rodjenja");
+		kolone.add("Datum ro\u0111enja");
 		kolone.add("Adresa stanovanja");
 		kolone.add("Telefon");
 		kolone.add("Adresa kancelarije");

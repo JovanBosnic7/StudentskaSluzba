@@ -78,7 +78,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 	public DodavanjeStudentaDijalog(int row){
 		this();
 		if(row < 0) {
-			JOptionPane.showMessageDialog(null, "Niste oznacili studenta kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Niste ozna\u010dili studenta kog \u017eelite da izmenite!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		izmena = true;
@@ -534,7 +534,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;
-		if(brojIndeksa.matches("(([a-z][a-z])|([A-Z][A-Z]))\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-[0-9]{4}"))
+		if(brojIndeksa.matches("(([a-z][a-z])|([A-Z][A-Z]))\\-([00]?[1-9]|0?[1-9][0-9]|[1-9][0-9][0-9])\\-(19|20)[0-9][0-9]"))
 			uslovi[5] = true;		
 		else
 			uslovi[5] = false;
@@ -542,7 +542,7 @@ public class DodavanjeStudentaDijalog extends JDialog implements ActionListener 
 			uslovi[6] = true;		
 		else
 			uslovi[6] = false;
-		if(datumUpisa.matches("0?([1-9]|[12][0-9]|3[01])\\.0?([1-9]|1[012])\\.[0-9]{4}\\."))
+		if(datumUpisa.matches("0?([1-9]|[12][0-9]|3[01])\\.0?([1-9]|1[012])\\.(19|20)[0-9][0-9]\\."))
 			uslovi[7] = true;
 		else
 			uslovi[7] = false;

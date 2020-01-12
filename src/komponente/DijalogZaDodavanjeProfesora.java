@@ -74,7 +74,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 	public DijalogZaDodavanjeProfesora(int row) {
 		this();
 		if(row < 0) {
-			JOptionPane.showMessageDialog(null, "Niste oznacili profesora kojeg zelite da izmenite!", "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Niste ozna\u010dili profesora kog \u017eelite da izmenite!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		izmena = true;
@@ -131,7 +131,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		cLabele.gridy = 1;
 		panelUnosPodataka.add(labelaPrezime, cLabele);
 
-		labelaDatumRodjenja = new JLabel("Datum rodjenja*");
+		labelaDatumRodjenja = new JLabel("Datum ro\u0111enja*");
 		cLabele.gridx = 0;
 		cLabele.gridy = 2;
 		panelUnosPodataka.add(labelaDatumRodjenja, cLabele);
@@ -156,7 +156,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		cLabele.gridy = 6;
 		panelUnosPodataka.add(labelaAdresaKancelarije, cLabele);
 		
-		labelaBrojLicneKarte = new JLabel("Broj licne karte*");
+		labelaBrojLicneKarte = new JLabel("Broj li\u010dne karte*");
 		cLabele.gridx = 0;
 		cLabele.gridy = 7;
 		panelUnosPodataka.add(labelaBrojLicneKarte, cLabele);
@@ -172,7 +172,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		panelUnosPodataka.add(labelaZvanje, cLabele);
 		
 		unosIme = new JTextField();
-		unosIme.setToolTipText("<html>" + "Unesite ime profesora." + "<br>" + "Ime mora poceti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
+		unosIme.setToolTipText("<html>" + "Unesite ime profesora." + "<br>" + "Ime mora po\u010deti velikim slovom." + "<br>" + "npr. Pera"+ "</html>");
 		unosIme.setPreferredSize(new Dimension(200, 30));
 		unosIme.addKeyListener(new KeyListener() {
 			
@@ -202,7 +202,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		panelUnosPodataka.add(unosIme, cTextBox);
 		
 		unosPrezime = new JTextField();
-		unosPrezime.setToolTipText("<html>" + "Unesite prezime profesora." + "<br>" + "Prezime mora poceti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
+		unosPrezime.setToolTipText("<html>" + "Unesite prezime profesora." + "<br>" + "Prezime mora po\u010deti velikim slovom." + "<br>" + "npr. Peric"+ "</html>");
 		unosPrezime.setPreferredSize(new Dimension(200, 30));
 		unosPrezime.addKeyListener(new KeyListener() {
 			
@@ -231,7 +231,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		panelUnosPodataka.add(unosPrezime, cTextBox);
 		
 		unosDatumRodjenja = new JTextField();
-		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum rodjenja profesora." + "<br>" + "Datum se unosi u formatu dd.mm.gggg." + "<br>" + "npr. 01.01.1998."+ "</html>");
+		unosDatumRodjenja.setToolTipText("<html>" + "Unesite datum ro\u0111enja profesora." + "<br>" + "Datum se unosi u formatu dd.mm.gggg." + "<br>" + "npr. 01.01.1998."+ "</html>");
 		unosDatumRodjenja.setPreferredSize(new Dimension(200, 30));
 		unosDatumRodjenja.addKeyListener(new KeyListener() {
 			
@@ -291,7 +291,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		panelUnosPodataka.add(unosAdresaStanovanja, cTextBox);
 		
 		unosKontaktTelefon = new JTextField();
-		unosKontaktTelefon.setToolTipText("<html>" + "Unesite broj telefona profesora." + "<br>" + "Obavezno sa prefiksom drzave." + "<br>" + "npr. +381651234567"+ "</html>");
+		unosKontaktTelefon.setToolTipText("<html>" + "Unesite broj telefona profesora." + "<br>" + "Dozvoljene su cifre, kao i karakteri / +(ako se unosi prefiks dr\u017eave) i -." + "<br>" + "npr. +38165/1234567"+ "</html>");
 		unosKontaktTelefon.setPreferredSize(new Dimension(200, 30));
 		unosKontaktTelefon.addKeyListener(new KeyListener() {
 			
@@ -380,7 +380,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 		panelUnosPodataka.add(unosAdresaKancelarije, cTextBox);
 		
 		unosBrojLicneKarte = new JTextField();
-		unosBrojLicneKarte.setToolTipText("Unesite broj licne karte profesora.");
+		unosBrojLicneKarte.setToolTipText("Unesite broj li\u010dne karte profesora.");
 		unosBrojLicneKarte.setPreferredSize(new Dimension(200, 30));
 		unosBrojLicneKarte.addKeyListener(new KeyListener() {
 			
@@ -529,7 +529,7 @@ public class DijalogZaDodavanjeProfesora extends JDialog implements ActionListen
 			uslovi[3] = true;
 		else
 			uslovi[3] = false;
-		if(kontaktTelefon.matches("\\+[0-9]{3}[1-9][0-9][0-9]{6,7}"))
+		if(kontaktTelefon.matches("[0-9 /+-]+"))
 			uslovi[4] = true;
 		else
 			uslovi[4] = false;

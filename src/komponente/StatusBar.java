@@ -26,7 +26,7 @@ public class StatusBar extends JPanel {
 		int sirina = 3*dimenzijeEkrana.width/4;
 		this.setPreferredSize(new Dimension(sirina, 30));
 		
-		this.labela = new JLabel("Studentska služba");
+		this.labela = new JLabel("Studentska slu\u017eba");
 		this.datumLab = new JLabel();
 		
 		Timer timer = new Timer(1000, new ActionListener() {

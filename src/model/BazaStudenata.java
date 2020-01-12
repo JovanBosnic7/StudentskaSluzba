@@ -24,7 +24,7 @@ public class BazaStudenata {
 			this.kolone.add("Indeks");
 			this.kolone.add("Ime");
 			this.kolone.add("Prezime");
-			this.kolone.add("Datum rodjenja");
+			this.kolone.add("Datum ro\u0111enja");
 			this.kolone.add("Adresa");
 			this.kolone.add("Broj telefona");
 			this.kolone.add("Email adresa");
