@@ -39,7 +39,7 @@ public class DodavanjeStudentaNaPredmetDijalog extends JDialog{
 		public DodavanjeStudentaNaPredmetDijalog(int row) {
 			
 			if(row < 0) {
-				JOptionPane.showMessageDialog(null, "Prvo odaberite predmet na kog zelite da dodate studenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Prvo odaberite predmet na koji \u017eelite da dodate studenta!", "Gre\u0161ka", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			uslov = false;
